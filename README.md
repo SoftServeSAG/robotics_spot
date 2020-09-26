@@ -28,6 +28,7 @@ Init workspace
 mkdir -p spot_ws/src
 cd spot_ws/src
 git clone git@github.com:clearpathrobotics/spot_ros.git
+git@github.com:SoftServeSAG/robotics_spot.git
 ```
 
 Build docker images
