@@ -1,4 +1,4 @@
-docker push lyubomyrd/ros_melodic:latest
+FROM lyubomyrd/ros_melodic:latest
 
 WORKDIR /root
 
