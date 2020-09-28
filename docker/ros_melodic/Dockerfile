@@ -22,7 +22,7 @@ RUN mkdir -p deps_ws/src && \
         --cmake-args -DCMAKE_BUILD_TYPE=Release && \
     catkin profile set release
 
-RUN echo "PS1='\[\e[33m\][MrHandy]\[\e[m\] ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" >> ~/.bashrc
+RUN echo "PS1='\[\e[33m\][Spot]\[\e[m\] ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" >> ~/.bashrc
 
 RUN echo "source ~/ws/devel/setup.bash" >> ~/.bashrc
 
