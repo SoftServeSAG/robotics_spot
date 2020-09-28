@@ -14,7 +14,7 @@ docker run -it --rm \
     --device=/dev/dri:/dev/dri \
     --env="DISPLAY=$DISPLAY" \
     --env QT_X11_NO_MITSHM=1 \    
-    --net host \
+    --net=host \
    ros_melodic_ws
 
 
