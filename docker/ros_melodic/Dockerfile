@@ -1,4 +1,4 @@
-docker push lyubomyrd/ros_melodic:latest
+FROM lyubomyrd/ros_melodic:latest
 
 WORKDIR /root
 
@@ -21,11 +21,6 @@ RUN mkdir -p deps_ws/src && \
         --extend /opt/ros/melodic \
         --cmake-args -DCMAKE_BUILD_TYPE=Release && \
     catkin profile set release
-
-RUN cd deps_ws/src && \
-    git clone https://github.com/xArm-Developer/xarm_ros.git
-
-RUN cd deps_ws && catkin build
 
 RUN echo "PS1='\[\e[33m\][MrHandy]\[\e[m\] ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" >> ~/.bashrc
 
