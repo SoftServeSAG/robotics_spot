@@ -58,7 +58,7 @@ catkin build
 All following commands should be executed in specified containers:
 
 ```bash
-cd ~/ws/src/robotic_spot/scripts
+cd ~/ws/src/robotics_spot/scripts
 chmod a+x start.sh
 chmod a+x session.yml
 ./start.sh
