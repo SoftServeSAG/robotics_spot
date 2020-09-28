@@ -11,10 +11,9 @@ docker run -it --rm \
     --privileged \
     --volume=/tmp/.X11-unix:/tmp/.X11-unix \
     --volume="$WS_DIR_PATH:/root/ws" \
-    --device=/dev/dri:/dev/dri \
     --env="DISPLAY=$DISPLAY" \
     --env QT_X11_NO_MITSHM=1 \    
-    --net=host \
+    --net host \
    ros_melodic_ws
 
 
