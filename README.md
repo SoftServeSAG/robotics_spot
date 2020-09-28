@@ -27,19 +27,21 @@ Init workspace
 ```bash
 mkdir -p spot_ws/src
 cd spot_ws/src
-git clone git@github.com:clearpathrobotics/spot_ros.git
-git clone git@github.com:SoftServeSAG/robotics_spot.git
+git clone https://github.com/clearpathrobotics/spot_ros.git
+git clone https://github.com/tarasborov/robotics_spot.git
 ```
 
 Build docker images
 
 ```bash
-cd robotic_spot/docker/ros_melodic_ws
+cd robotics_spot/docker/ros_melodic
+chmod a+x build.bash
 sudo ./build.bash 
 ```
 Run docker container
 
 ```bash
+chmod a+x run.bash
 sudo ./run.bash
 ```
 
@@ -57,6 +59,8 @@ All following commands should be executed in specified containers:
 
 ```bash
 cd ~/ws/src/robotic_spot/scripts
+chmod a+x start.sh
+chmod a+x session.yml
 ./start.sh
 ```
 Now tmux session will start with all required tabs. All required commandsmay be added to the history, in irder to simplify their usage.
