@@ -13,7 +13,7 @@ docker run -it --rm \
             --volume="$WS_DIR_PATH:/root/ws" \
                     --env="DISPLAY=$DISPLAY" \
                         --env QT_X11_NO_MITSHM=1 \
---net host \
+                            --net host \
 ros_melodic_ws
 
                                                            #--device=/dev/dri:/dev/dri \
@@ -21,4 +21,4 @@ ros_melodic_ws
 
                                                                    # --runtime=nvidia \
 
-                                                                   xhost -local:root
+xhost -local:root
