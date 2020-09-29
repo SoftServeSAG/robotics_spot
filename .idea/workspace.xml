@@ -111,14 +111,22 @@
     <option name="LAST_COMMIT_MESSAGE" value="spawned robot" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1601371380744">
+    <state x="224" y="105" width="1482" height="872" key="MergeDialog" timestamp="1601390006303">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1601371380744" />
-    <state x="774" y="467" width="438" height="170" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601295059042">
+    <state x="224" y="105" width="1482" height="872" key="MergeDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1601390006303" />
+    <state x="1087" y="315" width="728" height="475" key="MultipleFileMergeDialog" timestamp="1601395355193">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="774" y="467" width="438" height="170" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/67.27.1853.1053@67.27.1853.1053" timestamp="1601295059042" />
+    <state x="1087" y="315" width="728" height="475" key="MultipleFileMergeDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1601395355193" />
+    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1601389846286">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1601389846286" />
+    <state x="774" y="467" width="428" height="170" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601389828034">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="774" y="467" width="428" height="170" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/67.27.1853.1053@67.27.1853.1053" timestamp="1601389828034" />
     <state x="741" y="453" width="494" height="199" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1601319423950">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
