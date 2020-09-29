@@ -9,15 +9,16 @@ xhost +local:root
 
 docker run -it --rm \
     --privileged \
-    --volume=/tmp/.X11-unix:/tmp/.X11-unix \
-    --volume="$WS_DIR_PATH:/root/ws" \
-    --device=/dev/dri:/dev/dri \
-    --env="DISPLAY=$DISPLAY" \
-    --env QT_X11_NO_MITSHM=1 \    
-    --net host \
-   ros_melodic_ws
+        --volume=/tmp/.X11-unix:/tmp/.X11-unix \
+            --volume="$WS_DIR_PATH:/root/ws" \
+                    --env="DISPLAY=$DISPLAY" \
+                        --env QT_X11_NO_MITSHM=1 \
+--net host \
+ros_melodic_ws
 
+                                                           #--device=/dev/dri:/dev/dri \
+                                                               #--device /dev/video2 \
 
-xhost -local:root
+                                                                   # --runtime=nvidia \
 
-#    --runtime=nvidia \
+                                                                   xhost -local:root
