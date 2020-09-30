@@ -39,7 +39,7 @@ qtcreator-*
 *.user
 
 # Idea`s files
-*.idea/*
+/.idea/
 
 .tmuxinator.yml
 .tmuxinator.yaml
