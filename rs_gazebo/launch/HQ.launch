@@ -16,7 +16,7 @@
     <arg name="use_sim_time" value="$(arg use_sim_time)" />
     <arg name="headless" value="$(arg headless)" />
     <arg name="world_name" value="$(arg world_name)" />
-    <arg name="paused" value="false"/>
+    <arg name="paused" value="true"/>
   </include>
 
   <!-- Load Ridgeback's description, controllers, and teleop nodes. -->
@@ -28,8 +28,6 @@
     <!--<arg name="config" value="$(arg config)" />-->
   <!--</include>-->
 
-
-  <include file="$(find spot_driver)/launch/control.launch" />
   <!--<include file="$(find ridgeback_control_original)/launch/teleop.launch">-->
     <!--<arg name="joystick" value="false"/>-->
   <!--</include>-->
@@ -64,6 +62,8 @@
 
   <!-- <include file="$(find pseudo_stm_lidar)/launch/pseudo_stm_lidar.launch" />
   <include file="$(find pseudo_stm_joint_states)/launch/pseudo_stm_joint_states.launch" /> -->
+
+   <include file="$(find spot_driver)/launch/control.launch" />
 
 
 </launch>

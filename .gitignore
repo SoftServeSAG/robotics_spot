@@ -37,17 +37,12 @@ srv/_*.py
 *.pyc
 qtcreator-*
 *.user
-.idea/.gitignore
-.idea/inspectionProfiles/
-.idea/misc.xml
-.idea/modules.xml
-.idea/robotics_spot.iml
-.idea/workspace.xml
-
-
 
 # Idea`s files
+*.idea/*
 
+.tmuxinator.yml
+.tmuxinator.yaml
 
 /planning/cfg
 /planning/docs

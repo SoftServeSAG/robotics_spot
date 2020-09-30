@@ -20,7 +20,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="231bc250-6054-4298-8775-6fe8a84c5098" name="Default Changelist" comment="solved conflicts">
+      <change afterPath="$PROJECT_DIR$/rs_viz/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rs_viz/launch/view_model.launch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rs_viz/launch/view_robot.launch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rs_viz/package.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rs_viz/rviz/model.rviz" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/rs_viz/rviz/robot.rviz" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker/ros_melodic/run.bash" beforeDir="false" afterPath="$PROJECT_DIR$/docker/ros_melodic/run.bash" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rs_description/urdf/spot.urdf (copy).xacro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rs_description/urdf/spot.urdf.xacro" beforeDir="false" afterPath="$PROJECT_DIR$/rs_description/urdf/spot.urdf.xacro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rs_description/urdf/spotbox.urdf.xacro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rs_description/urdf/spotold.urdf.xacro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/rs_gazebo/launch/HQ.launch" beforeDir="false" afterPath="$PROJECT_DIR$/rs_gazebo/launch/HQ.launch" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rs_gazebo/launch/gazebo.launch" beforeDir="false" afterPath="$PROJECT_DIR$/rs_gazebo/launch/gazebo.launch" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
