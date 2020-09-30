@@ -1,0 +1,39 @@
+<?xml version='1.0'?>
+<sdf version='1.5'>
+    <model name="logo">
+        <pose>0 0 0 0 0 0</pose>
+        <static>true</static>
+        <link name='model_body'>
+            <visual name="visual">
+                <geometry>
+                    <mesh>
+                        <uri>model://cr2_gazebo/meshes/lond_fintech2018/logo_visual.dae</uri>
+                        <scale>1 1 1</scale>
+                    </mesh>
+                </geometry>
+            </visual>
+
+            <collision name="collision">
+                <geometry>
+                    <mesh>
+                        <uri>model://cr2_gazebo/meshes/lond_fintech2018/logo_collision.stl</uri>
+                        <scale>1 1 1</scale>
+                    </mesh>
+                </geometry>
+            </collision>
+
+            <inertial>
+                <pose> 0 0 0 0 0 0</pose>
+                <inertia>
+                    <ixx>0.01558958333333333</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.5289229166666666</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.5395833333333332</izz>
+                </inertia>
+                <mass>7.0</mass>
+            </inertial>
+        </link>
+    </model>
+</sdf>

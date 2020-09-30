@@ -1,0 +1,38 @@
+<?xml version='1.0'?>
+<sdf version='1.5'>
+    <model name="talk_table">
+        <pose>0 0 0 0 0 0</pose>
+        <static>false</static>
+        <link name='model_body'>
+            <visual name="visual">
+                <geometry>
+                    <mesh>
+                        <uri>model://cr2_gazebo/meshes/ss_austin/talk_table_visual.dae</uri>
+                        <scale>1 1 1</scale>
+                    </mesh>
+                </geometry>
+            </visual>
+
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.63 0.99 0.98</size>
+                    </box>
+                </geometry>
+            </collision>
+
+            <inertial>
+                <pose> 0 0 0 0 0 0</pose>
+                <inertia>
+                    <ixx>0.7312000000000001</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.4296500000000001</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.69845</izz>
+                </inertia>
+                <mass>10.0</mass>
+            </inertial>
+        </link>
+    </model>
+</sdf>

@@ -1,0 +1,38 @@
+<?xml version='1.0'?>
+<sdf version='1.5'>
+    <model name="table_in_the_kitchen">
+        <pose>0 0 0 0 0 0</pose>
+        <static>false</static>
+        <link name='model_body'>
+            <visual name="visual">
+                <geometry>
+                    <mesh>
+                        <uri>model://cr2_gazebo/meshes/ss_austin/kitchen_table_visual.dae</uri>
+                        <scale>1 1 1</scale>
+                    </mesh>
+                </geometry>
+            </visual>
+
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>1.21 0.61 1.0</size>
+                    </box>
+                </geometry>
+            </collision>
+
+            <inertial>
+                <pose> 0 0 0 0 0 0</pose>
+                <inertia>
+                    <ixx>1.1434166666666667</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>2.0534166666666667</iyy>
+                    <iyz>0</iyz>
+                    <izz>1.5301666666666665</izz>
+                </inertia>
+                <mass>10.0</mass>
+            </inertial>
+        </link>
+    </model>
+</sdf>
