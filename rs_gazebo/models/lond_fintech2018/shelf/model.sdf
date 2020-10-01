@@ -1,0 +1,39 @@
+<?xml version='1.0'?>
+<sdf version='1.5'>
+    <model name="shelf">
+        <pose>0 0 0 0 0 0</pose>
+        <static>true</static>
+        <link name='model_body'>
+            <visual name="visual">
+                <geometry>
+                    <mesh>
+                        <uri>model://cr2_gazebo/meshes/lond_fintech2018/shelf_visual.dae</uri>
+                        <scale>1 1 1</scale>
+                    </mesh>
+                </geometry>
+            </visual>
+
+            <collision name="collision">
+                <geometry>
+                    <mesh>
+                        <uri>model://cr2_gazebo/meshes/lond_fintech2018/shelf_collision.stl</uri>
+                        <scale>1 1 1</scale>
+                    </mesh>
+                </geometry>
+            </collision>
+
+            <inertial>
+                <pose> 0 0 0 0 0 0</pose>
+                <inertia>
+                    <ixx>0.004897708333333333</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.20835416666666665</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.21321020833333332</izz>
+                </inertia>
+                <mass>2.5</mass>
+            </inertial>
+        </link>
+    </model>
+</sdf>

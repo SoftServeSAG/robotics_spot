@@ -1,0 +1,166 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="default">
+
+   <!--  <physics name='default_physics' default='0' type='ode'>
+      <max_step_size>0.01</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>100</real_time_update_rate>
+    </physics>
+    -->
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/base</uri>
+      <name>fintech</name>
+      <!--<pose>0 0 0 0 0 0 0</pose>-->
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/base_neighbour_box</uri>
+      <name>neighbour_walls</name>
+      <!--<pose>0 0 0 0 0 0 0</pose>-->
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/construction</uri>
+      <name>construction</name>
+      <pose>-6.97021 -13.9566 1.6 0 0 -3.13304</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/chair</uri>
+      <name>chair</name>
+      <pose>-6.20099 -14.6145 0.845384 0 -1.1e-05 -0.109586</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/chair</uri>
+      <name>chair_1</name>
+      <pose>-6.83457 -15.4592 0.845381 5e-06 -1.2e-05 -0.110544</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/chair</uri>
+      <name>chair_2</name>
+      <pose>-7.45906 -16.268 0.845381 2e-06 -1e-06 -0.110191</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/chair</uri>
+      <name>chair_3</name>
+      <pose>-5.90723 -12.7074 0.845381 -2e-06 -3e-06 -0.109988</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/chair</uri>
+      <name>chair_4</name>
+      <pose>-6.76208 -13.6221 0.84538 2e-06 -2e-06 -0.109909</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/light_construction</uri>
+      <name>light_construction</name>
+      <pose>-7.166 -14.9 3.62658 0 -0 0.008388</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/logo</uri>
+      <name>logo</name>
+      <pose>-8.2508 -10.7838 2.9 0 0 -3.12334</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/louver</uri>
+      <name>louver</name>
+      <pose>-5.00702 -14.1027 1.22778 0 -0 0.007084</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/table1</uri>
+      <name>table1</name>
+      <pose>-5.69254 -11.2204 0.556427 0 -0 0.008843</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/table1</uri>
+      <name>table1_1</name>
+      <pose>-8.48022 -11.249 0.556428 0 -0 0.010465</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/table2</uri>
+      <name>table2</name>
+      <pose>-9.01844 -14.4284 0.806477 3.14159 2e-06 0.003107</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/hight_table</uri>
+      <name>hight_table</name>
+      <pose>-7.55928 -15.2541 0.886699 7e-06 -7e-06 1.71701</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/hight_table</uri>
+      <name>hight_table_1</name>
+      <pose>-6.85374 -14.372 0.886696 8e-06 -6e-06 1.7163</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/signboard</uri>
+      <name>signboard</name>
+      <pose>-7.10674 -10.837 2.84256 -0.031047 0.000713 -3.13229</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/light</uri>
+      <name>light_1_1</name>
+      <pose>-8.76 -15.75 3.46 -1.55 -0 0.008388</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/light</uri>
+      <name>light_1_2</name>
+      <pose>-5.77 -14.00 3.41 -1.57 -0 0.008388</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/light</uri>
+      <name>light_2_1</name>
+      <pose>-5.34 -11.12 2.72 -0.35 0.01 -3.13</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/light</uri>
+      <name>light_2_2</name>
+      <pose>-6.44 -11.12 2.72 -0.35 0.01 -3.13</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/light</uri>
+      <name>light_2_3</name>
+      <pose>-7.55 -11.12 2.72 -0.35 0.01 -3.13</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/lond_fintech2018/light</uri>
+      <name>light_2_4</name>
+      <pose>-8.6 -11.19 2.72 -0.35 0.01 -3.13</pose>
+    </include>
+
+
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>4.927360 -4.376610 3.740080 0.000000 0.275643 2.356190</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+
+  </world>
+</sdf>

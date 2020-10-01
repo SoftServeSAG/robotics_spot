@@ -1,0 +1,39 @@
+<?xml version='1.0'?>
+<sdf version='1.5'>
+    <model name="signboard">
+        <pose>0 0 0 0 0 0</pose>
+        <static>true</static>
+        <link name='model_body'>
+            <visual name="visual">
+                <geometry>
+                    <mesh>
+                        <uri>model://cr2_gazebo/meshes/lond_fintech2018/signboard_visual.dae</uri>
+                        <scale>1 1 1</scale>
+                    </mesh>
+                </geometry>
+            </visual>
+
+            <collision name="collision">
+                <geometry>
+                    <mesh>
+                        <uri>model://cr2_gazebo/meshes/lond_fintech2018/signboard_collision.stl</uri>
+                        <scale>1 1 1</scale>
+                    </mesh>
+                </geometry>
+            </collision>
+
+            <inertial>
+                <pose> 0 0 0 0 0 0</pose>
+                <inertia>
+                    <ixx>0.46540125</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>26.465401249999996</iyy>
+                    <iyz>0</iyz>
+                    <izz>26.899999999999995</izz>
+                </inertia>
+                <mass>15.0</mass>
+            </inertial>
+        </link>
+    </model>
+</sdf>

@@ -1,0 +1,38 @@
+<?xml version='1.0'?>
+<sdf version='1.5'>
+    <model name="puffy_blue">
+        <pose>0 0 0 0 0 0</pose>
+        <static>false</static>
+        <link name='model_body'>
+            <visual name="visual">
+                <geometry>
+                    <mesh>
+                        <uri>model://cr2_gazebo/meshes/ss_austin/puffy_blue_visual.dae</uri>
+                        <scale>1 1 1</scale>
+                    </mesh>
+                </geometry>
+            </visual>
+
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>0.56 0.65 0.58</size>
+                    </box>
+                </geometry>
+            </collision>
+
+            <inertial>
+                <pose> 0 0 0 0 0 0</pose>
+                <inertia>
+                    <ixx>0.3162083333333333</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.2708333333333333</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.30670833333333336</izz>
+                </inertia>
+                <mass>5.0</mass>
+            </inertial>
+        </link>
+    </model>
+</sdf>

@@ -1,0 +1,357 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+
+  <world name="default">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+
+    <!--<include>-->
+      <!--<uri>model://sun</uri>-->
+    <!--</include>-->
+
+    <light name='sun' type='directional'>
+      <cast_shadows>0</cast_shadows>
+      <pose frame=''>0 0 10 0 -0 0</pose>
+      <!--<diffuse>0.8 0.8 0.8 1</diffuse>-->
+      <!--<specular>0.2 0.2 0.2 1</specular>-->
+      <attenuation>
+        <!--<range>1000</range>-->
+        <!--<constant>0.9</constant>-->
+        <!--<linear>0.01</linear>-->
+        <!--<quadratic>0.001</quadratic>-->
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+    </light>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/austin_office_base</uri>
+      <name>austin_office</name>
+      <pose>0 0 0 0 0 0</pose>
+    </include>
+
+<!---->
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/sofa</uri>
+      <name>sofa</name>
+      <pose>-2.474693 0.283700 0.447276 -0.000004 -0.000002 3.140875</pose>
+    </include>
+
+<!---->
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/simple_chair</uri>
+      <name>simple_chair_0</name>
+      <pose>-1.752816 3.035121 0.458327 0.00 -0.000132 3.134327</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/simple_chair</uri>
+      <name>simple_chair_1</name>
+      <pose>-1.725184 2.139694 0.458326 -0.000003 -0.000134 -3.130285</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/simple_chair</uri>
+      <name>simple_chair_2</name>
+      <pose>-2.476814 3.044706 0.458328 0.000001 -0.000132 3.103170</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/simple_chair</uri>
+      <name>simple_chair_3</name>
+      <pose>-2.517177 2.132703 0.458328 0.000001 -0.000134 3.126198</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/simple_chair</uri>
+      <name>simple_chair_4</name>
+      <pose>-3.398947 3.074628 0.458329 -0.000003 -0.000134 3.132167</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/simple_chair</uri>
+      <name>simple_chair_5</name>
+      <pose>-3.394950 2.141943 0.458327 0.00 -0.000132 3.134203</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/simple_chair</uri>
+      <name>simple_chair_6</name>
+      <pose>-4.401969 2.606460 0.458325 0.000009 -0.000138 3.126337</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/simple_chair</uri>
+      <name>simple_chair_7</name>
+      <pose>-4.424557 1.771304 0.458328 0.00 -0.000134 -3.138608</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/simple_chair</uri>
+      <name>simple_chair_8</name>
+      <pose>-4.410206 0.962450 0.458327 0.00 -0.000132 -3.138225</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/simple_chair</uri>
+      <name>simple_chair_9</name>
+      <pose>-4.445363 0.160832 0.458327 0.00 -0.000132 -3.138929</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/simple_chair</uri>
+      <name>simple_chair_10</name>
+      <pose>-4.448195 -0.661269 0.458327 0.00 -0.000132 -3.138243</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/simple_chair</uri>
+      <name>simple_chair_11</name>
+      <pose>-5.183399 2.699501 0.458328 0.000001 -0.000132 3.126669</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/simple_chair</uri>
+      <name>simple_chair_12</name>
+      <pose>-5.201388 1.885506 0.458328 0.000001 -0.000132 3.126204</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/simple_chair</uri>
+      <name>simple_chair_13</name>
+      <pose>-5.220889 1.080064 0.458328 0.000001 -0.000132 3.126301</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/simple_chair</uri>
+      <name>simple_chair_14</name>
+      <pose>-5.212958 0.231431 0.458327 -0.000001 -0.000132 3.126477</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/simple_chair</uri>
+      <name>simple_chair_15</name>
+      <pose>-5.213259 -0.640615 0.458328 0.000001 -0.000132 3.126367</pose>
+    </include>
+
+<!---->
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/talk_sofa</uri>
+      <name>talk_sofa_0</name>
+      <pose>-5.171453 5.114709 0.778740 0.000004 0.000002 0.001596</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/talk_sofa</uri>
+      <name>talk_sofa_1</name>
+      <pose>-2.69869 5.06989 0.365 0 0 -3.12976</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/talk_sofa</uri>
+      <name>talk_sofa_2</name>
+      <pose>-0.743249 4.9706 0.365 0 -0 0.001606</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/talk_sofa</uri>
+      <name>talk_sofa_3</name>
+      <pose>6.142236 5.065474 0.778740 0.00 -0.000002 -3.130157</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/talk_sofa</uri>
+      <name>talk_sofa_4</name>
+      <pose>3.654634 5.031554 0.778743 0.00 0.00 0.001606</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/talk_sofa</uri>
+      <name>talk_sofa_5</name>
+      <pose>1.707233 5.085215 0.778743 0.00 0.000002 -3.129765</pose>
+    </include>
+
+
+<!---->
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/talk_table</uri>
+      <name>talk_table_0</name>
+      <pose>-3.929054 5.112441 0.404065 0.000006 0.000006 3.140211</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/talk_table</uri>
+      <name>talk_table_1</name>
+      <pose>0.516257 5.052311 0.404063 0.00 0.00 3.139933</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/talk_table</uri>
+      <name>talk_table_2</name>
+      <pose>5.025823 4.969944 0.404061 0.000010 -0.000006 -3.134065</pose>
+    </include>
+
+<!---->
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/long_table</uri>
+      <name>long_table_1</name>
+      <pose>13.292382 1.839442 0.610000 0.00 0.00 1.570009</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/long_table</uri>
+      <name>long_table_2</name>
+      <pose>10.882910 3.873014 0.610000 0.00 0.00 -1.57519</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/long_table</uri>
+      <name>long_table_3</name>
+      <pose>8.82175 2.112629 0.609995 0.000008 0.00 -1.575189</pose>
+    </include>
+
+<!---->
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/mini_table</uri>
+      <name>mini_table</name>
+      <pose>-1.52682 0.841662 0.490032 0 -3e-06 3.14018</pose>
+    </include>
+
+<!---->
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/stool</uri>
+      <name>stool_1</name>
+      <pose>-0.624225 2.19998 0.2 0 -0 3.14018</pose>
+    </include>
+
+<!---->
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/puffy_blue</uri>
+      <name>puffy_blue_0</name>
+      <pose>-0.3 -0.11 0.290000 0.00 0.00 3.140181</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/puffy_blue</uri>
+      <name>puffy_blue_1</name>
+      <pose>-0.3 1.07 0.29 0 -0 3.14018</pose>
+    </include>
+
+<!---->
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/table_in_the_kitchen</uri>
+      <name>table_in_the_kitchen_1</name>
+      <pose>-0.204635 -3.0939 0.5 0 -0 3.11796</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/table_in_the_kitchen</uri>
+      <name>table_in_the_kitchen_2</name>
+      <pose>-1.56907 -3.02112 0.499997 3e-06 -3e-06 3.11751</pose>
+    </include>
+
+<!---->
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/office_chair_near_white_table</uri>
+      <name>office_chair_0</name>
+      <pose>7.89232 0.873958 0.59 0 -0 1.58554</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/office_chair_near_white_table</uri>
+      <name>office_chair_1</name>
+      <pose>7.8549 2.053 0.59 0 -0 1.58585</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/office_chair_near_white_table</uri>
+      <name>office_chair_2</name>
+      <pose>7.8908 3.13126 0.59 0 -0 1.5854</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/office_chair_near_white_table</uri>
+      <name>office_chair_3</name>
+      <pose>12.31 0.442557 0.59 0 -0 1.58605</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/office_chair_near_white_table</uri>
+      <name>office_chair_4</name>
+      <pose>12.3097 1.47774 0.59 0 -0 1.58163</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/office_chair_near_white_table</uri>
+      <name>office_chair_5</name>
+      <pose>14.3537 0.939361 0.59 0 0 -1.57935</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/office_chair_near_white_table</uri>
+      <name>office_chair_6</name>
+      <pose>11.9001 5.38199 0.59 0 0 -1.57935</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/office_chair_near_white_table</uri>
+      <name>office_chair_7</name>
+      <pose>11.8993 4.41126 0.59 0 0 -1.57935</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/office_chair_near_white_table</uri>
+      <name>office_chair_8</name>
+      <pose>9.75719 4.54106 0.59 0 -0 1.54139</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/office_chair_near_white_table</uri>
+      <name>office_chair_9</name>
+      <pose>9.73888 5.37214 0.59 0 -0 1.54139</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/office_chair_near_white_table</uri>
+      <name>office_chair_10</name>
+      <pose>14.3339 2.02488 0.59 0 0 -1.57935</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/office_chair_near_white_table</uri>
+      <name>office_chair_11</name>
+      <pose>14.3633 2.90135 0.59 0 0 -1.57935</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/office_chair_near_white_table</uri>
+      <name>office_chair_12</name>
+      <pose>9.776310 0.738197 0.590000 0.00 0.00 -1.579350</pose>
+    </include>
+
+    <include>
+      <uri>model://cr2_gazebo/models/ss_austin/office_chair_near_white_table</uri>
+      <name>office_chair_13</name>
+      <pose>9.841594 1.625942 0.5900000 0.00 0.00 -1.579350</pose>
+    </include>
+
+<!---->
+
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose>4.927360 -4.376610 3.740080 0.000000 0.275643 2.356190</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+
+  </world>
+</sdf>

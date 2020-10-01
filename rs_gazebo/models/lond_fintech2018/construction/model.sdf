@@ -1,0 +1,41 @@
+<?xml version='1.0'?>
+<sdf version='1.5'>
+    <model name="construction">
+        <pose>0 0 0 0 0 0</pose>
+        <static>true</static>
+        <link name='model_body'>
+            <visual name="visual">
+                <geometry>
+                    <mesh>
+                        <uri>model://cr2_gazebo/meshes/lond_fintech2018/construction_visual.dae</uri>
+                        <scale>1 1 1</scale>
+                    </mesh>
+                </geometry>
+            </visual>
+
+            <collision name="collision">
+                <geometry>
+                    <mesh>
+                        <uri>model://cr2_gazebo/meshes/lond_fintech2018/construction_collision.stl</uri>
+                        <scale>1 1 1</scale>
+
+                    </mesh>
+                </geometry>
+                <pose> 0 0 -0.01     0 0 0 </pose>
+            </collision>
+
+            <inertial>
+                <pose> 0 0 0 0 0 0</pose>
+                <inertia>
+                    <ixx>851.2016666666665</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>480.26833333333326</iyy>
+                    <iyz>0</iyz>
+                    <izz>990.1366666666664</izz>
+                </inertia>
+                <mass>200.0</mass>
+            </inertial>
+        </link>
+    </model>
+</sdf>

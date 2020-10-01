@@ -1,0 +1,38 @@
+<?xml version='1.0'?>
+<sdf version='1.5'>
+    <model name="mini_table">
+        <pose>0 0 0 0 0 0</pose>
+        <static>false</static>
+        <link name='model_body'>
+            <visual name="visual">
+                <geometry>
+                    <mesh>
+                        <uri>model://cr2_gazebo/meshes/ss_austin/mini_table_visual.dae</uri>
+                        <scale>1 1 1</scale>
+                    </mesh>
+                </geometry>
+            </visual>
+
+            <collision name="collision">
+                <geometry>
+                    <box>
+                        <size>1.23 1.23 0.52</size>
+                    </box>
+                </geometry>
+            </collision>
+
+            <inertial>
+                <pose> 0 0 0 0 0 0</pose>
+                <inertia>
+                    <ixx>1.4860833333333332</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>1.4860833333333332</iyy>
+                    <iyz>0</iyz>
+                    <izz>2.5214999999999996</izz>
+                </inertia>
+                <mass>10.0</mass>
+            </inertial>
+        </link>
+    </model>
+</sdf>

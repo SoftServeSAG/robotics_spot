@@ -1,0 +1,203 @@
+<!--model named fintech_world inside 'state' tag of original 'london_fintech2018.world'-->
+<model name='fintech_world.world'>
+    <pose frame=''>-1.97794 -2.733 0 0 -0 0</pose>
+    <scale>1 1 1</scale>
+    <link name='Wall_0'>
+        <pose frame=''>-6.2567 38.724 0 0 -0 0</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_14'>
+        <pose frame=''>-28.7959 43.3884 0 0 0 -0.013387</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_16'>
+        <pose frame=''>-29.526 42.0037 0 0 0 -1.57389</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_17'>
+        <pose frame=''>-28.4714 40.6093 0 0 -0 0</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_19'>
+        <pose frame=''>-28.503 42.0053 0 0 0 -1.5708</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_2'>
+        <pose frame=''>-22.4139 38.6857 0 0 -0 3.14159</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_23'>
+        <pose frame=''>-25.0621 40.9828 0 0 0 -1.5708</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_25'>
+        <pose frame=''>-25.6831 40.6339 0 0 -0 0</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_26'>
+        <pose frame=''>-25.1306 39.7353 0 0 0 -1.56801</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_28'>
+        <pose frame=''>-26.3081 38.8391 0 0 -0 3.14159</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_29'>
+        <pose frame=''>-27.4806 38.7602 0 0 0 -1.60361</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_3'>
+        <pose frame=''>-23.2461 41.0388 0 0 -0 1.58448</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_30'>
+        <pose frame=''>-26.2726 38.6835 0 0 0 -0.000459</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_32'>
+        <pose frame=''>-21.6139 38.7358 0 0 -0 1.5708</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_33'>
+        <pose frame=''>-22.4139 38.7858 0 0 -0 3.14159</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_34'>
+        <pose frame=''>-23.2139 38.8357 0 0 -0 1.5708</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_35'>
+        <pose frame=''>-22.5389 38.8858 0 0 -0 0</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_37'>
+        <pose frame=''>18.6888 38.7411 0 0 -0 0</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_38'>
+        <pose frame=''>28.2244 -4.2321 0 0 0 -1.57113</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_4'>
+        <pose frame=''>-24.7976 43.3901 0 0 -0 3.13825</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_40'>
+        <pose frame=''>19.5253 -47.2052 0 0 -0 3.14159</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_42'>
+        <pose frame=''>1.13551 -47.212 0 0 -0 3.14159</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_44'>
+        <pose frame=''>-14.0026 -47.2263 0 0 -0 3.14159</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_46'>
+        <pose frame=''>-21.5403 -48.0652 0 0 -0 1.5708</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_47'>
+        <pose frame=''>-22.2154 -47.2653 0 0 -0 3.14159</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_49'>
+        <pose frame=''>-26.7004 -47.3043 0 0 0 -3.12821</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_5'>
+        <pose frame=''>-26.3549 43.249 0 0 0 -1.6008</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_51'>
+        <pose frame=''>-30.6447 38.7707 0 0 -0 3.14159</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_6'>
+        <pose frame=''>-26.4093 43.1026 0 0 -0 3.14159</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_64'>
+        <pose frame=''>-29.3736 -4.28299 0 0 -0 1.5708</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_66'>
+        <pose frame=''>-24.138 38.6844 0 0 -0 0.001565</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_8'>
+        <pose frame=''>-27.9898 43.1228 0 0 -0 3.14159</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+    <link name='Wall_9'>
+        <pose frame=''>-28.0734 43.2507 0 0 -0 1.54456</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+    </link>
+</model>
