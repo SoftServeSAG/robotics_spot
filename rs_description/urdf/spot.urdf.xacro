@@ -3,12 +3,12 @@
     <link name="body">
         <visual>
             <geometry>
-                <mesh filename="package://spot_description/meshes/body.dae" />
+                <mesh filename="package://rs_description/meshes/body.dae" />
             </geometry>
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://spot_description/meshes/body_collision.stl" />
+                <mesh filename="package://rs_description/meshes/body_collision.stl" />
             </geometry>
         </collision>
         <inertial>
@@ -41,12 +41,12 @@
     <link name="front_left_hip">
         <visual>
             <geometry>
-                <mesh filename="package://spot_description/meshes/front_left_hip.dae" />
+                <mesh filename="package://rs_description/meshes/front_left_hip.dae" />
             </geometry>
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://spot_description/meshes/front_left_hip_collision.stl" />
+                <mesh filename="package://rs_description/meshes/front_left_hip_collision.stl" />
             </geometry>
         </collision>
         <inertial>
@@ -64,12 +64,12 @@
     <link name="front_left_upper_leg">
         <visual>
             <geometry>
-                <mesh filename="package://spot_description/meshes/front_left_upper_leg.dae" />
+                <mesh filename="package://rs_description/meshes/front_left_upper_leg.dae" />
             </geometry>
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://spot_description/meshes/front_left_upper_leg_collision.stl" />
+                <mesh filename="package://rs_description/meshes/front_left_upper_leg_collision.stl" />
             </geometry>
         </collision>
         <inertial>
@@ -87,12 +87,12 @@
     <link name="front_left_lower_leg">
         <visual>
             <geometry>
-                <mesh filename="package://spot_description/meshes/front_left_lower_leg.dae" />
+                <mesh filename="package://rs_description/meshes/front_left_lower_leg.dae" />
             </geometry>
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://spot_description/meshes/front_left_lower_leg_collision.stl" />
+                <mesh filename="package://rs_description/meshes/front_left_lower_leg_collision.stl" />
             </geometry>
         </collision>
         <inertial>
@@ -110,12 +110,12 @@
     <link name="front_right_hip">
         <visual>
             <geometry>
-                <mesh filename="package://spot_description/meshes/front_right_hip.dae" />
+                <mesh filename="package://rs_description/meshes/front_right_hip.dae" />
             </geometry>
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://spot_description/meshes/front_right_hip_collision.stl" />
+                <mesh filename="package://rs_description/meshes/front_right_hip_collision.stl" />
             </geometry>
         </collision>
         <inertial>
@@ -133,12 +133,12 @@
     <link name="front_right_upper_leg">
         <visual>
             <geometry>
-                <mesh filename="package://spot_description/meshes/front_right_upper_leg.dae" />
+                <mesh filename="package://rs_description/meshes/front_right_upper_leg.dae" />
             </geometry>
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://spot_description/meshes/front_right_upper_leg_collision.stl" />
+                <mesh filename="package://rs_description/meshes/front_right_upper_leg_collision.stl" />
             </geometry>
         </collision>
         <inertial>
@@ -156,12 +156,12 @@
     <link name="front_right_lower_leg">
         <visual>
             <geometry>
-                <mesh filename="package://spot_description/meshes/front_right_lower_leg.dae" />
+                <mesh filename="package://rs_description/meshes/front_right_lower_leg.dae" />
             </geometry>
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://spot_description/meshes/front_right_lower_leg_collision.stl" />
+                <mesh filename="package://rs_description/meshes/front_right_lower_leg_collision.stl" />
             </geometry>
         </collision>
         <inertial>
@@ -179,12 +179,12 @@
     <link name="rear_left_hip">
         <visual>
             <geometry>
-                <mesh filename="package://spot_description/meshes/rear_left_hip.dae" />
+                <mesh filename="package://rs_description/meshes/rear_left_hip.dae" />
             </geometry>
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://spot_description/meshes/rear_left_hip_collision.stl" />
+                <mesh filename="package://rs_description/meshes/rear_left_hip_collision.stl" />
             </geometry>
         </collision>
         <inertial>
@@ -202,12 +202,12 @@
     <link name="rear_left_upper_leg">
         <visual>
             <geometry>
-                <mesh filename="package://spot_description/meshes/rear_left_upper_leg.dae" />
+                <mesh filename="package://rs_description/meshes/rear_left_upper_leg.dae" />
             </geometry>
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://spot_description/meshes/rear_left_upper_leg_collision.stl" />
+                <mesh filename="package://rs_description/meshes/rear_left_upper_leg_collision.stl" />
             </geometry>
         </collision>
         <inertial>
@@ -225,12 +225,12 @@
     <link name="rear_left_lower_leg">
         <visual>
             <geometry>
-                <mesh filename="package://spot_description/meshes/rear_left_lower_leg.dae" />
+                <mesh filename="package://rs_description/meshes/rear_left_lower_leg.dae" />
             </geometry>
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://spot_description/meshes/rear_left_lower_leg_collision.stl" />
+                <mesh filename="package://rs_description/meshes/rear_left_lower_leg_collision.stl" />
             </geometry>
         </collision>
         <inertial>
@@ -248,12 +248,12 @@
     <link name="rear_right_hip">
         <visual>
             <geometry>
-                <mesh filename="package://spot_description/meshes/rear_right_hip.dae" />
+                <mesh filename="package://rs_description/meshes/rear_right_hip.dae" />
             </geometry>
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://spot_description/meshes/rear_right_hip_collision.stl" />
+                <mesh filename="package://rs_description/meshes/rear_right_hip_collision.stl" />
             </geometry>
         </collision>
         <inertial>
@@ -271,12 +271,12 @@
     <link name="rear_right_upper_leg">
         <visual>
             <geometry>
-                <mesh filename="package://spot_description/meshes/rear_right_upper_leg.dae" />
+                <mesh filename="package://rs_description/meshes/rear_right_upper_leg.dae" />
             </geometry>
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://spot_description/meshes/rear_right_upper_leg_collision.stl" />
+                <mesh filename="package://rs_description/meshes/rear_right_upper_leg_collision.stl" />
             </geometry>
         </collision>
         <inertial>
@@ -294,12 +294,12 @@
     <link name="rear_right_lower_leg">
         <visual>
             <geometry>
-                <mesh filename="package://spot_description/meshes/rear_right_lower_leg.dae" />
+                <mesh filename="package://rs_description/meshes/rear_right_lower_leg.dae" />
             </geometry>
         </visual>
         <collision>
             <geometry>
-                <mesh filename="package://spot_description/meshes/rear_right_lower_leg_collision.stl" />
+                <mesh filename="package://rs_description/meshes/rear_right_lower_leg_collision.stl" />
             </geometry>
         </collision>
         <inertial>
@@ -314,6 +314,21 @@
         <child link="rear_right_lower_leg" />
         <limit effort="1000" velocity="1000.00" lower="-2.7929" upper="-0.257725" />
     </joint>
+
+
+    <!--Publish joint state from Gazebo-->
+        <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
+            <robotNamespace>robot</robotNamespace>
+            <jointName>
+                base_link_joint, front_rail_joint, rear_rail_joint, 
+                front_left_hip_x, front_left_hip_y, front_left_knee, 
+                front_right_hip_x, front_right_hip_y, front_right_knee,
+                rear_left_hip_x, rear_left_hip_y, rear_left_knee, 
+                rear_right_hip_x, rear_right_hip_y, rear_right_knee
+            </jointName>
+            <updateRate>100</updateRate>
+            <alwaysOn>true</alwaysOn>
+        </plugin>
 
     <!-- Optional custom includes. -->
     <xacro:include filename="$(optenv SPOT_URDF_EXTRAS empty.urdf)" />

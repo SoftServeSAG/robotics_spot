@@ -3,7 +3,7 @@
   <arg name="gui" default="true" />
   <arg name="headless" default="false" />
   <!-- <arg name="world_name" default="$(find rs_gazebo)/worlds/ss_hq4.world" /> -->
-  <arg name="world_name" default="empty.world" />
+  <arg name="world_name" default="empty.world" /> 
 
   <!-- Configuration of Ridgeback which you would like to simulate.
        See ridgeback_description for details. -->
@@ -16,7 +16,7 @@
     <arg name="use_sim_time" value="$(arg use_sim_time)" />
     <arg name="headless" value="$(arg headless)" />
     <arg name="world_name" value="$(arg world_name)" />
-    <arg name="paused" value="true"/>
+    <arg name="paused" value="false"/>
   </include>
 
   <!-- Load Ridgeback's description, controllers, and teleop nodes. -->
@@ -58,7 +58,7 @@
     <arg name="z" default="0.72"/>
 
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
-        args="-urdf -model spot_mini -param robot_description -x $(arg x) -y $(arg y) -z $(arg z)"/>
+        args="-urdf -model spot_mini -param robot_description -x $(arg x) -y $(arg y) -z $(arg z)"/> 
 
   <!-- <include file="$(find pseudo_stm_lidar)/launch/pseudo_stm_lidar.launch" />
   <include file="$(find pseudo_stm_joint_states)/launch/pseudo_stm_joint_states.launch" /> -->

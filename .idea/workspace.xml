@@ -19,9 +19,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="231bc250-6054-4298-8775-6fe8a84c5098" name="Default Changelist" comment="added rviz">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="231bc250-6054-4298-8775-6fe8a84c5098" name="Default Changelist" comment="updated gitignore">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/rs_gazebo/launch/HQ.launch" beforeDir="false" afterPath="$PROJECT_DIR$/rs_gazebo/launch/HQ.launch" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601489690005</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="updated gitignore">
+      <created>1601490393634</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1601490393634</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -127,7 +134,8 @@
     <MESSAGE value="spawned robot" />
     <MESSAGE value="solved conflicts" />
     <MESSAGE value="added rviz" />
-    <option name="LAST_COMMIT_MESSAGE" value="added rviz" />
+    <MESSAGE value="updated gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated gitignore" />
   </component>
   <component name="WindowStateProjectService">
     <state x="167" y="125" width="1653" height="855" key="DiffContextDialog" timestamp="1601396089325">
@@ -142,10 +150,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="1087" y="315" width="728" height="475" key="MultipleFileMergeDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1601395355193" />
-    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1601490223583">
+    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2" timestamp="1601490435889">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1601490223583" />
+    <state x="588" y="288" width="800" height="528" key="Vcs.Push.Dialog.v2/67.27.1853.1053@67.27.1853.1053" timestamp="1601490435889" />
     <state x="774" y="467" width="438" height="170" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1601396089274">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>

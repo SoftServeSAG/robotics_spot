@@ -2,7 +2,7 @@
 <package>
   <name>rs_gazebo</name>
   <version>0.0.0</version>
-  <description>The cr2_gazebo package</description>
+  <description>The rs_gazebo package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
