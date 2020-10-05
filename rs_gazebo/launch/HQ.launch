@@ -2,8 +2,8 @@
   <arg name="use_sim_time" default="true" />
   <arg name="gui" default="true" />
   <arg name="headless" default="false" />
-  <!-- <arg name="world_name" default="$(find rs_gazebo)/worlds/ss_hq4.world" /> -->
-  <arg name="world_name" default="empty.world" /> 
+  <arg name="world_name" default="$(find rs_gazebo)/worlds/ss_hq4.world" /> 
+  <!-- <arg name="world_name" default="empty.world" /> -->
 
 
   <!-- Launch Gazebo with the specified world -->
@@ -20,8 +20,8 @@
 
 <include file="$(find rs_description)/launch/description.launch" />
 
-    <arg name="x" default="0"/>
-    <arg name="y" default="0"/>
+    <arg name="x" default="-1.2"/>
+    <arg name="y" default="7.0"/>
     <arg name="z" default="0.72"/>
 
 

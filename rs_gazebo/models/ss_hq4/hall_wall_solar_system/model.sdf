@@ -21,8 +21,8 @@
 
         <material>
           <script>
-            <uri>model://cr2_gazebo/models/ss_hq4/hall_wall_solar_system/materials/scripts</uri>
-            <uri>model://cr2_gazebo/models/ss_hq4/hall_wall_solar_system/materials/textures</uri>
+            <uri>model://rs_gazebo/models/ss_hq4/hall_wall_solar_system/materials/scripts</uri>
+            <uri>model://rs_gazebo/models/ss_hq4/hall_wall_solar_system/materials/textures</uri>
             <name>hall_wall_solar_system</name>
           </script>
         </material>

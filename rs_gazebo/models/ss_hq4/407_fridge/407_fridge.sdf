@@ -7,7 +7,7 @@
             <visual name="visual">
                 <geometry>
                     <mesh>
-                        <uri>model://cr2_gazebo/meshes/ss_hq4/407_fridge/407_fridge.dae</uri>
+                        <uri>model://rs_gazebo/meshes/ss_hq4/407_fridge/407_fridge.dae</uri>
                         <scale>1 1 1</scale>
                     </mesh>
                 </geometry>

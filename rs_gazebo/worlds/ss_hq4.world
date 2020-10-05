@@ -4532,26 +4532,27 @@
       </light>
     </state>
 
+
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_simple_table</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_simple_table</uri>
 	  <name>'413_simple_table'</name>
 	  <pose>0.730049 -5.30932 0.415681 -2e-06 -1e-06 1.57841</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_simple_table</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_simple_table</uri>
 	  <name>'413_simple_table_clone'</name>
 	  <pose>1.35896 -5.29633 0.415678 -9e-06 1e-06 1.57837</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_simple_table</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_simple_table</uri>
 	  <name>'413_simple_table_clone_clone'</name>
 	  <pose>1.38018 -9.03265 0.415679 0 -4e-06 1.58436</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_simple_table</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_simple_table</uri>
 	  <name>'413_simple_table_clone_clone_0'</name>
 	  <pose>0.738097 -9.0547 0.415678 -9e-06 1e-06 1.58439</pose>
 	</include>
@@ -4559,26 +4560,26 @@
 
 
 
-    <include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_table</uri>
+        <include>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_table</uri>
 	  <name>'413_table_1'</name>
 	  <pose>1.35826 -6.55524 0.415677 -1e-06 -6e-06 1.57798</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_table</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_table</uri>
 	  <name>'413_table_2'</name>
 	  <pose>0.711378 -7.8122 0.415681 1.2e-05 -6e-06 -1.55968</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_table</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_table</uri>
 	  <name>'413_table_3'</name>
 	  <pose>0.715416 -6.55909 0.41568 -3e-06 -0 -1.56994</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_table</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_table</uri>
 	  <name>'413_table_4'</name>
 	  <pose>1.35714 -7.80696 0.415681 1.2e-05 -6e-06 1.58535</pose>
 	</include>
@@ -4587,121 +4588,121 @@
 
 
     	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_meeting_chair</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_meeting_chair</uri>
 	  <name>'413_meeting_chair_2'</name>
 	  <pose>0.187999 -6.40878 0.281792 -1e-06 -1e-06 1.56988</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_meeting_chair</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_meeting_chair</uri>
 	  <name>'413_meeting_chair_3'</name>
 	  <pose>0.081497 -7.01654 0.281792 -1e-06 2e-06 1.56307</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_meeting_chair</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_meeting_chair</uri>
 	  <name>'413_meeting_chair_4'</name>
 	  <pose>0.166702 -7.70382 0.281792 -0 -7e-06 1.57768</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_meeting_chair</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_meeting_chair</uri>
 	  <name>'413_meeting_chair_4_clone'</name>
 	  <pose>0.058897 -8.30282 0.281792 0 -0 1.55151</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_meeting_chair</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_meeting_chair</uri>
 	  <name>'413_meeting_chair_4_clone_0'</name>
 	  <pose>0.045568 -5.03866 0.281792 0 -0 1.55331</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_meeting_chair</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_meeting_chair</uri>
 	  <name>'413_meeting_chair_4_clone_clone'</name>
 	  <pose>0.172639 -8.96147 0.281792 0 -0 1.55151</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_meeting_chair</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_meeting_chair</uri>
 	  <name>'413_meeting_chair_4_clone_clone_0'</name>
 	  <pose>0.035102 -9.56899 0.281792 0 -0 1.55151</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_meeting_chair</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_meeting_chair</uri>
 	  <name>'413_meeting_chair_4_clone_clone_1'</name>
 	  <pose>0.675891 -9.98419 0.281792 -1.2e-05 -1.9e-05 -3.12273</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_meeting_chair</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_meeting_chair</uri>
 	  <name>'413_meeting_chair_4_clone_clone_2'</name>
 	  <pose>1.40384 -9.95187 0.281793 3e-06 2e-06 3.13307</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_meeting_chair</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_meeting_chair</uri>
 	  <name>'413_meeting_chair_4_clone_clone_3'</name>
 	  <pose>0.638343 -4.35233 0.281792 -7e-06 2e-06 0.022867</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_meeting_chair</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_meeting_chair</uri>
 	  <name>'413_meeting_chair_5'</name>
 	  <pose>0.112145 -5.70863 0.281792 -2e-06 3e-06 1.60424</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_meeting_chair</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_meeting_chair</uri>
 	  <name>'413_meeting_chair_6'</name>
 	  <pose>1.87273 -5.0823 0.281792 0 0 -1.57166</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_meeting_chair</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_meeting_chair</uri>
 	  <name>'413_meeting_chair_6_clone'</name>
 	  <pose>1.96064 -5.71851 0.281792 0 0 -1.57167</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_meeting_chair</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_meeting_chair</uri>
 	  <name>'413_meeting_chair_6_clone_0'</name>
 	  <pose>1.8845 -6.35544 0.281793 3e-06 8e-06 -1.5717</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_meeting_chair</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_meeting_chair</uri>
 	  <name>'413_meeting_chair_6_clone_1'</name>
 	  <pose>1.97354 -6.95747 0.281793 2e-06 -2e-06 -1.5716</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_meeting_chair</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_meeting_chair</uri>
 	  <name>'413_meeting_chair_6_clone_2'</name>
 	  <pose>1.87867 -7.58068 0.281792 -4e-06 -5e-06 -1.57149</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_meeting_chair</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_meeting_chair</uri>
 	  <name>'413_meeting_chair_6_clone_3'</name>
 	  <pose>1.97177 -8.1842 0.281792 -1e-06 -1e-06 -1.57159</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_meeting_chair</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_meeting_chair</uri>
 	  <name>'413_meeting_chair_6_clone_4'</name>
 	  <pose>1.88943 -8.8136 0.281792 -1e-06 -0 -1.57177</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_meeting_chair</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_meeting_chair</uri>
 	  <name>'413_meeting_chair_6_clone_5'</name>
 	  <pose>2.00014 -9.42261 0.281789 7e-06 -5e-06 -1.57182</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/413_meeting_chair</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/413_meeting_chair</uri>
 	  <name>'413_meeting_chair_7'</name>
 	  <pose>1.33346 -4.37606 0.281793 4e-06 8e-06 0.034098</pose>
 	</include>
@@ -4709,22 +4710,22 @@
 
     <!--TODO BE AWARE OF 413_simple_chair-->
 	<!--<include>-->
-	  <!--<uri>model://cr2_gazebo/models/ss_hq4/413_simple_chair</uri>-->
+	  <!--<uri>model://rs_gazebo/models/ss_hq4/413_simple_chair</uri>-->
 	  <!--<name>_simple_chair_clone'</name>-->
 	  <!--<pose>101 -5.11822 0.339275 6.9e-05 -0.001379 0.003537</pose>-->
 	<!--</include>-->
 	<!--<include>-->
-	  <!--<uri>model://cr2_gazebo/models/ss_hq4/413_simple_chair</uri>-->
+	  <!--<uri>model://rs_gazebo/models/ss_hq4/413_simple_chair</uri>-->
 	  <!--<name>_simple_chair_clone_0'</name>-->
 	  <!--<pose>705 -5.71962 0.339275 6.9e-05 -0.001379 0.003537</pose>-->
 	<!--</include>-->
 	<!--<include>-->
-	  <!--<uri>model://cr2_gazebo/models/ss_hq4/413_simple_chair</uri>-->
+	  <!--<uri>model://rs_gazebo/models/ss_hq4/413_simple_chair</uri>-->
 	  <!--<name>_simple_chair_clone_1'</name>-->
 	  <!--<pose>712 -6.33728 0.339275 6.9e-05 -0.001379 0.003537</pose>-->
 	<!--</include>-->
 	<!--<include>-->
-	  <!--<uri>model://cr2_gazebo/models/ss_hq4/413_simple_chair</uri>-->
+	  <!--<uri>model://rs_gazebo/models/ss_hq4/413_simple_chair</uri>-->
 	  <!--<name>_simple_chair_clone_2'</name>-->
 	  <!--<pose>276 -6.94521 0.339275 6.9e-05 -0.001379 0.003537</pose>-->
 	<!--</include>-->
@@ -4733,7 +4734,7 @@
 
     <!--TODO BE AWARE OF 407_kitchen_table-->
     <!--<include>-->
-      <!--<uri>model://cr2_gazebo/models/ss_hq4/407_kitchen_table</uri>-->
+      <!--<uri>model://rs_gazebo/models/ss_hq4/407_kitchen_table</uri>-->
       <!--<name>407_kitchen_table</name>-->
       <!--<pose> -5.28224 -9.74518 0.575147 0 0 -1.58128</pose>-->
     <!--</include>-->
@@ -4742,20 +4743,20 @@
     <!--TODO BE AWARE OF 407_coffee_table-->
 
      <!--<include>-->
-      <!--<uri>model://cr2_gazebo/models/ss_hq4/407_coffee_table</uri>-->
+      <!--<uri>model://rs_gazebo/models/ss_hq4/407_coffee_table</uri>-->
       <!--<name>407_coffee_table</name>-->
       <!--<pose> -8.287034 -10.203837 0.349103 0 0 -1.568767</pose>-->
     <!--</include>-->
 
 
     <include>
-      <uri>model://cr2_gazebo/models/ss_hq4/hall_table</uri>
+      <uri>model://rs_gazebo/models/ss_hq4/hall_table</uri>
       <name>hall_table</name>
       <pose> -1.34208 10.4197 0.237286 0 -4e-06 -1.57817</pose>
     </include>
 
     <include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/414_quartet_table</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/414_quartet_table</uri>
 	  <name>414_quartet_table'</name>
 	  <pose>4.88042 -0.524938 0.442357 0 0 -1.5605</pose>
 	</include>
@@ -4763,63 +4764,63 @@
 
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/414_double_table</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/414_double_table</uri>
 	  <name>'''''414_double_table_clone_0'''''</name>
 	  <pose>5.55518 3.1704 0.440048 0.010783 3e-06 -0.012795</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/414_double_table</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/414_double_table</uri>
 	  <name>'''''414_double_table_clone_0'''_clone''</name>
 	  <pose>5.23967 -3.95998 0.440053 0.010784 -0 3.12738</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/414_double_table</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/414_double_table</uri>
 	  <name>'''''414_double_table_clone_0''_clone'''</name>
 	  <pose>1.95159 3.23402 0.440056 0.01077 -0 -0.013048</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/414_double_table</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/414_double_table</uri>
 	  <name>'''''414_double_table_clone_1'''''</name>
 	  <pose>7.81453 1.99424 0.440059 0.010752 0 -1.59832</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/414_double_table</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/414_double_table</uri>
 	  <name>'''''414_double_table_clone_1'''_clone''</name>
 	  <pose>2.61267 -0.573744 0.440047 0.010772 -6e-06 1.58752</pose>
 	</include>
 
 	<include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/414_double_table</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/414_double_table</uri>
 	  <name>'''''414_double_table_clone_2'''''</name>
 	  <pose>8.09862 -2.21125 0.440049 0.010769 5e-06 -1.55937</pose>
 	</include>
 
 
     <include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/414_wardbrode</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/414_wardbrode</uri>
 	  <name>414_wardbrode</name>
 	  <pose>-0.178337 1.92734 1 1.5e-05 -0 1.57082</pose>
 	</include>
 
 
     <include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/403_sofa</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/403_sofa</uri>
 	  <name>403_sofa</name>
 	  <pose>-3.42091 -1.67887 0.474968 -1e-06 -0 -3.11622</pose>
 	</include>
 
     <include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/403_table</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/403_table</uri>
 	  <name>403_table</name>
 	  <pose>-3.51471 -0.633251 0.370989 0 0 -3.12695</pose>
 	</include>
 
     <include>
-	  <uri>model://cr2_gazebo/models/ss_hq4/403_mini_table</uri>
+	  <uri>model://rs_gazebo/models/ss_hq4/403_mini_table</uri>
 	  <name>403_mini_table</name>
 	  <pose>-4.16602 1.15405 0.348625 0.001236 1e-05 -1.59612</pose>
 	</include>
@@ -4828,14 +4829,14 @@
     <!--<include>-->
     <!-- -4.00784 -3.50431 0.440054 0.010776 -0 -0.029216-->
     <!--FRIDGE CRASHES-->
-      <!--<uri>model://cr2_gazebo/models/407_fridge</uri>-->
+      <!--<uri>model://rs_gazebo/models/407_fridge</uri>-->
       <!--<name>407_fridge</name>-->
       <!--<pose> -2 -2 0.575147 0 0 -1.58128</pose>-->
     <!--</include>-->
 
     <!--<include>-->
     <!--CHAIR TOO BIG-->
-      <!--<uri>model://cr2_gazebo/models/407_kitchen_chair</uri>-->
+      <!--<uri>model://rs_gazebo/models/407_kitchen_chair</uri>-->
       <!--<name>407_kitchen_chair</name>-->
       <!--<pose> -5.28224 -9.74518 0.575147 0 0 -1.58128</pose>-->
     <!--</include>-->
