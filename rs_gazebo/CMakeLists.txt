@@ -8,7 +8,7 @@ catkin_package(
 )
 
 install(FILES
-  launch/gazebo.launch
-  worlds/office.world
+  launch/HQ.launch
+  worlds/ss_hq4.world
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
   )
