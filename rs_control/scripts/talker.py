@@ -4,7 +4,7 @@ import rospy
 from std_msgs.msg import Float64
 
 rospy.init_node('talker', anonymous=True)
-rate = rospy.Rate(100)  # 100hz
+rate = rospy.Rate(1000)  # 100hz
 
 # ----Front ----
 # left front hip_x
@@ -60,30 +60,38 @@ pub_rear_right_knee = rospy.Publisher('/spot/joint_rear_right_knee_controller/co
 
 def talker():
 
-    while not rospy.is_shutdown():
-        flhx = -2
-        frhx = 2
-        rlhx = -2
-        rrhx = 2
-        rospy.loginfo(flhx)
+
+
         # Hips in x-direction
-        #pub_front_left_hip_x.publish(flhx)
-        #pub_front_right_hip_x.publish(frhx)
-        #pub_rear_left_hip_x.publish(rlhx)
-        #pub_rear_right_hip_x.publish(rrhx)
+        pub_front_left_hip_x.publish(motors_target_pos[0][0])
+        pub_front_right_hip_x.publish(motors_target_pos[1][0])
+        pub_rear_left_hip_x.publish(motors_target_pos[2][0])
+        pub_rear_right_hip_x.publish(motors_target_pos[3][0])
+
+        # Hips in y-direction
+        pub_front_left_hip_y.publish(motors_target_pos[0][1])
+        pub_front_right_hip_y.publish(motors_target_pos[1][1])
+        pub_rear_left_hip_y.publish(motors_target_pos[2][1])
+        pub_rear_right_hip_y.publish(motors_target_pos[3][1])
 
         # Knee
-        pub_front_left_knee.publish(-2.6)
-        pub_front_right_knee.publish(-2.6)
-        pub_rear_left_knee.publish(-2.6)
-        pub_rear_right_knee.publish(-2.6)
+        pub_front_left_knee.publish(motors_target_pos[0][2])
+        pub_front_right_knee.publish(motors_target_pos[1][2])
+        pub_rear_left_knee.publish(motors_target_pos[2][2])
+        pub_rear_right_knee.publish(motors_target_pos[3][2])
 
 
 
-        rate.sleep()
+        
 
 if __name__ == '__main__':
+    motors_target_pos = [[0.20, 1.0, -1.69],  # Front left leg
+                         [-0.20, 1.0, -1.69],  # Front right leg
+                         [0.20, 1.0, -1.69],  # Rear left leg
+                         [-0.20, 1.0, -1.69]]  # Rear right leg
     try:
-        talker()
+        while not rospy.is_shutdown():
+            talker()
+            rate.sleep()
     except rospy.ROSInterruptException:
         pass
