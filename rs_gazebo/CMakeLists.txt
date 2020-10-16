@@ -4,7 +4,7 @@ project(rs_gazebo)
 find_package(catkin REQUIRED)
 
 catkin_package(
-  CATKIN_DEPENDS gazebo_ros gazebo_ros_control rs_description
+  CATKIN_DEPENDS gazebo_ros gazebo_ros_control rs_description rs_contact_sensor
 )
 
 install(FILES
