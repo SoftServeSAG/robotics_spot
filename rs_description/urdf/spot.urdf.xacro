@@ -14,7 +14,7 @@
         </collision>
         <inertial>
              <mass value="16.25" />
-             <inertia  ixx="0.1" ixy="0.0"  ixz="0.0"  iyy="0.1"  iyz="0.0"  izz="0.077" />
+             <inertia  ixx="0.677" ixy="0.0"  ixz="0.0"  iyy="1.977"  iyz="0.0"  izz="1.977" />
     	</inertial>
     </link>
 <!-- Base link -->
@@ -51,8 +51,8 @@
             </geometry>
         </collision>
         <inertial>
-            <mass value="2.5" />
-    	    <inertia  ixx="0.01" ixy="0.0"  ixz="0.0"  iyy="0.0"  iyz="0.0"  izz="0.0" />
+            <mass value="1.5" />
+    	    <inertia  ixx="0.5" ixy="0.0"  ixz="0.0"  iyy="0.0"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
     
@@ -61,7 +61,7 @@
         <axis xyz="1 0 0" />
         <parent link="body" />
 	<child link="front_left_hip" />
-	<dynamics damping="0.0" friction="0.0"/>
+	<dynamics damping="0.1" friction="0.1"/>
         <limit effort="1000" velocity="1000.00" lower="-0.78539816339744827899" upper="0.78539816339744827899" />
     </joint>
     
@@ -89,7 +89,7 @@
         </collision>
         <inertial>
             <mass value="1.5" />
-    	    <inertia  ixx="0.8" ixy="0.0"  ixz="0.0"  iyy="0.2"  iyz="0.0"  izz="0.0" />
+    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.125"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
     
@@ -98,7 +98,7 @@
         <axis xyz="0 1 0" />
         <parent link="front_left_hip" />
 	<child link="front_left_upper_leg" />
-	<dynamics damping="0.0" friction="0.0"/>
+	<dynamics damping="0.1" friction="0.1"/>
         <limit effort="1000" velocity="1000.00" lower="-0.89884456477707963539" upper="2.2951079663725435509" />
     </joint>
 
@@ -125,8 +125,8 @@
             </geometry>
         </collision>
         <inertial>right
-            <mass value="0.5" />
-    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.125"  iyz="0.0"  izz="0.0" />
+            <mass value="1.0" />
+    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.08"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
 
@@ -135,7 +135,7 @@
         <axis xyz="0 1 0" />
         <parent link="front_left_upper_leg" />
         <child link="front_left_lower_leg" />
-        <dynamics damping="0.0" friction="0.0"/>
+        <dynamics damping="0.1" friction="0.1"/>
         <limit effort="1000" velocity="1000.00" lower="-2.7929" upper="-0.254801" />
     </joint>
 
@@ -162,8 +162,8 @@
             </geometry>
         </collision>
         <inertial>
-            <mass value="2.5" />
-    	    <inertia  ixx="0.01" ixy="0.0"  ixz="0.0"  iyy="0.0"  iyz="0.0"  izz="0.0" />
+            <mass value="1.5" />
+    	    <inertia  ixx="0.5" ixy="0.0"  ixz="0.0"  iyy="0.0"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
 
@@ -172,7 +172,7 @@
         <axis xyz="1 0 0" />
         <parent link="body" />
         <child link="front_right_hip" />
-        <dynamics damping="0.0" friction="0.0"/>
+        <dynamics damping="0.1" friction="0.1"/>
         <limit effort="1000" velocity="1000.00" lower="-0.78539816339744827899" upper="0.78539816339744827899" />
     </joint>
 
@@ -200,7 +200,7 @@
         </collision>
         <inertial>
             <mass value="1.5" />
-    	    <inertia  ixx="0.8" ixy="0.0"  ixz="0.0"  iyy="0.2"  iyz="0.0"  izz="0.0" />
+    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.125"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
 
@@ -209,7 +209,7 @@
         <axis xyz="0 1 0" />
         <parent link="front_right_hip" />
         <child link="front_right_upper_leg" />
-        <dynamics damping="0.0" friction="0.0"/>
+        <dynamics damping="0.1" friction="0.1"/>
         <limit effort="1000" velocity="1000.00" lower="-0.89884456477707963539" upper="2.2951079663725435509" />
     </joint>
 
@@ -236,8 +236,8 @@
             </geometry>
         </collision>
         <inertial>
-            <mass value="0.5" />
-    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.125"  iyz="0.0"  izz="0.0" />
+            <mass value="1.0" />
+    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.08"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
 
@@ -246,7 +246,7 @@
         <axis xyz="0 1 0" />
         <parent link="front_right_upper_leg" />
         <child link="front_right_lower_leg" />
-        <dynamics damping="0.0" friction="0.0"/>
+        <dynamics damping="0.1" friction="0.1"/>
         <limit effort="1000" velocity="1000.00" lower="-2.7929" upper="-0.247563" />
     </joint>
 
@@ -273,8 +273,8 @@
             </geometry>
         </collision>
         <inertial>
-            <mass value="2.5" />
-    	    <inertia  ixx="0.01" ixy="0.0"  ixz="0.0"  iyy="0.0"  iyz="0.0"  izz="0.0" />
+            <mass value="1.5" />
+    	    <inertia  ixx="0.5" ixy="0.0"  ixz="0.0"  iyy="0.0"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
 
@@ -283,7 +283,7 @@
         <axis xyz="1 0 0" />
         <parent link="body" />
         <child link="rear_left_hip" />
-        <dynamics damping="0.0" friction="0.0"/>
+        <dynamics damping="0.1" friction="0.1"/>
         <limit effort="1000" velocity="1000.00" lower="-0.78539816339744827899" upper="0.78539816339744827899" />
     </joint>
 
@@ -311,7 +311,7 @@
         </collision>
         <inertial>
            <mass value="1.5" />
-    	   <inertia  ixx="0.8" ixy="0.0"  ixz="0.0"  iyy="0.2"  iyz="0.0"  izz="0.0" />
+    	   <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.125"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
 
@@ -320,7 +320,7 @@
         <axis xyz="0 1 0" />
         <parent link="rear_left_hip" />
         <child link="rear_left_upper_leg" />
-        <dynamics damping="0.0" friction="0.0"/>
+        <dynamics damping="0.1" friction="0.1"/>
         <limit effort="1000" velocity="1000.00" lower="-0.89884456477707963539" upper="2.2951079663725435509" />
     </joint>
 
@@ -347,8 +347,8 @@
             </geometry>
         </collision>
         <inertial>
-            <mass value="0.5" />
-    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.125"  iyz="0.0"  izz="0.0" />
+            <mass value="1.0" />
+    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.08"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
 
@@ -357,7 +357,7 @@
         <axis xyz="0 1 0" />
         <parent link="rear_left_upper_leg" />
         <child link="rear_left_lower_leg" />
-        <dynamics damping="0.0" friction="0.0"/>
+        <dynamics damping="0.1" friction="0.1"/>
         <limit effort="1000" velocity="1000.00" lower="-2.7929" upper="-0.267153" />
     </joint>
 
@@ -384,8 +384,8 @@
             </geometry>
         </collision>
         <inertial>
-            <mass value="2.5" />
-    	    <inertia  ixx="0.01" ixy="0.0"  ixz="0.0"  iyy="0.0"  iyz="0.0"  izz="0.0" />
+            <mass value="1.5" />
+    	    <inertia  ixx="0.5" ixy="0.0"  ixz="0.0"  iyy="0.0"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
 
@@ -394,7 +394,7 @@
         <axis xyz="1 0 0" />
         <parent link="body" />
         <child link="rear_right_hip" />
-        <dynamics damping="0.0" friction="0.0"/>
+        <dynamics damping="0.1" friction="0.1"/>
         <limit effort="1000" velocity="1000.00" lower="-0.78539816339744827899" upper="0.78539816339744827899" />
     </joint>
 
@@ -422,7 +422,7 @@
         </collision>
         <inertial>
             <mass value="1.5" />
-    	    <inertia  ixx="0.8" ixy="0.0"  ixz="0.0"  iyy="0.2"  iyz="0.0"  izz="0.0" />
+    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.125"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
 
@@ -431,7 +431,7 @@
         <axis xyz="0 1 0" />
         <parent link="rear_right_hip" />
         <child link="rear_right_upper_leg" />
-        <dynamics damping="0.0" friction="0.0"/>
+        <dynamics damping="0.1" friction="0.1"/>
         <limit effort="1000" velocity="1000.00" lower="-0.89884456477707963539" upper="2.2951079663725435509" />
     </joint>
 
@@ -458,8 +458,8 @@
             </geometry>
         </collision>
         <inertial>
-            <mass value="0.5" />
-    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.125"  iyz="0.0"  izz="0.0" />
+            <mass value="1.0" />
+    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.08"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
 
@@ -468,7 +468,7 @@
         <axis xyz="0 1 0" />
         <parent link="rear_right_upper_leg" />
         <child link="rear_right_lower_leg" />
-        <dynamics damping="0.0" friction="0.0"/>
+        <dynamics damping="0.1" friction="0.1"/>
         <limit effort="1000" velocity="1000.00" lower="-2.7929" upper="-0.257725" />
     </joint>
 
