@@ -17,8 +17,8 @@
   <buildtool_depend>catkin</buildtool_depend>
   <run_depend>gazebo_ros</run_depend>
   <run_depend>gazebo_ros_control</run_depend>
+  <run_depend>gazebo_ros_bumper_controller</run_depend>
   <run_depend>rs_description</run_depend>
-  <run_depend>rs_contact_sensor</run_depend>
 
     <export>
     <gazebo_ros

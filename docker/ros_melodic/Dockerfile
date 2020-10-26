@@ -10,7 +10,9 @@ RUN apt-get update && apt-get install -y \
     ros-melodic-joint-state-publisher-gui \
     ros-melodic-interactive-marker-twist-server \ 
     ros-melodic-robot-state-publisher \
-    && rm -rf /var/lib/apt/lists/*
+    python-pip \
+    && pip install simple-pid \
+    && rm -rf /var/lib/apt/lists/* 
 
 RUN mkdir /var/run/sshd
 RUN echo 'root:root' | chpasswd
