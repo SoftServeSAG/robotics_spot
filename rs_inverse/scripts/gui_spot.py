@@ -80,7 +80,7 @@ class RsGui:
         self.b1.place(x=100, y=700)
         self.pub = pub
 
-    def cd(self):
+    def command_pub(self):
         msg = GaitInput()
         msg.x = float(self.t1.get())
         msg.y = float(self.t2.get())
