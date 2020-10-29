@@ -11,7 +11,7 @@ pub = rospy.Publisher('/spot/inverse_gait_input', GaitInput, queue_size=10)
 
 def command_spot():
     global xd, yd, zd, rolld, pitchd, yawd, StepLength, LateralFraction, YawRate, StepVelocity, ClearanceHeight, \
-        PenetrationDepth, SwingPeriod
+        PenetrationDepth, SwingPeriod, YawControl
     msg = GaitInput()
     msg.x = float(xd)
     msg.y = float(yd)
@@ -26,12 +26,13 @@ def command_spot():
     msg.ClearanceHeight = float(ClearanceHeight)
     msg.PenetrationDepth = float(PenetrationDepth)
     msg.SwingPeriod = float(SwingPeriod)
+    msg.YawControl = float(YawControl)
     pub.publish(msg)
 
 
 def main():
     global xd, yd, zd, rolld, pitchd, yawd, StepLength, LateralFraction, YawRate, StepVelocity, ClearanceHeight, \
-        PenetrationDepth, SwingPeriod
+        PenetrationDepth, SwingPeriod, YawControl
     xd = 0.0
     yd = 0.0
     zd = 0.0

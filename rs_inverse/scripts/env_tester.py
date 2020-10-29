@@ -17,6 +17,8 @@ from simple_pid import PID
 
 import time
 
+from tf.transformations import euler_from_quaternion, quaternion_from_euler
+
 rospy.init_node('inverse')
 rate = rospy.Rate(100)  # 100hz
 
@@ -122,6 +124,7 @@ StepVelocity = 0.00
 ClearanceHeight = 0.0
 PenetrationDepth = 0.0
 SwingPeriod = 0.00
+YawControl = 0.0
 
 
 # ------------- Subscribers ------------
@@ -129,7 +132,7 @@ SwingPeriod = 0.00
 
 def callback_gait(data):
     global xd, yd, zd, rolld, pitchd, yawd, StepLength, LateralFraction, YawRate, StepVelocity, ClearanceHeight, \
-        PenetrationDepth, SwingPeriod
+        PenetrationDepth, SwingPeriod, YawControl
     xd = data.x
     yd = data.y
     zd = data.z
@@ -143,9 +146,10 @@ def callback_gait(data):
     ClearanceHeight = data.ClearanceHeight
     PenetrationDepth = data.PenetrationDepth
     SwingPeriod = data.SwingPeriod
+    YawControl = data.YawControl
 
 
-global x_inst, y_inst, z_inst, roll_inst, pitch_inst, yaw_inst, vx_inst, vy_inst, vz_inst
+global x_inst, y_inst, z_inst, roll_inst, pitch_inst, yaw_inst, vx_inst, vy_inst, vz_inst, search_index
 x_inst = 0
 y_inst = 0
 z_inst = 0
@@ -156,20 +160,19 @@ vx_inst = 0
 vy_inst = 0
 vz_inst = 0
 wz_inst = 0
+search_index = -1
 
 
 def callback_model(data):
-    global x_inst, y_inst, z_inst, roll_inst, pitch_inst, yaw_inst, vx_inst, vy_inst, vz_inst, wz_inst
-    x_inst = data.pose[1].position.x
-    y_inst = data.pose[1].position.y
-    z_inst = data.pose[1].position.z
-    roll_inst = data.pose[1].orientation.x
-    pitch_inst = data.pose[1].orientation.y
-    yaw_inst = data.pose[1].orientation.z
-    # vx_inst = data.pose[1].position.x
-    # vy_inst = data.pose[1].position.y
-    # vz_inst = data.pose[1].position.z
-    wz_inst = data.twist[1].angular.z
+    global x_inst, y_inst, z_inst, roll_inst, pitch_inst, yaw_inst, vx_inst, vy_inst, vz_inst, wz_inst, search_index
+    if search_index == -1:
+        search_index = data.name.index('spot_mini')
+    x_inst = data.pose[search_index].position.x
+    y_inst = data.pose[search_index].position.y
+    z_inst = data.pose[search_index].position.z
+    orientation_q = data.pose[search_index].orientation
+    orientation_list = [orientation_q.x, orientation_q.y, orientation_q.z, orientation_q.w]
+    (roll_inst, pitch_inst, yaw_inst) = euler_from_quaternion(orientation_list)
 
 
 global front_left_lower_leg_contact, front_right_lower_leg_contact, rear_left_lower_leg_contact, rear_right_lower_leg_contact
@@ -262,27 +265,26 @@ def main():
     time.sleep(2.1)
     talker(stand_up)
     rate.sleep()
-    time.sleep(3.1)
+    time.sleep(1.1)
 
     rospy.loginfo_once("STARTED SPOT TEST ENV")
     t = 0
     global xd, yd, zd, rolld, pitchd, yawd, StepLength, LateralFraction, YawRate, StepVelocity, ClearanceHeight, \
-        PenetrationDepth, SwingPeriod
+        PenetrationDepth, SwingPeriod, YawControl
     global x_inst, y_inst, z_inst, roll_inst, pitch_inst, yaw_inst, vx_inst, vy_inst, vz_inst, wz_inst
     global front_left_lower_leg_contact, front_right_lower_leg_contact, rear_left_lower_leg_contact, rear_right_lower_leg_contact
 
     listener()
 
-    y_target = 1.5
-    rospy.loginfo_once("y_target_init=" + str(y_target))
 
-    pid = PID(0.1, 0.01, 0.05)
+    pid = PID(1.1, 0.01, 0.000005)
     pid.sample_time = 0.01
-    pid.output_limits = (-1, 1)
-    pid.setpoint = y_target
-    pid.proportional_on_measurement = True
+    pid.output_limits = (-10, 10)
+    # pid.proportional_on_measurement = True
 
     while t < (int(max_timesteps)):
+        start_time = time.time()
+
         pos = np.array([xd, yd, zd])
         orn = np.array([rolld, pitchd, yawd])
 
@@ -293,21 +295,26 @@ def main():
         # rospy.loginfo_throttle(0.005, "contact front left = " + str(front_right_lower_leg_contact))
         # rospy.loginfo_throttle(0.005, "contact rear left = " + str(rear_left_lower_leg_contact))
         # rospy.loginfo_throttle(0.005, "contact rear right = " + str(rear_right_lower_leg_contact))
-        contacts = [front_left_lower_leg_contact, front_right_lower_leg_contact, rear_left_lower_leg_contact,
-                    rear_right_lower_leg_contact]
 
-        residual = y_target - y_inst
-        if abs(residual) < 1.0:
-            p_yaw = 0
-        elif 0.5 > abs(residual) >= 0.1:
-            p_yaw = 0.5
+        yaw_target = YawControl
+        pid.setpoint = yaw_target
+        rospy.loginfo_once("y_target_init=" + str(yaw_target))
+
+        residual = yaw_target - yaw_inst
+        if abs(residual) < 0.1:
+            p_yaw = 1.0
+        elif 0.1 <= abs(residual) < 1.1:
+            p_yaw = 3.5
         else:
-            p_yaw = 0.1
+            p_yaw = 2.0
 
-        rospy.loginfo_throttle(1, "residual=" + str(y_target - y_inst))
+        rospy.loginfo_throttle(1, "residual=" + str(yaw_target - yaw_inst))
 
         pid.Kp = p_yaw
-        YawRate_d = pid(y_inst)
+        YawRate_d = pid(yaw_inst)
+
+        contacts = [front_left_lower_leg_contact, front_right_lower_leg_contact, rear_left_lower_leg_contact,
+                    rear_right_lower_leg_contact]
 
         # Get Desired Foot Poses
         T_bf = bzg.GenerateTrajectory(StepLength, LateralFraction, YawRate_d,
@@ -320,7 +327,9 @@ def main():
         t += 1
         # print(joint_angles)
         talker(joint_angles)
-        rate.sleep()
+        # your code
+        elapsed_time = time.time() - start_time
+        pid.sample_time = elapsed_time
 
 
 if __name__ == '__main__':
