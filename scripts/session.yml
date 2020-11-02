@@ -6,5 +6,5 @@ windows:
   - rviz:
       layout: even-vertical
       panes:
-        - history -s 'roslaunch rs_gazebo HQ.launch'
+        - history -s 'roslaunch rs_gazebo HQ.launch world:="empty.world"'
         

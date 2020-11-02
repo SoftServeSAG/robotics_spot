@@ -4077,7 +4077,7 @@
     </model>
 
     <model name='stairs_platform45'>
-        <pose frame=''>-5.153592 10.122335 1.325 0 -0 0</pose>
+        <pose frame=''>-3.153592 10.122335 1.325 0 -0 0</pose>
         <link name='link'>
         <collision name='collision'>
           <geometry>
@@ -4124,7 +4124,7 @@
     </model>
 
     <model name='stairs_platform5'>
-        <pose frame=''>-5.153592 10.122335 2.65 0 -0 0</pose>
+        <pose frame=''>-3.153592 8.122335 2.65 0 -0 0</pose>
         <link name='link'>
         <collision name='collision'>
           <geometry>

@@ -43,33 +43,6 @@ class Visualiser:
         self.ax07.set_ylabel('Rear Left Leg')
         self.ax10.set_ylabel('Rear Right Leg')
 
-        # Set titles of subplots
-        # self.ax01.set_title('Front left hip_x')
-        # self.ax02.set_title('Front left hip_y')
-        # self.ax03.set_title('Front left knee')
-        # self.ax04.set_title('Front right hip_x')
-        # self.ax05.set_title('Front right hip_y')
-        # self.ax06.set_title('Front right knee')
-        # self.ax07.set_title('Rear left hip_x')
-        # self.ax08.set_title('Rear left hip_y')
-        # self.ax09.set_title('Rear left knee')
-        # self.ax10.set_title('Rear right hip_x')
-        # self.ax11.set_title('Rear right hip_y')
-        # self.ax12.set_title('Rear right knee')
-
-        # self.x_flhx_command, self.y_flhx_command = [], []
-        # self.x_frhx_command, self.y_frhx_command = [], []
-        # self.x_rlhx_command, self.y_rlhx_command = [], []
-        # self.x_rrhx_command, self.y_rrhx_command = [], []
-        # self.x_flhy_command, self.y_flhy_command = [], []
-        # self.x_frhy_command, self.y_frhy_command = [], []
-        # self.x_rlhy_command, self.y_rlhy_command = [], []
-        # self.x_rrhy_command, self.y_rrhy_command = [], []
-        # self.x_flk_command, self.y_flk_command = [], []
-        # self.x_frk_command, self.y_frk_command = [], []
-        # self.x_rlk_command, self.y_rlk_command = [], []
-        # self.x_rrk_command, self.y_rrk_command = [], []
-
         self.y_flhx_state = []
         self.y_frhx_state = []
         self.y_rlhx_state = []

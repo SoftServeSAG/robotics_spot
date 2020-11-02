@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# The file contains hardcoded scripts for robot control in stand mode: change body orientation in relation to foots.
+
 import rospy
 from rs_msgs.msg import GaitInput
 import time
@@ -46,6 +48,7 @@ def main():
     ClearanceHeight = 0.0
     PenetrationDepth = 0.0
     SwingPeriod = 0.00
+    YawControl = 0.0
 
     command_spot()
 
