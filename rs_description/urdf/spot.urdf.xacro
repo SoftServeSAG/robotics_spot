@@ -14,7 +14,7 @@
         </collision>
         <inertial>
              <mass value="16.25" />
-             <inertia  ixx="0.677" ixy="0.0"  ixz="0.0"  iyy="1.977"  iyz="0.0"  izz="1.977" />
+             <inertia  ixx="0.085" ixy="0.0"  ixz="0.0"  iyy="1.045"  iyz="0.0"  izz="1.042" />
     	</inertial>
     </link>
 <!-- Base link -->
@@ -27,14 +27,14 @@
 <!-- Front rail -->
     <link name="front_rail"/>
     <joint name="front_rail_joint" type="fixed">
-        <origin xyz="0.223 0 0.0805" rpy="0 0 0" />
+        <origin xyz="0.223 0 0.04505" rpy="0 0 0" />
         <parent link="body" />
         <child link="front_rail" />
     </joint>
 <!-- Rear rail -->
     <link name="rear_rail"/>
     <joint name="rear_rail_joint" type="fixed">
-        <origin xyz="-0.223 0 0.0805" rpy="0 0 0" />
+        <origin xyz="-0.223 0 0.04505" rpy="0 0 0" />
         <parent link="body" />
         <child link="rear_rail" />
     </joint> 
@@ -52,7 +52,7 @@
         </collision>
         <inertial>
             <mass value="1.5" />
-    	    <inertia  ixx="0.5" ixy="0.0"  ixz="0.0"  iyy="0.0"  iyz="0.0"  izz="0.0" />
+    	    <inertia  ixx="0.0605" ixy="0.0"  ixz="0.0"  iyy="0.0"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
     
@@ -89,7 +89,7 @@
         </collision>
         <inertial>
             <mass value="1.5" />
-    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.125"  iyz="0.0"  izz="0.0" />
+    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.05"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
     
@@ -119,14 +119,14 @@
                 <mesh filename="package://rs_description/meshes/front_left_lower_leg.dae" />
             </geometry>
         </visual>
-        <collision>
+        <collision name="front_left_lower_leg_fixed_joint_lump__front_bump_sensor">
             <geometry>
                 <mesh filename="package://rs_description/meshes/front_left_lower_leg_collision.stl" />
             </geometry>
         </collision>
         <inertial>right
             <mass value="1.0" />
-    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.08"  iyz="0.0"  izz="0.0" />
+    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.045"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
 
@@ -138,6 +138,20 @@
         <dynamics damping="0.1" friction="0.1"/>
         <limit effort="1000" velocity="1000.00" lower="-2.7929" upper="-0.254801" />
     </joint>
+
+     <!-- Contact Sensor -->
+  <gazebo reference="front_left_lower_leg">
+    <sensor name="front_left_lower_leg_contactsensor_sensor" type="contact">
+      <always_on>true</always_on>
+      <contact>
+        <collision>front_left_lower_leg_fixed_joint_lump__front_bump_sensor_collision</collision>
+      </contact>
+      <plugin filename="libgazebo_ros_bumper.so" name="front_left_lower_leg_plugin">
+        <bumperTopicName>front_left_lower_leg_contact</bumperTopicName>
+        <frameName>front_left_lower_leg</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
 
     <transmission name="front_left_knee_trans">
 	  <type>transmission_interface/SimpleTransmission</type>
@@ -163,7 +177,7 @@
         </collision>
         <inertial>
             <mass value="1.5" />
-    	    <inertia  ixx="0.5" ixy="0.0"  ixz="0.0"  iyy="0.0"  iyz="0.0"  izz="0.0" />
+    	    <inertia  ixx="0.0605" ixy="0.0"  ixz="0.0"  iyy="0.0"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
 
@@ -200,7 +214,7 @@
         </collision>
         <inertial>
             <mass value="1.5" />
-    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.125"  iyz="0.0"  izz="0.0" />
+    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.05"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
 
@@ -230,14 +244,14 @@
                 <mesh filename="package://rs_description/meshes/front_right_lower_leg.dae" />
             </geometry>
         </visual>
-        <collision>
+        <collision name="front_right_lower_leg_fixed_joint_lump__front_bump_sensor">
             <geometry>
                 <mesh filename="package://rs_description/meshes/front_right_lower_leg_collision.stl" />
             </geometry>
         </collision>
         <inertial>
             <mass value="1.0" />
-    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.08"  iyz="0.0"  izz="0.0" />
+    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.045"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
 
@@ -249,6 +263,20 @@
         <dynamics damping="0.1" friction="0.1"/>
         <limit effort="1000" velocity="1000.00" lower="-2.7929" upper="-0.247563" />
     </joint>
+
+     <!-- Contact Sensor -->
+  <gazebo reference="front_right_lower_leg">
+    <sensor name="front_right_lower_leg_contactsensor_sensor" type="contact">
+      <always_on>true</always_on>
+      <contact>
+        <collision>front_right_lower_leg_fixed_joint_lump__front_bump_sensor_collision</collision>
+      </contact>
+      <plugin filename="libgazebo_ros_bumper.so" name="front_right_lower_leg_plugin">
+        <bumperTopicName>front_right_lower_leg_contact</bumperTopicName>
+        <frameName>front_right_lower_leg</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
 
     <transmission name="front_right_knee_trans">
 	  <type>transmission_interface/SimpleTransmission</type>
@@ -274,7 +302,7 @@
         </collision>
         <inertial>
             <mass value="1.5" />
-    	    <inertia  ixx="0.5" ixy="0.0"  ixz="0.0"  iyy="0.0"  iyz="0.0"  izz="0.0" />
+    	    <inertia  ixx="0.0605" ixy="0.0"  ixz="0.0"  iyy="0.0"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
 
@@ -311,7 +339,7 @@
         </collision>
         <inertial>
            <mass value="1.5" />
-    	   <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.125"  iyz="0.0"  izz="0.0" />
+    	   <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.05"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
 
@@ -341,14 +369,14 @@
                 <mesh filename="package://rs_description/meshes/rear_left_lower_leg.dae" />
             </geometry>
         </visual>
-        <collision>
+        <collision name="rear_left_lower_leg_fixed_joint_lump__rear_bump_sensor">
             <geometry>
                 <mesh filename="package://rs_description/meshes/rear_left_lower_leg_collision.stl" />
             </geometry>
         </collision>
         <inertial>
             <mass value="1.0" />
-    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.08"  iyz="0.0"  izz="0.0" />
+    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.045"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
 
@@ -360,6 +388,20 @@
         <dynamics damping="0.1" friction="0.1"/>
         <limit effort="1000" velocity="1000.00" lower="-2.7929" upper="-0.267153" />
     </joint>
+
+     <!-- Contact Sensor -->
+  <gazebo reference="rear_left_lower_leg">
+    <sensor name="rear_left_lower_leg_contactsensor_sensor" type="contact">
+      <always_on>true</always_on>
+      <contact>
+        <collision>rear_left_lower_leg_fixed_joint_lump__rear_bump_sensor_collision</collision>
+      </contact>
+      <plugin filename="libgazebo_ros_bumper.so" name="rear_left_lower_leg_plugin">
+        <bumperTopicName>rear_left_lower_leg_contact</bumperTopicName>
+        <frameName>rear_left_lower_leg</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
 
     <transmission name="rear_left_knee_trans">
 	  <type>transmission_interface/SimpleTransmission</type>
@@ -385,7 +427,7 @@
         </collision>
         <inertial>
             <mass value="1.5" />
-    	    <inertia  ixx="0.5" ixy="0.0"  ixz="0.0"  iyy="0.0"  iyz="0.0"  izz="0.0" />
+    	    <inertia  ixx="0.0605" ixy="0.0"  ixz="0.0"  iyy="0.0"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
 
@@ -422,7 +464,7 @@
         </collision>
         <inertial>
             <mass value="1.5" />
-    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.125"  iyz="0.0"  izz="0.0" />
+    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.05"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
 
@@ -452,14 +494,14 @@
                 <mesh filename="package://rs_description/meshes/rear_right_lower_leg.dae" />
             </geometry>
         </visual>
-        <collision>
+        <collision name='rear_right_lower_leg_fixed_joint_lump__rear_bump_sensor'>
             <geometry>
                 <mesh filename="package://rs_description/meshes/rear_right_lower_leg_collision.stl" />
             </geometry>
         </collision>
         <inertial>
             <mass value="1.0" />
-    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.08"  iyz="0.0"  izz="0.0" />
+    	    <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.045"  iyz="0.0"  izz="0.0" />
     	</inertial>
     </link>
 
@@ -471,6 +513,20 @@
         <dynamics damping="0.1" friction="0.1"/>
         <limit effort="1000" velocity="1000.00" lower="-2.7929" upper="-0.257725" />
     </joint>
+
+  <!-- Contact Sensor -->
+  <gazebo reference="rear_right_lower_leg">
+    <sensor name="rear_right_lower_leg_contactsensor_sensor" type="contact">
+      <always_on>true</always_on>
+      <contact>
+        <collision>rear_right_lower_leg_fixed_joint_lump__rear_bump_sensor_collision</collision>
+      </contact>
+      <plugin filename="libgazebo_ros_bumper.so" name="rear_right_lower_leg_plugin">
+        <bumperTopicName>rear_right_lower_leg_contact</bumperTopicName>
+        <frameName>rear_right_lower_leg</frameName>
+      </plugin>
+    </sensor>
+  </gazebo>
 
     <transmission name="rear_right_knee_trans">
 	  <type>transmission_interface/SimpleTransmission</type>

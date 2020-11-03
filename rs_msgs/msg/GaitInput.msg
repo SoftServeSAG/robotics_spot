@@ -1,0 +1,13 @@
+float x 
+float y 
+float z 
+float roll 
+float pitch 
+float yaw 
+float StepLength 
+float LateralFraction 
+float YawRate 
+float StepVelocity 
+float ClearanceHeight 
+float PenetrationDepth 
+float SwingPeriod 

@@ -200,6 +200,11 @@ if __name__ == '__main__':
         motors_target_pos = give_lap
         talker()
         rate.sleep()
+        # sit down
+        time.sleep(7.1)
+        motors_target_pos = sit_down
+        talker()
+        rate.sleep()
 
         rospy.on_shutdown(myhook)
     except rospy.ROSInterruptException:
