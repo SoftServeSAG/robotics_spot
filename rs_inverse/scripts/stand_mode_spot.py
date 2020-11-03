@@ -6,9 +6,10 @@ import rospy
 from rs_msgs.msg import GaitInput
 import time
 
-rospy.init_node('inver', anonymous=True)
+spot_name = str(input("Tell me spot name: "))
+rospy.init_node(spot_name + 'stand_mode_inverse', anonymous=True)
 
-pub = rospy.Publisher('/spot/inverse_gait_input', GaitInput, queue_size=10)
+pub = rospy.Publisher('/' + spot_name + '/inverse_gait_input', GaitInput, queue_size=10)
 
 
 def command_spot():

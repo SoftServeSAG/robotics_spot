@@ -19,82 +19,232 @@ import time
 
 from tf.transformations import euler_from_quaternion, quaternion_from_euler
 
-rospy.init_node('inverse')
-rate = rospy.Rate(100)  # 100hz
+spot_name = str(input("Tell me spot name: "))
 
-robot_name = rospy.get_param("/name_robot_1")
+class SpotMidlware:
+    def __init__(self, spot_name, time_step):
+        self.spot_name = spot_name
+        rospy.init_node(self.spot_name +'_inverse')
+        self.rate = rospy.Rate(100)  # 100hz
+        self.time_step = time_step
 
-# -------------------------------------- Publishers -------------------------------------------------------
-# ----Front ----
-# left front hip_x
-pub_front_left_hip_x = rospy.Publisher('/' + robot_name + '/joint_front_left_hip_x_controller/command',
-                                       Float64, queue_size=1)
+        self.spot = SpotModel()
+        self.T_bf0 = self.spot.WorldToFoot
+        self.T_bf = copy.deepcopy(self.T_bf0)
+        self.bzg = BezierGait(dt=self.time_step)
 
-# left front hip_y
-pub_front_left_hip_y = rospy.Publisher('/' + robot_name + '/joint_front_left_hip_y_controller/command',
-                                       Float64, queue_size=1)
+        # ------------------ Inputs for Bezier Gait control ----------------
+        self.xd = 0.0
+        self.yd = 0.0
+        self.zd = 0.0
+        self.rolld = 0.0
+        self.pitchd = 0.0
+        self.yawd = 0.0
+        self.StepLength = 0.00
+        self.LateralFraction = 0.0
+        self.YawRate = 0.0
+        self.StepVelocity = 0.00
+        self.ClearanceHeight = 0.0
+        self.PenetrationDepth = 0.0
+        self.SwingPeriod = 0.00
+        self.YawControl = 0.0
 
-# left front knee
-pub_front_left_knee = rospy.Publisher('/' + robot_name + '/joint_front_left_knee_controller/command',
-                                      Float64, queue_size=1)
+        # ------------------ Spot states ----------------
+        self.x_inst = 0.
+        self.y_inst = 0.
+        self.z_inst = 0.
+        self.roll_inst = 0.
+        self.pitch_inst = 0.
+        self.yaw_inst = 0.
+        self.search_index = -1
 
-# right front hip_x
-pub_front_right_hip_x = rospy.Publisher('/' + robot_name + '/joint_front_right_hip_x_controller/command',
-                                        Float64, queue_size=1)
+        # ------------------ Outputs of Contact sensors ----------------
+        self.front_left_lower_leg_contact = 1
+        self.front_right_lower_leg_contact = 1
+        self.rear_left_lower_leg_contact = 1
+        self.rear_right_lower_leg_contact = 1
+        self.chattering_front_left_lower_leg_contact = 0
+        self.chattering_front_right_lower_leg_contact = 0
+        self.chattering_rear_left_lower_leg_contact = 0
+        self.chattering_rear_right_lower_leg_contact = 0
+        self.lim_chattering = 4
 
-# right front hip_y
-pub_front_right_hip_y = rospy.Publisher('/' + robot_name + '/joint_front_right_hip_y_controller/command',
-                                        Float64, queue_size=1)
+        # -------------------------------------- Publishers -------------------------------------------------------
+        # ----Front ----
+        # left front hip_x
+        self.pub_front_left_hip_x = rospy.Publisher('/' + self.spot_name + '/joint_front_left_hip_x_controller/command',
+                                                    Float64, queue_size=1)
 
-# right front knee
-pub_front_right_knee = rospy.Publisher('/' + robot_name + '/joint_front_right_knee_controller/command',
-                                       Float64, queue_size=1)
+        # left front hip_y
+        self.pub_front_left_hip_y = rospy.Publisher('/' + self.spot_name + '/joint_front_left_hip_y_controller/command',
+                                                    Float64, queue_size=1)
 
-# ---- Rear ----
+        # left front knee
+        self.pub_front_left_knee = rospy.Publisher('/' + self.spot_name + '/joint_front_left_knee_controller/command',
+                                                   Float64, queue_size=1)
 
-# left rear hip_x
-pub_rear_left_hip_x = rospy.Publisher('/' + robot_name + '/joint_rear_left_hip_x_controller/command',
-                                      Float64, queue_size=1)
+        # right front hip_x
+        self.pub_front_right_hip_x = rospy.Publisher(
+            '/' + self.spot_name + '/joint_front_right_hip_x_controller/command',
+            Float64, queue_size=1)
 
-# left rear hip_y
-pub_rear_left_hip_y = rospy.Publisher('/' + robot_name + '/joint_rear_left_hip_y_controller/command',
-                                      Float64, queue_size=1)
+        # right front hip_y
+        self.pub_front_right_hip_y = rospy.Publisher(
+            '/' + self.spot_name + '/joint_front_right_hip_y_controller/command',
+            Float64, queue_size=1)
 
-# left rear knee
-pub_rear_left_knee = rospy.Publisher('/' + robot_name + '/joint_rear_left_knee_controller/command',
-                                     Float64, queue_size=1)
+        # right front knee
+        self.pub_front_right_knee = rospy.Publisher('/' + self.spot_name + '/joint_front_right_knee_controller/command',
+                                                    Float64, queue_size=1)
 
-# right rear hip_x
-pub_rear_right_hip_x = rospy.Publisher('/' + robot_name + '/joint_rear_right_hip_x_controller/command',
-                                       Float64, queue_size=1)
+        # ---- Rear ----
 
-# right rear hip_y
-pub_rear_right_hip_y = rospy.Publisher('/' + robot_name + '/joint_rear_right_hip_y_controller/command',
-                                       Float64, queue_size=1)
+        # left rear hip_x
+        self.pub_rear_left_hip_x = rospy.Publisher('/' + self.spot_name + '/joint_rear_left_hip_x_controller/command',
+                                                   Float64, queue_size=1)
 
-# right rear knee
-pub_rear_right_knee = rospy.Publisher('/' + robot_name + '/joint_rear_right_knee_controller/command',
-                                      Float64, queue_size=1)
+        # left rear hip_y
+        self.pub_rear_left_hip_y = rospy.Publisher('/' + self.spot_name + '/joint_rear_left_hip_y_controller/command',
+                                                   Float64, queue_size=1)
 
+        # left rear knee
+        self.pub_rear_left_knee = rospy.Publisher('/' + self.spot_name + '/joint_rear_left_knee_controller/command',
+                                                  Float64, queue_size=1)
 
-def talker(motors_target_pos):
-    # Hips in x-direction
-    pub_front_left_hip_x.publish(motors_target_pos[0][0])
-    pub_front_right_hip_x.publish(motors_target_pos[1][0])
-    pub_rear_left_hip_x.publish(motors_target_pos[2][0])
-    pub_rear_right_hip_x.publish(motors_target_pos[3][0])
+        # right rear hip_x
+        self.pub_rear_right_hip_x = rospy.Publisher('/' + self.spot_name + '/joint_rear_right_hip_x_controller/command',
+                                                    Float64, queue_size=1)
 
-    # Hips in y-direction
-    pub_front_left_hip_y.publish(motors_target_pos[0][1])
-    pub_front_right_hip_y.publish(motors_target_pos[1][1])
-    pub_rear_left_hip_y.publish(motors_target_pos[2][1])
-    pub_rear_right_hip_y.publish(motors_target_pos[3][1])
+        # right rear hip_y
+        self.pub_rear_right_hip_y = rospy.Publisher('/' + self.spot_name + '/joint_rear_right_hip_y_controller/command',
+                                                    Float64, queue_size=1)
 
-    # Knee
-    pub_front_left_knee.publish(motors_target_pos[0][2])
-    pub_front_right_knee.publish(motors_target_pos[1][2])
-    pub_rear_left_knee.publish(motors_target_pos[2][2])
-    pub_rear_right_knee.publish(motors_target_pos[3][2])
+        # right rear knee
+        self.pub_rear_right_knee = rospy.Publisher('/' + self.spot_name + '/joint_rear_right_knee_controller/command',
+                                                   Float64, queue_size=1)
+
+    def talker(self, motors_target_pos):
+        # Hips in x-direction
+        self.pub_front_left_hip_x.publish(motors_target_pos[0][0])
+        self.pub_front_right_hip_x.publish(motors_target_pos[1][0])
+        self.pub_rear_left_hip_x.publish(motors_target_pos[2][0])
+        self.pub_rear_right_hip_x.publish(motors_target_pos[3][0])
+
+        # Hips in y-direction
+        self.pub_front_left_hip_y.publish(motors_target_pos[0][1])
+        self.pub_front_right_hip_y.publish(motors_target_pos[1][1])
+        self.pub_rear_left_hip_y.publish(motors_target_pos[2][1])
+        self.pub_rear_right_hip_y.publish(motors_target_pos[3][1])
+
+        # Knee
+        self.pub_front_left_knee.publish(motors_target_pos[0][2])
+        self.pub_front_right_knee.publish(motors_target_pos[1][2])
+        self.pub_rear_left_knee.publish(motors_target_pos[2][2])
+        self.pub_rear_right_knee.publish(motors_target_pos[3][2])
+
+    # ------------- Subscribers ------------
+    def callback_gait(self, data):
+        self.xd = data.x
+        self.yd = data.y
+        self.zd = data.z
+        self.rolld = data.roll
+        self.pitchd = data.pitch
+        self.yawd = data.yaw
+        self.StepLength = data.StepLength
+        self.LateralFraction = data.LateralFraction
+        self.YawRate = data.YawRate
+        self.StepVelocity = data.StepVelocity
+        self.ClearanceHeight = data.ClearanceHeight
+        self.PenetrationDepth = data.PenetrationDepth
+        self.SwingPeriod = data.SwingPeriod
+        self.YawControl = data.YawControl
+
+    def callback_model(self, data):
+        if self.search_index == -1:
+            self.search_index = data.name.index(self.spot_name)
+        self.x_inst = data.pose[self.search_index].position.x
+        self.y_inst = data.pose[self.search_index].position.y
+        self.z_inst = data.pose[self.search_index].position.z
+        orientation_q = data.pose[self.search_index].orientation
+        orientation_list = [orientation_q.x, orientation_q.y, orientation_q.z, orientation_q.w]
+        (self.roll_inst, self.pitch_inst, self.yaw_inst) = euler_from_quaternion(orientation_list)
+
+    def callback_front_left_lower_leg_contact(self, data):
+        if len(data.states) == 0:
+            self.chattering_front_left_lower_leg_contact += 1
+            if self.chattering_front_left_lower_leg_contact > self.lim_chattering:
+                self.front_left_lower_leg_contact = 0
+        else:
+            self.front_left_lower_leg_contact = 1
+            self.chattering_front_left_lower_leg_contact = 0
+
+    def callback_front_right_lower_leg_contact(self, data):
+        if len(data.states) == 0:
+            self.chattering_front_right_lower_leg_contact += 1
+            if self.chattering_front_right_lower_leg_contact > self.lim_chattering:
+                self.front_right_lower_leg_contact = 0
+        else:
+            self.front_right_lower_leg_contact = 1
+            self.chattering_front_right_lower_leg_contact = 0
+
+    def callback_rear_left_lower_leg_contact(self, data):
+        if len(data.states) == 0:
+            self.chattering_rear_left_lower_leg_contact += 1
+            if self.chattering_rear_left_lower_leg_contact > self.lim_chattering:
+                self.rear_left_lower_leg_contact = 0
+        else:
+            self.rear_left_lower_leg_contact = 1
+            self.chattering_rear_left_lower_leg_contact = 0
+
+    def callback_rear_right_lower_leg_contact(self, data):
+        if len(data.states) == 0:
+            self.chattering_rear_right_lower_leg_contact += 1
+            if self.chattering_rear_right_lower_leg_contact > self.lim_chattering:
+                self.rear_right_lower_leg_contact = 0
+        else:
+            self.rear_right_lower_leg_contact = 1
+            self.chattering_rear_right_lower_leg_contact = 0
+
+    def listener(self):
+        rospy.Subscriber("/" + self.spot_name + "/inverse_gait_input", GaitInput, self.callback_gait)
+        rospy.Subscriber("/gazebo/model_states", ModelStates, self.callback_model)
+        rospy.Subscriber("/" + self.spot_name + "/front_left_lower_leg_contact", ContactsState,
+                         self.callback_front_left_lower_leg_contact)
+        rospy.Subscriber("/" + self.spot_name + "/front_right_lower_leg_contact", ContactsState,
+                         self.callback_front_right_lower_leg_contact)
+        rospy.Subscriber("/" + self.spot_name + "/rear_left_lower_leg_contact", ContactsState,
+                         self.callback_rear_left_lower_leg_contact)
+        rospy.Subscriber("/" + self.spot_name + "/rear_right_lower_leg_contact", ContactsState,
+                         self.callback_rear_right_lower_leg_contact)
+
+    def yaw_control(self):
+        yaw_target = self.YawControl
+        thr = np.pi/2
+        if (yaw_target > thr and self.yaw_inst < -thr) or (self.yaw_inst > thr and yaw_target < -thr):
+            residual = (yaw_target - self.yaw_inst)*np.sign(yaw_target - self.yaw_inst) - 2*np.pi
+            yawrate_d = 2.0 * np.sqrt(abs(residual)) * np.sign(residual)
+        else:
+            residual = yaw_target - self.yaw_inst
+            yawrate_d = 4.0 * np.sqrt(abs(residual))*np.sign(residual)
+        return yawrate_d
+
+    def spot_inverse_control(self):
+        pos = np.array([self.xd, self.yd, self.zd])
+        orn = np.array([self.rolld, self.pitchd, self.yawd])
+
+        # yaw control
+        YawRate_d = self.yaw_control()
+        # Update Swing Period
+        self.bzg.Tswing = self.SwingPeriod
+        contacts = [self.front_left_lower_leg_contact, self.front_right_lower_leg_contact, self.rear_left_lower_leg_contact,
+                    self.rear_right_lower_leg_contact]
+        # Get Desired Foot Poses
+        T_bf = self.bzg.GenerateTrajectory(self.StepLength, self.LateralFraction, YawRate_d,
+                                           self.StepVelocity, self.T_bf0, self.T_bf,
+                                           self.ClearanceHeight, self.PenetrationDepth,
+                                           contacts)
+        joint_angles = self.spot.IK(orn, pos, T_bf)
+        self.talker(joint_angles)
 
 
 # ------------------ Standard pose
@@ -108,140 +258,6 @@ stand_up = [[0.20, 0.7, -1.39],  # Front left leg
             [0.20, 0.7, -1.39],  # Rear left leg
             [-0.20, 0.7, -1.39]]  # Rear right leg
 
-# ------------------ Inputs for Bezier Gait control ----------------
-global xd, yd, zd, rolld, pitchd, yawd, StepLength, LateralFraction, YawRate, StepVelocity, ClearanceHeight, \
-    PenetrationDepth, SwingPeriod
-xd = 0.0
-yd = 0.0
-zd = 0.0
-rolld = 0.0
-pitchd = 0.0
-yawd = 0.0
-StepLength = 0.00
-LateralFraction = 0.0
-YawRate = 0.0
-StepVelocity = 0.00
-ClearanceHeight = 0.0
-PenetrationDepth = 0.0
-SwingPeriod = 0.00
-YawControl = 0.0
-
-
-# ------------- Subscribers ------------
-
-
-def callback_gait(data):
-    global xd, yd, zd, rolld, pitchd, yawd, StepLength, LateralFraction, YawRate, StepVelocity, ClearanceHeight, \
-        PenetrationDepth, SwingPeriod, YawControl
-    xd = data.x
-    yd = data.y
-    zd = data.z
-    rolld = data.roll
-    pitchd = data.pitch
-    yawd = data.yaw
-    StepLength = data.StepLength
-    LateralFraction = data.LateralFraction
-    YawRate = data.YawRate
-    StepVelocity = data.StepVelocity
-    ClearanceHeight = data.ClearanceHeight
-    PenetrationDepth = data.PenetrationDepth
-    SwingPeriod = data.SwingPeriod
-    YawControl = data.YawControl
-
-
-global x_inst, y_inst, z_inst, roll_inst, pitch_inst, yaw_inst, vx_inst, vy_inst, vz_inst, search_index
-x_inst = 0.
-y_inst = 0.
-z_inst = 0.
-roll_inst = 0.
-pitch_inst = 0.
-yaw_inst = 0.
-vx_inst = 0.
-vy_inst = 0.
-vz_inst = 0.
-wz_inst = 0.
-search_index = -1
-
-
-def callback_model(data):
-    global x_inst, y_inst, z_inst, roll_inst, pitch_inst, yaw_inst, vx_inst, vy_inst, vz_inst, wz_inst, search_index
-    if search_index == -1:
-        search_index = data.name.index('spot_mini')
-    x_inst = data.pose[search_index].position.x
-    y_inst = data.pose[search_index].position.y
-    z_inst = data.pose[search_index].position.z
-    orientation_q = data.pose[search_index].orientation
-    orientation_list = [orientation_q.x, orientation_q.y, orientation_q.z, orientation_q.w]
-    (roll_inst, pitch_inst, yaw_inst) = euler_from_quaternion(orientation_list)
-
-
-global front_left_lower_leg_contact, front_right_lower_leg_contact, rear_left_lower_leg_contact, rear_right_lower_leg_contact
-global chattering_front_left_lower_leg_contact, chattering_front_right_lower_leg_contact, \
-       chattering_rear_left_lower_leg_contact, chattering_rear_right_lower_leg_contact, lim_chattering
-front_left_lower_leg_contact = 1
-front_right_lower_leg_contact = 1
-rear_left_lower_leg_contact = 1
-rear_right_lower_leg_contact = 1
-chattering_front_left_lower_leg_contact = 0
-chattering_front_right_lower_leg_contact = 0
-chattering_rear_left_lower_leg_contact = 0
-chattering_rear_right_lower_leg_contact = 0
-lim_chattering = 4
-
-
-def callback_front_left_lower_leg_contact(data):
-    global front_left_lower_leg_contact, chattering_front_left_lower_leg_contact, lim_chattering
-    # rospy.loginfo_throttle(0.0005, "chattering = " + str(chattering_front_left_lower_leg_contact))
-    if len(data.states) == 0:
-        chattering_front_left_lower_leg_contact += 1
-        if chattering_front_left_lower_leg_contact > lim_chattering:
-            front_left_lower_leg_contact = 0
-    else:
-        front_left_lower_leg_contact = 1
-        chattering_front_left_lower_leg_contact = 0
-        # rospy.loginfo_throttle(0.0005, "len = " + str(data.states[0].contact_normals[0].z))
-
-
-def callback_front_right_lower_leg_contact(data):
-    global front_right_lower_leg_contact, chattering_front_right_lower_leg_contact, lim_chattering
-    if len(data.states) == 0:
-        chattering_front_right_lower_leg_contact += 1
-        if chattering_front_right_lower_leg_contact > lim_chattering:
-            front_right_lower_leg_contact = 0
-    else:
-        front_right_lower_leg_contact = 1
-        chattering_front_right_lower_leg_contact = 0
-
-
-def callback_rear_left_lower_leg_contact(data):
-    global rear_left_lower_leg_contact, chattering_rear_left_lower_leg_contact, lim_chattering
-    if len(data.states) == 0:
-        chattering_rear_left_lower_leg_contact += 1
-        if chattering_rear_left_lower_leg_contact > lim_chattering:
-            rear_left_lower_leg_contact = 0
-    else:
-        rear_left_lower_leg_contact = 1
-        chattering_rear_left_lower_leg_contact = 0
-
-
-def callback_rear_right_lower_leg_contact(data):
-    global rear_right_lower_leg_contact, chattering_rear_right_lower_leg_contact, lim_chattering
-    if len(data.states) == 0:
-        chattering_rear_right_lower_leg_contact += 1
-        if chattering_rear_right_lower_leg_contact > lim_chattering:
-            rear_right_lower_leg_contact = 0
-    else:
-        rear_right_lower_leg_contact = 1
-        chattering_rear_right_lower_leg_contact = 0
-
-
-def listener():
-    rospy.Subscriber("/spot/inverse_gait_input", GaitInput, callback_gait)
-    rospy.Subscriber("/gazebo/model_states", ModelStates, callback_model)
-    rospy.Subscriber("/front_left_lower_leg_contact", ContactsState, callback_front_left_lower_leg_contact)
-    rospy.Subscriber("/front_right_lower_leg_contact", ContactsState, callback_front_right_lower_leg_contact)
-    rospy.Subscriber("/rear_left_lower_leg_contact", ContactsState, callback_rear_left_lower_leg_contact)
-    rospy.Subscriber("/rear_right_lower_leg_contact", ContactsState, callback_rear_right_lower_leg_contact)
 
 
 def main():
@@ -251,113 +267,38 @@ def main():
     time_step = 0.01
     max_timesteps = 4e6
 
-    spot = SpotModel()
-    T_bf0 = spot.WorldToFoot
-    T_bf = copy.deepcopy(T_bf0)
-
-    bzg = BezierGait(dt=time_step)
+    spot_com = SpotMidlware(spot_name, time_step)
 
     # sit down
     time.sleep(2.1)
-    talker(sit_down)
-    rate.sleep()
+    spot_com.talker(sit_down)
+    spot_com.rate.sleep()
     # stand up
     time.sleep(2.1)
-    talker(stand_up)
-    rate.sleep()
+    spot_com.talker(stand_up)
+    spot_com.rate.sleep()
     time.sleep(1.1)
 
     rospy.loginfo_once("STARTED SPOT TEST ENV")
     t = 0
-    global xd, yd, zd, rolld, pitchd, yawd, StepLength, LateralFraction, YawRate, StepVelocity, ClearanceHeight, \
-        PenetrationDepth, SwingPeriod, YawControl
-    global x_inst, y_inst, z_inst, roll_inst, pitch_inst, yaw_inst, vx_inst, vy_inst, vz_inst, wz_inst
-    global front_left_lower_leg_contact, front_right_lower_leg_contact, rear_left_lower_leg_contact, rear_right_lower_leg_contact
 
-    listener()
-
-
-    pid = PID(1.1, 0.1, 0.000005)
-    pid.sample_time = 0.01
-    pid.output_limits = (-10, 10)
-    # pid.proportional_on_measurement = True
+    spot_com.listener()
 
     while t < (int(max_timesteps)):
         start_time = time.time()
-        x_start = x_inst
-        y_start = y_inst
+        x_start = spot_com.x_inst
+        y_start = spot_com.y_inst
 
-        pos = np.array([xd, yd, zd])
-        orn = np.array([rolld, pitchd, yawd])
-
-        # Update Swing Period
-        bzg.Tswing = SwingPeriod
-
-        # rospy.loginfo_throttle(0.005, "contact front left = " + str(front_left_lower_leg_contact))
-        # rospy.loginfo_throttle(0.005, "contact front left = " + str(front_right_lower_leg_contact))
-        # rospy.loginfo_throttle(0.005, "contact rear left = " + str(rear_left_lower_leg_contact))
-        # rospy.loginfo_throttle(0.005, "contact rear right = " + str(rear_right_lower_leg_contact))
-
-        yaw_target = YawControl
-        # pid.setpoint = yaw_target
-        pid.setpoint = yaw_target
-        # rospy.loginfo_once("y_target_init=" + str(yaw_target))
-
-        if (yaw_target > 1.5708 and yaw_inst < -1.5708) or (yaw_inst > 1.5708 and yaw_target < -1.5708):
-            residual = (yaw_target - yaw_inst)*np.sign(yaw_target - yaw_inst) - 2*np.pi
-            # if abs(residual) < 4:
-            #     p_yaw = 0.7
-            # elif 4 <= abs(residual) <= 6:
-            #     p_yaw = 0.25
-            # elif abs(residual) > 6:
-            #     p_yaw = 0.1
-            # YawRate_d = p_yaw * residual
-            YawRate_d = 2.0 * np.sqrt(abs(residual)) * np.sign(residual)
-        else:
-            residual = yaw_target - yaw_inst
-
-            # if abs(residual) < 0.3:
-            #     p_yaw = 2.5
-            # elif 0.3 <= abs(residual) < 1.1:
-            #     p_yaw = 4.5
-            # else:
-            #     p_yaw = 3.0
-            # YawRate_d = p_yaw * residual
-            YawRate_d = 4.0 * np.sqrt(abs(residual))*np.sign(residual)
-
-
-        rospy.loginfo_throttle(1, "residual=" + str(yaw_target - yaw_inst))
-
-        # pid.Kp = p_yaw
-        # YawRate_d = pid(yaw_inst)
-
-        # YawRate_d = p_yaw * residual
-
-        # YawRate_d = 0
-
-        contacts = [front_left_lower_leg_contact, front_right_lower_leg_contact, rear_left_lower_leg_contact,
-                    rear_right_lower_leg_contact]
-
-        # Get Desired Foot Poses
-        T_bf = bzg.GenerateTrajectory(StepLength, LateralFraction, YawRate_d,
-                                      StepVelocity, T_bf0, T_bf,
-                                      ClearanceHeight, PenetrationDepth,
-                                      contacts)
-        joint_angles = spot.IK(orn, pos, T_bf)
-
+        spot_com.spot_inverse_control()
 
         t += 1
-        # print(joint_angles)
-        talker(joint_angles)
-        # your code
         elapsed_time = time.time() - start_time
-        vx = (x_inst - x_start)/elapsed_time
-        vy = (y_inst - y_start)/elapsed_time
+        vx = (spot_com.x_inst - x_start)/elapsed_time
+        vy = (spot_com.y_inst - y_start)/elapsed_time
         vel = np.sqrt(vx**2 + vy**2)
         rospy.loginfo_throttle(1, "vx=" + str(vx))
         rospy.loginfo_throttle(1, "vy=" + str(vy))
         rospy.loginfo_throttle(1, "vel=" + str(vel))
-        pid.sample_time = elapsed_time
 
 
 if __name__ == '__main__':

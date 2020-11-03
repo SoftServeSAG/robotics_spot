@@ -3,59 +3,61 @@
 import rospy
 from std_msgs.msg import Float64
 import time
-rospy.init_node('talker', anonymous=True)
+
+spot_name = str(input("Tell me spot name: "))
+rospy.init_node(spot_name + 'talker')
 rate = rospy.Rate(1000)  # 100hz
 
 # ----Front ----
 # left front hip_x
-pub_front_left_hip_x = rospy.Publisher('/spot/joint_front_left_hip_x_controller/command',
+pub_front_left_hip_x = rospy.Publisher('/' + spot_name + '/joint_front_left_hip_x_controller/command',
                                        Float64, queue_size=10)
 
 # left front hip_y
-pub_front_left_hip_y = rospy.Publisher('/spot/joint_front_left_hip_y_controller/command',
+pub_front_left_hip_y = rospy.Publisher('/' + spot_name + '/joint_front_left_hip_y_controller/command',
                                        Float64, queue_size=10)
 
 # left front knee
-pub_front_left_knee = rospy.Publisher('/spot/joint_front_left_knee_controller/command',
+pub_front_left_knee = rospy.Publisher('/' + spot_name + '/joint_front_left_knee_controller/command',
                                       Float64, queue_size=10)
 
 
 # right front hip_x
-pub_front_right_hip_x = rospy.Publisher('/spot/joint_front_right_hip_x_controller/command',
+pub_front_right_hip_x = rospy.Publisher('/' + spot_name + '/joint_front_right_hip_x_controller/command',
                                         Float64, queue_size=10)
 
 # right front hip_y
-pub_front_right_hip_y = rospy.Publisher('/spot/joint_front_right_hip_y_controller/command',
+pub_front_right_hip_y = rospy.Publisher('/' + spot_name + '/joint_front_right_hip_y_controller/command',
                                         Float64, queue_size=10)
 
 # right front knee
-pub_front_right_knee = rospy.Publisher('/spot/joint_front_right_knee_controller/command',
+pub_front_right_knee = rospy.Publisher('/' + spot_name + '/joint_front_right_knee_controller/command',
                                        Float64, queue_size=10)
 
 # ---- Rear ----
 
 # left rear hip_x
-pub_rear_left_hip_x = rospy.Publisher('/spot/joint_rear_left_hip_x_controller/command',
+pub_rear_left_hip_x = rospy.Publisher('/' + spot_name + '/joint_rear_left_hip_x_controller/command',
                                       Float64, queue_size=10)
 
 # left rear hip_y
-pub_rear_left_hip_y = rospy.Publisher('/spot/joint_rear_left_hip_y_controller/command',
+pub_rear_left_hip_y = rospy.Publisher('/' + spot_name + '/joint_rear_left_hip_y_controller/command',
                                       Float64, queue_size=10)
 
 # left rear knee
-pub_rear_left_knee = rospy.Publisher('/spot/joint_rear_left_knee_controller/command',
+pub_rear_left_knee = rospy.Publisher('/' + spot_name + '/joint_rear_left_knee_controller/command',
                                      Float64, queue_size=10)
 
 # right rear hip_x
-pub_rear_right_hip_x = rospy.Publisher('/spot/joint_rear_right_hip_x_controller/command',
+pub_rear_right_hip_x = rospy.Publisher('/' + spot_name + '/joint_rear_right_hip_x_controller/command',
                                        Float64, queue_size=10)
 
 # right rear hip_y
-pub_rear_right_hip_y = rospy.Publisher('/spot/joint_rear_right_hip_y_controller/command',
+pub_rear_right_hip_y = rospy.Publisher('/' + spot_name + '/joint_rear_right_hip_y_controller/command',
                                        Float64, queue_size=10)
 
 # right rear knee
-pub_rear_right_knee = rospy.Publisher('/spot/joint_rear_right_knee_controller/command',
+pub_rear_right_knee = rospy.Publisher('/' + spot_name + '/joint_rear_right_knee_controller/command',
                                       Float64, queue_size=10)
 
 def talker():

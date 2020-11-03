@@ -4,9 +4,11 @@ import rospy
 from rs_msgs.msg import GaitInput
 from Tkinter import Tk, Label, Button, Entry, END
 
-rospy.init_node('inver', anonymous=True)
+spot_name = str(input("Tell me spot name: "))
 
-pub = rospy.Publisher('/spot/inverse_gait_input', GaitInput, queue_size=10)
+rospy.init_node(spot_name + '_inverse_gui', anonymous=True)
+
+pub = rospy.Publisher('/'+ spot_name + '/inverse_gait_input', GaitInput, queue_size=10)
 
 
 class RsGui:
@@ -107,7 +109,7 @@ class RsGui:
 def main():
     root = Tk()
     my_gui = RsGui(root, pub)
-    root.title('Spot Control Input')
+    root.title(spot_name + 'Control Input')
     root.geometry("400x800+10+10")
     root.mainloop()
 
