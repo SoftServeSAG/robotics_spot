@@ -21,28 +21,4 @@
 <!--  Launch robot description xarco-->
   <include file="$(find rs_description)/launch/description.launch" />
 
-  <!-- BEGIN ROBOT 1-->
-  <arg name="robot1_name" value="spot1"/>
-  <rosparam param="robot1_name" subst_value="True">$(arg robot1_name)</rosparam>
-  <group ns="$(arg robot1_name)">
-    <param name="tf_prefix" value="$(arg robot1_name)_tf" />
-
-    <include file="$(find rs_gazebo)/launch/robot.launch" >
-      <arg name="init_pose" value="-x -1.7 -y 8.6 -z 0.72" />
-      <arg name="robot_name"  value="$(arg robot1_name)" />
-    </include>
-  </group>
-
-  <!-- BEGIN ROBOT 2-->
-  <arg name="robot2_name" value="spot2"/>
-  <rosparam param="robot2_name" subst_value="True">$(arg robot2_name)</rosparam>
-  <group ns="$(arg robot2_name)">
-    <param name="tf_prefix" value="$(arg robot2_name)_tf" />
-
-    <include file="$(find rs_gazebo)/launch/robot.launch" >
-      <arg name="init_pose" value="-x -1.7 -y 5.6 -z 0.72" />
-      <arg name="robot_name"  value="$(arg robot2_name)" />
-    </include>
-  </group>
-
 </launch>

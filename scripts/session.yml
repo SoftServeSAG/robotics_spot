@@ -3,8 +3,11 @@ root: ./
 
 startup_window: status
 windows:
-  - rviz:
+  - gazebo:
       layout: even-vertical
       panes:
         - history -s 'roslaunch rs_gazebo HQ.launch world:="empty.world"'
-        
+  - spot1:
+      layout: even-vertical
+      panes:
+        - history -s 'roslaunch rs_gazebo robot.launch robot_name:="spot1" init_pose:="-x -3.2 -y 6.45 -z 0.72 -R 0.0 -P 0.0 -Y 1.5708"'

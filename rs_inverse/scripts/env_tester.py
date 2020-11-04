@@ -13,7 +13,7 @@ from LieAlgebra import RPY
 
 from Bezier import BezierGait
 
-from simple_pid import PID
+from StairsGait import StairsGait
 
 import time
 
@@ -21,10 +21,11 @@ from tf.transformations import euler_from_quaternion, quaternion_from_euler
 
 spot_name = str(input("Tell me spot name: "))
 
+
 class SpotMidlware:
     def __init__(self, spot_name, time_step):
         self.spot_name = spot_name
-        rospy.init_node(self.spot_name +'_inverse')
+        rospy.init_node(self.spot_name + '_inverse')
         self.rate = rospy.Rate(100)  # 100hz
         self.time_step = time_step
 
@@ -32,6 +33,9 @@ class SpotMidlware:
         self.T_bf0 = self.spot.WorldToFoot
         self.T_bf = copy.deepcopy(self.T_bf0)
         self.bzg = BezierGait(dt=self.time_step)
+
+        self.stairs_gait = StairsGait(h_raise=1.5*0.168125, w_run=0.25, beta=0.8, delta_h=0.05, t_swing=0.25,
+                                      T_bf0=self.T_bf, time_step=0.01)
 
         # ------------------ Inputs for Bezier Gait control ----------------
         self.xd = 0.0
@@ -219,13 +223,13 @@ class SpotMidlware:
 
     def yaw_control(self):
         yaw_target = self.YawControl
-        thr = np.pi/2
+        thr = np.pi / 2
         if (yaw_target > thr and self.yaw_inst < -thr) or (self.yaw_inst > thr and yaw_target < -thr):
-            residual = (yaw_target - self.yaw_inst)*np.sign(yaw_target - self.yaw_inst) - 2*np.pi
+            residual = (yaw_target - self.yaw_inst) * np.sign(yaw_target - self.yaw_inst) - 2 * np.pi
             yawrate_d = 2.0 * np.sqrt(abs(residual)) * np.sign(residual)
         else:
             residual = yaw_target - self.yaw_inst
-            yawrate_d = 4.0 * np.sqrt(abs(residual))*np.sign(residual)
+            yawrate_d = 4.0 * np.sqrt(abs(residual)) * np.sign(residual)
         return yawrate_d
 
     def spot_inverse_control(self):
@@ -236,13 +240,28 @@ class SpotMidlware:
         YawRate_d = self.yaw_control()
         # Update Swing Period
         self.bzg.Tswing = self.SwingPeriod
-        contacts = [self.front_left_lower_leg_contact, self.front_right_lower_leg_contact, self.rear_left_lower_leg_contact,
+        contacts = [self.front_left_lower_leg_contact, self.front_right_lower_leg_contact,
+                    self.rear_left_lower_leg_contact,
                     self.rear_right_lower_leg_contact]
         # Get Desired Foot Poses
         T_bf = self.bzg.GenerateTrajectory(self.StepLength, self.LateralFraction, YawRate_d,
                                            self.StepVelocity, self.T_bf0, self.T_bf,
                                            self.ClearanceHeight, self.PenetrationDepth,
                                            contacts)
+        # rospy.loginfo_throttle(1, "FOOT=" + str(T_bf))
+        joint_angles = self.spot.IK(orn, pos, T_bf)
+        self.talker(joint_angles)
+
+    def spot_stairs_control(self):
+        pos = np.array([self.xd, self.yd, self.zd])
+        orn = np.array([self.rolld, self.pitchd, self.yawd])
+
+        contacts = [self.front_left_lower_leg_contact, self.front_right_lower_leg_contact,
+                    self.rear_left_lower_leg_contact,
+                    self.rear_right_lower_leg_contact]
+        # Get Desired Foot Poses
+        T_bf = self.stairs_gait.GenerateTrajectory(contacts)
+        # rospy.loginfo_throttle(1, "FOOT=" + str(T_bf))
         joint_angles = self.spot.IK(orn, pos, T_bf)
         self.talker(joint_angles)
 
@@ -257,7 +276,6 @@ stand_up = [[0.20, 0.7, -1.39],  # Front left leg
             [-0.20, 0.7, -1.39],  # Front right leg
             [0.20, 0.7, -1.39],  # Rear left leg
             [-0.20, 0.7, -1.39]]  # Rear right leg
-
 
 
 def main():
@@ -289,16 +307,19 @@ def main():
         x_start = spot_com.x_inst
         y_start = spot_com.y_inst
 
-        spot_com.spot_inverse_control()
+        # spot_com.spot_inverse_control()
+        spot_com.spot_stairs_control()
 
         t += 1
         elapsed_time = time.time() - start_time
-        vx = (spot_com.x_inst - x_start)/elapsed_time
-        vy = (spot_com.y_inst - y_start)/elapsed_time
-        vel = np.sqrt(vx**2 + vy**2)
-        rospy.loginfo_throttle(1, "vx=" + str(vx))
-        rospy.loginfo_throttle(1, "vy=" + str(vy))
-        rospy.loginfo_throttle(1, "vel=" + str(vel))
+        vx = (spot_com.x_inst - x_start) / elapsed_time
+        vy = (spot_com.y_inst - y_start) / elapsed_time
+        vel = np.sqrt(vx ** 2 + vy ** 2)
+        # rospy.loginfo_throttle(1, "vx=" + str(vx))
+        # rospy.loginfo_throttle(1, "vy=" + str(vy))
+        # rospy.loginfo_throttle(1, "vel=" + str(vel))
+        if elapsed_time < spot_com.time_step:
+            time.sleep(spot_com.time_step - elapsed_time)
 
 
 if __name__ == '__main__':
