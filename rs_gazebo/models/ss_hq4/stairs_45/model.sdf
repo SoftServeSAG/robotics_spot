@@ -1,6 +1,6 @@
 <?xml version='1.0'?>
 <sdf version='1.6'>
-  <model name='Untitled'>
+  <model name='stairs45'>
     <pose frame=''>0 0 0 0 -0 0</pose>
     <link name='Stairs_1'>
       <visual name='Stairs_1_Visual_0'>
