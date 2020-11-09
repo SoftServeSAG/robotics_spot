@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <sdf version='1.6'>
-  <world name='dstairs_in_emptyworld'>
+  <world name='stairs_in_emptyworld'>
     <light name='sun' type='directional'>
       <cast_shadows>0</cast_shadows>
       <pose frame=''>0 0 10 0 -0 0</pose>
@@ -164,7 +164,7 @@
       <static>1</static>
     </model>
 
-    <state world_name='default'>
+    <state world_name='stairs_in_emptyworld'>
       <sim_time>59 65000000</sim_time>
       <real_time>59 733590737</real_time>
       <wall_time>1540283318 88886173</wall_time>
