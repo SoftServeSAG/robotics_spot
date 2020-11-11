@@ -10,9 +10,28 @@ RUN apt-get update && apt-get install -y \
     ros-melodic-joint-state-publisher-gui \
     ros-melodic-interactive-marker-twist-server \ 
     ros-melodic-robot-state-publisher \
+    ros-melodic-move-base \
+    ros-melodic-map-server \
+    ros-melodic-global-planner \
+    ros-melodic-velodyne-gazebo-plugins \
+    ros-melodic-hector-gazebo-plugins \
+    ros-melodic-ecl-threads \
+    ros-melodic-octomap-server \
+    ros-melodic-octomap \
+    ros-melodic-hector-sensors-description \
+    ros-melodic-gmapping \
+    ros-melodic-rosserial-python \
+    ros-melodic-robot-localization \
+    ros-melodic-navfn \
+    ros-melodic-pointcloud-to-laserscan \
+    ros-melodic-amcl \
+    ros-melodic-base-local-planner \
+    ros-melodic-rosserial \
+    ros-melodic-hector-mapping \
+    ros-melodic-dwa-local-planner \
     python-pip \
-    && pip install simple-pid \
-    && rm -rf /var/lib/apt/lists/* 
+    && pip install scipy \
+    && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /var/run/sshd
 RUN echo 'root:root' | chpasswd
