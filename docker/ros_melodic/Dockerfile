@@ -29,6 +29,9 @@ RUN apt-get update && apt-get install -y \
     ros-melodic-rosserial \
     ros-melodic-hector-mapping \
     ros-melodic-dwa-local-planner \
+    ros-melodic-yocs-velocity-smoother \
+    ros-melodic-grid-map-ros \
+    ros-melodic-grid-map-core \
     python-pip \
     && pip install scipy \
     && rm -rf /var/lib/apt/lists/*
