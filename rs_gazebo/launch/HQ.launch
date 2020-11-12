@@ -3,8 +3,7 @@
   <arg name="use_sim_time" default="true" />
   <arg name="gui" default="true" />
   <arg name="headless" default="false" />
-  <!-- <arg name="world_name" default="$(find rs_gazebo)/worlds/ss_hq4.world" /> -->
- <arg name="world_name" default="empty.world" /> -
+  <arg name="world_name" default= "$(find rs_gazebo)/worlds/$(arg world)" />
 
 
   <!-- Launch Gazebo with the specified world -->
@@ -17,24 +16,24 @@
     <arg name="paused" value="false"/>
   </include>
 
-  <include file="$(find rs_control)/launch/spot_controller.launch" /> 
+  <include file="$(find rs_control)/launch/spot_controller.launch" />
 
   <include file="$(find rs_description)/launch/description.launch" />
-<!--
+
     <arg name="x" default="-1.7"/>
     <arg name="y" default="8.6"/>
+    <arg name="z" default="0.72"/>
+
+<!--
+    <arg name="x" default="0.0"/>
+    <arg name="y" default="-2.1"/>
     <arg name="z" default="0.72"/> -->
 
-
-    <arg name="x" default="1.0"/>
-    <arg name="y" default="1.5"/>
-    <arg name="z" default="0.72"/> 
-
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
-        args="-urdf -model spot_mini -param robot_description -x $(arg x) -y $(arg y) -z $(arg z)"/> 
+        args="-urdf -model spot_mini -param robot_description -x $(arg x) -y $(arg y) -z $(arg z)"/>
 
     <!-- Load spot config for scripts -->
-  <rosparam file="$(find rs_control)/config/spot_param_for_scripts.yaml" command="load"/>
+   <rosparam file="$(find rs_control)/config/spot_param_for_scripts.yaml" command="load"/>
 
 
 </launch>
