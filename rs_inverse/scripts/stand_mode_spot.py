@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
-# The file contains hardcoded scripts for robot control in stand mode: change body orientation in relation to foots.
+
+# The file contains hardcoded scripts for robot control in stand mode: change body orientation in relation to foots. 
 
 import rospy
 from rs_msgs.msg import GaitInput
