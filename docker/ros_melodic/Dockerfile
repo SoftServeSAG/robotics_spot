@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     ros-melodic-robot-state-publisher \
     python-pip \
     && pip install simple-pid \
+    && pip install scipy \
     && rm -rf /var/lib/apt/lists/* 
 
 RUN mkdir /var/run/sshd
