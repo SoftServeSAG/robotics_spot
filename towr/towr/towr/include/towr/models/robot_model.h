@@ -67,7 +67,8 @@ struct RobotModel {
    * See folder: \ref include/towr/models/examples for more information.
    * @ingroup Robots
    */
-  enum Robot { Popi, ///< four-legged robot from MKX 3
+  enum Robot { Spot, ///< four-legged robot from Boston Dynamics
+               Popi, ///< four-legged robot from MKX 3
                Monoped, ///< one-legged hopper
                Biped,   ///< two-legged
                Hyq,     ///< four-legged robot from IIT
@@ -85,6 +86,7 @@ struct RobotModel {
 
 const static std::map<RobotModel::Robot, std::string> robot_names =
 {
+  {RobotModel::Spot,  "Spot"},
   {RobotModel::Popi,  "Popi"},
   {RobotModel::Monoped, "Monoped"},
   {RobotModel::Biped,   "Biped"},

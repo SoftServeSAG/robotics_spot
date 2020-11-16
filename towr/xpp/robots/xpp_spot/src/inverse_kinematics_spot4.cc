@@ -1,5 +1,5 @@
 /******************************************************************************
-Copyright (c) 2018, Alexander W. Winkler. All rights reserved.
+Copyright (c) 2017, Alexander W. Winkler. All rights reserved.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -26,52 +26,53 @@ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
 OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ******************************************************************************/
-#include <towr/models/robot_model.h>
 
-#include <towr/models/examples/monoped_model.h>
-#include <towr/models/examples/biped_model.h>
-#include <towr/models/examples/hyq_model.h>
-#include <towr/models/examples/anymal_model.h>
-#include <towr/models/examples/popi_model.h>
-#include <towr/models/examples/spot_model.h>
+#include <xpp_spot/inverse_kinematics_spot4.h>
 
-namespace towr {
+#include <xpp_states/cartesian_declarations.h>
+#include <xpp_states/endeffector_mappings.h>
 
+namespace xpp {
 
-RobotModel::RobotModel(Robot robot)
+Joints
+InverseKinematicsSpot4::GetAllJointAngles(const EndeffectorsPos& x_B) const
 {
-  switch (robot) {
-    case Spot:
-      dynamic_model_   = std::make_shared<SpotDynamicModel>();
-      kinematic_model_ = std::make_shared<SpotKinematicModel>();
-      break;
-    case Popi:
-      dynamic_model_   = std::make_shared<PopiDynamicModel>();
-      kinematic_model_ = std::make_shared<PopiKinematicModel>();
-      break;
-    case Monoped:
-      dynamic_model_   = std::make_shared<MonopedDynamicModel>();
-      kinematic_model_ = std::make_shared<MonopedKinematicModel>();
-      break;
-    case Biped:
-      dynamic_model_   = std::make_shared<BipedDynamicModel>();
-      kinematic_model_ = std::make_shared<BipedKinematicModel>();
-      break;
-    case Hyq:
-      dynamic_model_   = std::make_shared<HyqDynamicModel>();
-      kinematic_model_ = std::make_shared<HyqKinematicModel>();
-      break;
-    case Anymal:
-      dynamic_model_   = std::make_shared<AnymalDynamicModel>();
-      kinematic_model_ = std::make_shared<AnymalKinematicModel>();
-      break;
-    default:
-      assert(false); // Error: Robot model not implemented.
-      break;
+  Vector3d ee_pos_H; // foothold expressed in hip frame
+  std::vector<Eigen::VectorXd> q_vec;
+
+  // make sure always exactly 4 elements
+  auto pos_B = x_B.ToImpl();
+  pos_B.resize(4, pos_B.front());
+
+  for (int ee=0; ee<pos_B.size(); ++ee) {
+
+    using namespace quad;
+    ee_pos_H = pos_B.at(ee);
+
+    switch (ee) {
+      case LF: 
+        ee_pos_H -= base_aile_LF_;
+        break;
+      case RF:
+        ee_pos_H = pos_B.at(ee).cwiseProduct(Eigen::Vector3d(1,-1,1));
+        ee_pos_H -= base_aile_LF_;
+        break;
+      case LH:
+        ee_pos_H -= base_aile_LH_;
+        break;
+      case RH:
+        ee_pos_H = pos_B.at(ee).cwiseProduct(Eigen::Vector3d(1,-1,1));
+        ee_pos_H -= base_aile_LH_;
+        break;
+      default: // joint angles for this foot do not exist
+        break;
+    }
+
+    
+    q_vec.push_back(leg.GetJointAngles(ee_pos_H));
   }
+
+  return Joints(q_vec);
 }
 
-
-} // namespace towr
-
-
+} /* namespace xpp */
