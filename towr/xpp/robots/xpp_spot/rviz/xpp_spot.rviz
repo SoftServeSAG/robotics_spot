@@ -219,7 +219,7 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
-      Name: Hyq
+      Name: Spot
       Robot Description: /spot_rviz_urdf_robot_description
       TF Prefix: spot_des
       Update Interval: 0
@@ -341,7 +341,7 @@ Visualization Manager:
         Name: fixed_to_spot
         Near Clip Distance: 0.01
         Pitch: 0.349798
-        Target Frame: base_link
+        Target Frame: body
         Value: Orbit (rviz)
         Yaw: 5.115
 Window Geometry:

@@ -55,8 +55,7 @@ public:
   int GetEECount() const override { return 4; };
 
 private:
-  Vector3d base_aile_LF_ = Vector3d(0.29785, 0.055, -0.0);
-  Vector3d base_aile_LH_ = Vector3d(-0.29785, 0.055, -0.0);
+  Vector3d base2hip_LF_ = Vector3d(0.29785, 0.055, 0.0);
   SpotlegInverseKinematics leg;
 };
 

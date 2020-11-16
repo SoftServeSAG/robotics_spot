@@ -42,8 +42,8 @@ enum SpotJointID {HAA=0, HFE, KFE, SpotlegJointCount};
 class SpotlegInverseKinematics {
 public:
   using Vector3d = Eigen::Vector3d;
-  mutable double q_aile_1, q_epaule_1, q_coude_1, q_aile_2, q_epaule_2, q_coude_2, q_aile_3, q_epaule_3, q_coude_3, q_aile_4, q_epaule_4, q_coude_4;
-  mutable int compteur ;
+  enum KneeBend { Forward, Backward };
+
   /**
    * @brief Default c'tor initializing leg lengths with standard values.
    */
@@ -55,7 +55,7 @@ public:
    * @param ee_pos_H  Foot position xyz expressed in the frame attached
    * at the hip-aa (H).
    */
-  Vector3d GetJointAngles(const Vector3d& ee_pos_H) const ;
+  Vector3d GetJointAngles(const Vector3d& ee_pos_H, KneeBend bend=Forward) const;
 
   /**
    * @brief Restricts the joint angles to lie inside the feasible range
@@ -66,12 +66,11 @@ public:
   void EnforceLimits(double& q, SpotJointID joint) const;
 
 private:
-  //on base tout sur la jambe avant-gauche pour les signes
-  Vector3d aile_epaule = Vector3d(0.0, 0.110945, 0); //distance de l'aile à l'épaule
-  Vector3d epaule_coude = Vector3d(-0, 0, -0.31); //distance de l'épaule au coude
-  Vector3d coude_pied = Vector3d(-0, 0, -0.36); //distance du coude au pied
+  Vector3d hfe_to_haa_z = Vector3d(0.0, 0.0, 0.055); //distance of HFE to HAA in z direction
+  double length_thigh = 0.32; // length of upper leg
+  double length_shank = 0.37; // length of lower leg
 };
 
 } /* namespace xpp */
 
-#endif /* XPP_VIS_SpotLEG_INVERSE_KINEMATICS_H_ */
+#endif /* XPP_VIS_SPOTLEG_INVERSE_KINEMATICS_H_ */

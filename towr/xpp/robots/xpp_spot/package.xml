@@ -9,7 +9,9 @@
     These include inverse kinematics as well as urdf files for a one-legged,
     two-legged and four legged robot with <a href="http://dls.iit.it/">Spot</a>
     legs.
-
+        
+    The dynamic model can be found 
+    <a href="https://github.com/iit-DLSLab/hyq-description">here</a>.  
     
     See also <a href="https://dls.iit.it">IIT</a>.  
   </description>
