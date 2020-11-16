@@ -25,7 +25,7 @@ Now we should build Spot container:
 Init workspace
 
 ```bash
-mkdir -p champ_ws/src
+mkdir -p spot_ws/src
 cd spot_ws/src
 git clone --recursive https://github.com/chvmp/champ
 git clone https://github.com/chvmp/champ_teleop

@@ -32,8 +32,15 @@ RUN apt-get update && apt-get install -y \
     ros-melodic-yocs-velocity-smoother \
     ros-melodic-grid-map-ros \
     ros-melodic-grid-map-core \
+    ros-melodic-joy \
+    libncurses-dev \
+    ros-melodic-rosparam-shortcuts \
+    libeigen3-dev \
+    coinor-libipopt-dev \
+    libncurses5-dev \
+    libgflags-dev \
+    libboost-all-dev \
     python-pip \
-    && pip install scipy \
     && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /var/run/sshd
