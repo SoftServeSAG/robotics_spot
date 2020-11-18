@@ -43,8 +43,8 @@ class SpotKinematicModel : public KinematicModel {
 public:
   SpotKinematicModel () : KinematicModel(4)
   {
-    const double x_nominal_b = 0.25;
-    const double y_nominal_b = 0.142;
+    const double x_nominal_b = 0.29785;
+    const double y_nominal_b = 0.2;
     const double z_nominal_b = -0.48;
 
     nominal_stance_.at(LF) <<  x_nominal_b,   y_nominal_b, z_nominal_b;

@@ -30,117 +30,122 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <xpp_spot/spotleg_inverse_kinematics.h>
 #include "ros/ros.h"
 
+#ifdef __unix__
+    #include <cmath>
+    using namespace std;
+#endif
+
 #include <cmath>
 #include <map>
 
 #include <xpp_states/cartesian_declarations.h>
 
-
 namespace xpp {
 
 
 SpotlegInverseKinematics::Vector3d
-SpotlegInverseKinematics::GetJointAngles (const Vector3d& ee_pos_B, KneeBend bend) const
+SpotlegInverseKinematics::GetJointAngles (const Vector3d& ee_pos_B, BodySide bend) const
 {
-  double q_HAA_bf, q_HAA_br, q_HFE_br; // rear bend of knees
-  double q_HFE_bf, q_KFE_br, q_KFE_bf; // forward bend of knees
+  double hip_joint, upper_leg_joint, lower_leg_joint;
 
   Eigen::Vector3d xr;
-  Eigen::Matrix3d R;
+
+  double l0 = 0.0f;
+  if (bend==Left)
+    l0 = left_hip_y_y;
+  else // backward
+    l0 = right_hip_y_y;
+
+  double l1 = -sqrtf(pow(coord_knee[0], 2) + pow(coord_knee[2], 2));
+  double ik_alpha = acosf(coord_knee[0] / l1) - (M_PI / 2);
+
+  double l2 = -sqrtf(pow(coord_foot[0], 2) + pow(coord_foot[2], 2));
+  double ik_beta = acosf(coord_foot[0] / l2) - (M_PI / 2);
 
   // translate to the local coordinate of the attachment of the leg
   // and flip coordinate signs such that all computations can be done
   // for the front-left leg
   xr = ee_pos_B;
 
+  cout << "xr[X] = " << xr[X] << endl;
+  cout << "xr[Y] = " << xr[Y] << endl;
+  cout << "xr[Z] = " << xr[Z] << endl;
+
+  double x = xr[X];
+  double y = xr[Y];
+  double z = xr[Z];
+
   // compute the HAA angle
-  q_HAA_bf = q_HAA_br = -atan2(xr[Y],-xr[Z]);
+  hip_joint = -(atanf(y / z) - ((M_PI/2) - acosf(-l0 / sqrtf(pow(y, 2) + pow(z, 2)))));
 
   // rotate into the HFE coordinate system (rot around X)
-  R << 1.0, 0.0, 0.0, 0.0, cos(q_HAA_bf), -sin(q_HAA_bf), 0.0, sin(q_HAA_bf), cos(q_HAA_bf);
+  double psi = -hip_joint;
+  xr[X] = cosf(psi) * x - sinf(psi) * y;
+  xr[Y] = sinf(psi) * x + cosf(psi) * y;
+  xr[Z] = z;
 
-  xr = (R * xr).eval();
 
   // translate into the HFE coordinate system (along Z axis)
   xr += hfe_to_haa_z;  //distance of HFE to HAA in z direction
 
-  // compute square of length from HFE to foot
-  double tmp1 = pow(xr[X],2)+pow(xr[Z],2);
+  x = xr[X];
+  y = xr[Y];
+  z = xr[Z];
 
+//  reachability check
+  double target_to_foot = sqrtf(pow(x, 2) + pow(z,2));
+  if(target_to_foot >= (abs(l1) + abs(l2)))
+      ROS_INFO("reachability check (target_to_foot) is unreachable");
 
-  // compute temporary angles (with reachability check)
-  double lu = length_thigh;  // length of upper leg
-  double ll = length_shank;  // length of lower leg
-  double alpha = atan2(-xr[Z],xr[X]) - 0.5*M_PI;  //  flip and rotate to match Spot joint definition
+  //source: https://robotacademy.net.au/lesson/inverse-kinematics-for-a-2-joint-robot-arm-using-geometry/
+  lower_leg_joint = -acosf((pow(z, 2) + pow(x, 2) - pow(l1 ,2) - pow(l2 ,2)) / (2 * l1 * l2));
+  upper_leg_joint = (atanf(x / z) - atanf((l2 * sinf(lower_leg_joint)) / (l1 + (l2 * cosf(lower_leg_joint)))));
+  lower_leg_joint += ik_beta - ik_alpha;
+  upper_leg_joint += ik_alpha;
 
-
-  double some_random_value_for_beta = (pow(lu,2)+tmp1-pow(ll,2))/(2.*lu*sqrt(tmp1)); // this must be between -1 and 1
-  if (some_random_value_for_beta > 1) {
-    some_random_value_for_beta = 1;
+  if(upper_leg_joint < 0)
+  {
+    upper_leg_joint = upper_leg_joint +  M_PI;
   }
-  if (some_random_value_for_beta < -1) {
-    some_random_value_for_beta = -1;
+
+   EnforceLimits(hip_joint, HAA);
+   EnforceLimits(upper_leg_joint, HFE);
+   EnforceLimits(lower_leg_joint, KFE);
+
+   if(isnan(hip_joint) || isnan(upper_leg_joint) || isnan(lower_leg_joint))
+    ROS_INFO("hip_joint : [%g]\n upper_leg_joint : [%g]\n q_coude : [%g]\n", hip_joint, upper_leg_joint, lower_leg_joint);
+  else
+  {
+    return Vector3d(hip_joint, upper_leg_joint, lower_leg_joint);
   }
-  double beta = acos(some_random_value_for_beta);
-
-  // compute Hip FE angle
-  q_HFE_bf = q_HFE_br = alpha + beta;
-
-
-  double some_random_value_for_gamma = (pow(ll,2)+pow(lu,2)-tmp1)/(2.*ll*lu);
-  // law of cosines give the knee angle
-  if (some_random_value_for_gamma > 1) {
-    some_random_value_for_gamma = 1;
-  }
-  if (some_random_value_for_gamma < -1) {
-    some_random_value_for_gamma = -1;
-  }
-  double gamma  = acos(some_random_value_for_gamma);
-
-
-  q_KFE_bf = q_KFE_br = gamma - M_PI;
-
-  // forward knee bend
-  EnforceLimits(q_HAA_bf, HAA);
-  EnforceLimits(q_HFE_bf, HFE);
-  EnforceLimits(q_KFE_bf, KFE);
-
-  // backward knee bend
-  EnforceLimits(q_HAA_br, HAA);
-  EnforceLimits(q_HFE_br, HFE);
-  EnforceLimits(q_KFE_br, KFE);
-
-  if (bend==Forward)
-    return Vector3d(q_HAA_bf, q_HFE_bf, q_KFE_bf);
-  else // backward
-    return Vector3d(q_HAA_br, -q_HFE_br, -q_KFE_br);
 }
+
 
 void
 SpotlegInverseKinematics::EnforceLimits (double& val, SpotJointID joint) const
 {
   // totally exaggerated joint angle limits
-  const static double haa_min = -180;
-  const static double haa_max =  90;
+  const static double haa_min = -0.7854;
+  const static double haa_max =  0.7854;
 
-  const static double hfe_min = -90;
-  const static double hfe_max =  90;
+  const static double hfe_min = -0.8988;
+  const static double hfe_max =  2.2951;
 
-  const static double kfe_min = -180;
-  const static double kfe_max =  0;
+  const static double kfe_min = -2.7929;
+  const static double kfe_max =  0.254801;
 
   // reduced joint angles for optimization
   static const std::map<SpotJointID, double> max_range {
-    {HAA, haa_max/180.0*M_PI},
-    {HFE, hfe_max/180.0*M_PI},
-    {KFE, kfe_max/180.0*M_PI}
+    {HAA, haa_max},
+    {HFE, hfe_max},
+    {KFE, kfe_max}
   };
 
   // reduced joint angles for optimization
   static const std::map<SpotJointID, double> min_range {
-    {HAA, haa_min/180.0*M_PI},
-    {HFE, hfe_min/180.0*M_PI},
-    {KFE, kfe_min/180.0*M_PI}
+    {HAA, haa_min},
+    {HFE, hfe_min},
+    {KFE, kfe_min}
   };
 
   double max = max_range.at(joint);
