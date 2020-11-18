@@ -206,33 +206,34 @@ class Visualiser:
         return xx, yy, x_min, x_max
 
     def update_plot(self, i):
-        rospy.init_node('spot_plot_visual_node')
-        rospy.Subscriber("/spot/joint_front_left_hip_x_controller/state", JointControllerState,
+        spot_name = str(input("Tell me spot name: "))
+        rospy.init_node(spot_name + 'spot_plot_visual_node')
+        rospy.Subscriber("/" + spot_name + "/spot/joint_front_left_hip_x_controller/state", JointControllerState,
                          vis.callback_front_left_hip_x)
-        rospy.Subscriber("/spot/joint_front_left_hip_y_controller/state", JointControllerState,
+        rospy.Subscriber("/" + spot_name + "/joint_front_left_hip_y_controller/state", JointControllerState,
                          vis.callback_front_left_hip_y)
-        rospy.Subscriber("/spot/joint_front_left_knee_controller/state", JointControllerState,
+        rospy.Subscriber("/" + spot_name + "/joint_front_left_knee_controller/state", JointControllerState,
                          vis.callback_front_left_knee)
 
-        rospy.Subscriber("/spot/joint_front_right_hip_x_controller/state", JointControllerState,
+        rospy.Subscriber("/" + spot_name + "/joint_front_right_hip_x_controller/state", JointControllerState,
                          vis.callback_front_right_hip_x)
-        rospy.Subscriber("/spot/joint_front_right_hip_y_controller/state", JointControllerState,
+        rospy.Subscriber("/" + spot_name + "/joint_front_right_hip_y_controller/state", JointControllerState,
                          vis.callback_front_right_hip_y)
-        rospy.Subscriber("/spot/joint_front_right_knee_controller/state", JointControllerState,
+        rospy.Subscriber("/" + spot_name + "/joint_front_right_knee_controller/state", JointControllerState,
                          vis.callback_front_right_knee)
 
-        rospy.Subscriber("/spot/joint_rear_left_hip_x_controller/state", JointControllerState,
+        rospy.Subscriber("/" + spot_name + "/joint_rear_left_hip_x_controller/state", JointControllerState,
                          vis.callback_rear_left_hip_x)
-        rospy.Subscriber("/spot/joint_rear_left_hip_y_controller/state", JointControllerState,
+        rospy.Subscriber("/" + spot_name + "/joint_rear_left_hip_y_controller/state", JointControllerState,
                          vis.callback_rear_left_hip_y)
-        rospy.Subscriber("/spot/joint_rear_left_knee_controller/state", JointControllerState,
+        rospy.Subscriber("/" + spot_name + "/joint_rear_left_knee_controller/state", JointControllerState,
                          vis.callback_rear_left_knee)
 
-        rospy.Subscriber("/spot/joint_rear_right_hip_x_controller/state", JointControllerState,
+        rospy.Subscriber("/" + spot_name + "/joint_rear_right_hip_x_controller/state", JointControllerState,
                          vis.callback_rear_right_hip_x)
-        rospy.Subscriber("/spot/joint_rear_right_hip_y_controller/state", JointControllerState,
+        rospy.Subscriber("/" + spot_name + "/joint_rear_right_hip_y_controller/state", JointControllerState,
                          vis.callback_rear_right_hip_y)
-        rospy.Subscriber("/spot/joint_rear_right_knee_controller/state", JointControllerState,
+        rospy.Subscriber("/" + spot_name + "/joint_rear_right_knee_controller/state", JointControllerState,
                          vis.callback_rear_right_knee)
         # ---- Front Left
         # front left hip_x

@@ -4,9 +4,11 @@ import rospy
 from rs_msgs.msg import GaitInput
 from Tkinter import Tk, Label, Button, Entry, END
 
-rospy.init_node('inver', anonymous=True)
+spot_name = str(input("Tell me spot name: "))
 
-pub = rospy.Publisher('/spot/inverse_gait_input', GaitInput, queue_size=10)
+rospy.init_node(spot_name + '_inverse_gui', anonymous=True)
+
+pub = rospy.Publisher('/'+ spot_name + '/inverse_gait_input', GaitInput, queue_size=10)
 
 
 class RsGui:
@@ -24,6 +26,7 @@ class RsGui:
         self.lbl11 = Label(win, text='ClearanceHeight')
         self.lbl12 = Label(win, text='PenetrationDepth')
         self.lbl13 = Label(win, text='SwingPeriod')
+        self.lbl14 = Label(win, text='YawControl')
         self.t1 = Entry()
         self.t2 = Entry()
         self.t3 = Entry()
@@ -37,19 +40,21 @@ class RsGui:
         self.t11 = Entry()
         self.t12 = Entry()
         self.t13 = Entry()
+        self.t14 = Entry()
         self.t1.insert(END, 0)
         self.t2.insert(END, 0)
         self.t3.insert(END, 0.1)
         self.t4.insert(END, 0)
         self.t5.insert(END, 0)
         self.t6.insert(END, 0)
-        self.t7.insert(END, 0.15)
+        self.t7.insert(END, 0.11)
         self.t8.insert(END, 0)
         self.t9.insert(END, 0)
         self.t10.insert(END, 1.1)
         self.t11.insert(END, 0.1)
         self.t12.insert(END, 0.003)
         self.t13.insert(END, 0.25)
+        self.t14.insert(END, 0.0)
         self.lbl1.place(x=100, y=50)
         self.t1.place(x=220, y=50)
         self.lbl2.place(x=100, y=100)
@@ -76,8 +81,10 @@ class RsGui:
         self.t12.place(x=220, y=600)
         self.lbl13.place(x=100, y=650)
         self.t13.place(x=220, y=650)
-        self.b1 = Button(win, text='Send', command=self.cd)
-        self.b1.place(x=100, y=700)
+        self.lbl14.place(x=100, y=700)
+        self.t14.place(x=220, y=700)
+        self.b1 = Button(win, text='Send', command=self.command_pub)
+        self.b1.place(x=100, y=750)
         self.pub = pub
 
     def command_pub(self):
@@ -95,13 +102,14 @@ class RsGui:
         msg.ClearanceHeight = float(self.t11.get())
         msg.PenetrationDepth = float(self.t12.get())
         msg.SwingPeriod = float(self.t13.get())
+        msg.YawControl = float(self.t14.get())
         self.pub.publish(msg)
 
 
 def main():
     root = Tk()
     my_gui = RsGui(root, pub)
-    root.title('Spot Control Input')
+    root.title(spot_name + 'Control Input')
     root.geometry("400x800+10+10")
     root.mainloop()
 

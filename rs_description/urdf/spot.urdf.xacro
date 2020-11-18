@@ -541,9 +541,8 @@
 
     <gazebo>
     	<plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-    	<robotNamespace>/spot</robotNamespace>
+<!--    	<robotNamespace>/spot1</robotNamespace>-->
   	</plugin>
     </gazebo>
-
 </robot>
 
