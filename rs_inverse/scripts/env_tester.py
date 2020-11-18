@@ -279,7 +279,7 @@ class SpotMidlware:
         #     time.sleep(1.5)
         #     self.init_stairs = True
 
-
+        rospy.loginfo_throttle(1, "self.front_left_lower_leg_contact =" + str(self.front_left_lower_leg_contact))
         contacts = [self.front_left_lower_leg_contact, self.front_right_lower_leg_contact,
                     self.rear_left_lower_leg_contact,
                     self.rear_right_lower_leg_contact]
