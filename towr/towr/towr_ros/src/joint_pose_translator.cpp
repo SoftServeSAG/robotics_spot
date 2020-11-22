@@ -1,5 +1,6 @@
 #include <ros/ros.h>
 #include <std_msgs/Float64.h>
+#include <trajectory_msgs/JointTrajectory.h>
 #include <xpp_msgs/RobotStateJoint.h>
 
 
@@ -9,76 +10,41 @@ public:
 	JointPoseTranslator();
 
 private:
-	void StateCallback(const xpp_msgs::RobotStateJoint& msg);
-  
-	std_msgs::Float64 cmd_aile_avd, cmd_aile_avg, cmd_aile_ard, cmd_aile_arg;
-  std_msgs::Float64 cmd_epaule_avd, cmd_epaule_avg, cmd_epaule_ard, cmd_epaule_arg;
-  std_msgs::Float64 cmd_coude_avd, cmd_coude_avg, cmd_coude_ard, cmd_coude_arg;
+   void StateCallback(const xpp_msgs::RobotStateJoint& msg);
 	
   ros::NodeHandle nh_;
 
   ros::Subscriber joint_sub ;
 
- 	ros::Publisher pub_aile_avd, pub_aile_avg, pub_aile_ard, pub_aile_arg;
-	ros::Publisher pub_epaule_avd, pub_epaule_avg, pub_epaule_ard, pub_epaule_arg;
-	ros::Publisher pub_coude_avd, pub_coude_avg, pub_coude_ard, pub_coude_arg;
+  ros::Publisher joint_commands_publisher_;
 };
 
 JointPoseTranslator::JointPoseTranslator()
 {
-	joint_sub = nh_.subscribe("xpp/joint_popi_des", 1, &JointPoseTranslator::StateCallback, this);
+	joint_sub = nh_.subscribe("xpp/joint_spot_des", 1, &JointPoseTranslator::StateCallback, this);
 
-	pub_aile_avd = nh_.advertise<std_msgs::Float64>("/popi/aileAVD_eff_position_controller/command", 1);
-	pub_aile_avg = nh_.advertise<std_msgs::Float64>("/popi/aileAVG_eff_position_controller/command", 1);
-	pub_aile_ard = nh_.advertise<std_msgs::Float64>("/popi/aileARD_eff_position_controller/command", 1);
-	pub_aile_arg = nh_.advertise<std_msgs::Float64>("/popi/aileARG_eff_position_controller/command", 1);
-
-	pub_epaule_avd = nh_.advertise<std_msgs::Float64>("/popi/epauleAVD_eff_position_controller/command", 1);
-	pub_epaule_avg = nh_.advertise<std_msgs::Float64>("/popi/epauleAVG_eff_position_controller/command", 1);
-	pub_epaule_ard = nh_.advertise<std_msgs::Float64>("/popi/epauleARD_eff_position_controller/command", 1);
-	pub_epaule_arg = nh_.advertise<std_msgs::Float64>("/popi/epauleARG_eff_position_controller/command", 1);
-
-	pub_coude_avd = nh_.advertise<std_msgs::Float64>("/popi/coudeAVD_eff_position_controller/command", 1);
-	pub_coude_avg = nh_.advertise<std_msgs::Float64>("/popi/coudeAVG_eff_position_controller/command", 1);
-	pub_coude_ard = nh_.advertise<std_msgs::Float64>("/popi/coudeARD_eff_position_controller/command", 1);
-	pub_coude_arg = nh_.advertise<std_msgs::Float64>("/popi/coudeARG_eff_position_controller/command", 1);
+	joint_commands_publisher_ = nh_.advertise<trajectory_msgs::JointTrajectory>("joint_group_position_controller/command", 1);
 }
 
 void JointPoseTranslator::StateCallback(const xpp_msgs::RobotStateJoint& msg)
 {
-  
-	cmd_aile_avg.data = msg.joint_state.position.at(0);
-  	cmd_epaule_avg.data = msg.joint_state.position.at(1);
-  	cmd_coude_avg.data = msg.joint_state.position.at(2);
 
-  	cmd_aile_avd.data = msg.joint_state.position.at(3);
-  	cmd_epaule_avd.data = msg.joint_state.position.at(4);
-  	cmd_coude_avd.data = msg.joint_state.position.at(5);
+    trajectory_msgs::JointTrajectory joints_cmd_msg;
+    joints_cmd_msg.header.stamp = ros::Time::now();
+    joints_cmd_msg.joint_names = {"front_left_hip_x", "front_left_hip_y", "front_left_knee", "front_right_hip_x", "front_right_hip_y",
+      "front_right_knee", "rear_left_hip_x", "rear_left_hip_y", "rear_left_knee", "rear_right_hip_x",
+      "rear_right_hip_y", "rear_right_knee"};
 
-  	cmd_aile_arg.data = msg.joint_state.position.at(6);
-  	cmd_epaule_arg.data = msg.joint_state.position.at(7);
-  	cmd_coude_arg.data = msg.joint_state.position.at(8);
+    trajectory_msgs::JointTrajectoryPoint point;
+    point.positions.resize(12);
 
-  	cmd_aile_ard.data = msg.joint_state.position.at(9);
-  	cmd_epaule_ard.data = msg.joint_state.position.at(10);
-  	cmd_coude_ard.data = msg.joint_state.position.at(11);
-
-
-  	pub_aile_avg.publish(cmd_aile_avg);
-  	pub_epaule_avg.publish(cmd_epaule_avg);
-  	pub_coude_avg.publish(cmd_coude_avg);
-
-  	pub_aile_avd.publish(cmd_aile_avd);
-  	pub_epaule_avd.publish(cmd_epaule_avd);
-  	pub_coude_avd.publish(cmd_coude_avd);
-
-  	pub_aile_arg.publish(cmd_aile_arg);
-  	pub_epaule_arg.publish(cmd_epaule_arg);
-  	pub_coude_arg.publish(cmd_coude_arg);
-
-  	pub_aile_ard.publish(cmd_aile_ard);
-  	pub_epaule_ard.publish(cmd_epaule_ard);
-  	pub_coude_ard.publish(cmd_coude_ard);
+    point.time_from_start = ros::Duration(1.0 / 60.0);
+    for(size_t i = 0; i < 12; i++)
+        {
+            point.positions[i] = msg.joint_state.position.at(i);
+        }
+    joints_cmd_msg.points.push_back(point);
+    joint_commands_publisher_.publish(joints_cmd_msg);
 }
 
 int main(int argc, char **argv)
