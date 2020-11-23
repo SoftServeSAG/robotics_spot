@@ -44,32 +44,38 @@ namespace xpp {
 
 
 SpotlegInverseKinematics::Vector3d
-SpotlegInverseKinematics::GetJointAngles (const Vector3d& ee_pos_B, BodySide bend) const
+SpotlegInverseKinematics::GetJointAngles (const Vector3d& ee_pos_B, BodyLR bend, BodyFB fb) const
 {
   double hip_joint, upper_leg_joint, lower_leg_joint;
 
   Eigen::Vector3d xr;
+  Eigen::Matrix3d R;
+
+    xr = ee_pos_B;
 
   double l0 = 0.0f;
-  if (bend==Left)
+  if (bend==Left) {
     l0 = left_hip_y_y;
+    xr[Y] = xr[Y];
+    }
   else // backward
-    l0 = right_hip_y_y;
-
-  double l1 = -sqrtf(pow(coord_knee[0], 2) + pow(coord_knee[2], 2));
-  double ik_alpha = acosf(coord_knee[0] / l1) - (M_PI / 2);
-
-  double l2 = -sqrtf(pow(coord_foot[0], 2) + pow(coord_foot[2], 2));
-  double ik_beta = acosf(coord_foot[0] / l2) - (M_PI / 2);
+  {
+    l0 = -right_hip_y_y;
+    xr[Y] = -xr[Y];
+    }
 
   // translate to the local coordinate of the attachment of the leg
   // and flip coordinate signs such that all computations can be done
   // for the front-left leg
-  xr = ee_pos_B;
 
-  cout << "xr[X] = " << xr[X] << endl;
-  cout << "xr[Y] = " << xr[Y] << endl;
-  cout << "xr[Z] = " << xr[Z] << endl;
+  if (fb==Front)
+    xr[X] = xr[X];
+  else // backward
+    xr[X] = -xr[X];
+
+//  cout << "xr[X] = " << xr[X] << endl;
+//  cout << "xr[Y] = " << xr[Y] << endl;
+//  cout << "xr[Z] = " << xr[Z] << endl;
 
   double x = xr[X];
   double y = xr[Y];
@@ -79,10 +85,8 @@ SpotlegInverseKinematics::GetJointAngles (const Vector3d& ee_pos_B, BodySide ben
   hip_joint = -(atanf(y / z) - ((M_PI/2) - acosf(-l0 / sqrtf(pow(y, 2) + pow(z, 2)))));
 
   // rotate into the HFE coordinate system (rot around X)
-  double psi = -hip_joint;
-  xr[X] = cosf(psi) * x - sinf(psi) * y;
-  xr[Y] = sinf(psi) * x + cosf(psi) * y;
-  xr[Z] = z;
+  R << 1, 0, 0, 0, cos(-hip_joint), -sin(-hip_joint), 0, sin(-hip_joint), cos(-hip_joint);
+  xr = (R * xr).eval();
 
 
   // translate into the HFE coordinate system (along Z axis)
@@ -92,16 +96,9 @@ SpotlegInverseKinematics::GetJointAngles (const Vector3d& ee_pos_B, BodySide ben
   y = xr[Y];
   z = xr[Z];
 
-//  reachability check
-  double target_to_foot = sqrtf(pow(x, 2) + pow(z,2));
-  if(target_to_foot >= (abs(l1) + abs(l2)))
-      ROS_INFO("reachability check (target_to_foot) is unreachable");
-
   //source: https://robotacademy.net.au/lesson/inverse-kinematics-for-a-2-joint-robot-arm-using-geometry/
-  lower_leg_joint = -acosf((pow(z, 2) + pow(x, 2) - pow(l1 ,2) - pow(l2 ,2)) / (2 * l1 * l2));
-  upper_leg_joint = (atanf(x / z) - atanf((l2 * sinf(lower_leg_joint)) / (l1 + (l2 * cosf(lower_leg_joint)))));
-  lower_leg_joint += ik_beta - ik_alpha;
-  upper_leg_joint += ik_alpha;
+  lower_leg_joint = -acos((pow(xr[Z], 2) + pow(xr[X], 2) - pow(length_thigh ,2) - pow(length_shank ,2)) / (2 * length_thigh * length_shank));
+  upper_leg_joint = (atan(xr[X] / xr[Z]) - atan( (length_shank * sin(lower_leg_joint)) / (length_thigh + (length_shank * cos(lower_leg_joint)))));
 
   if(upper_leg_joint < 0)
   {

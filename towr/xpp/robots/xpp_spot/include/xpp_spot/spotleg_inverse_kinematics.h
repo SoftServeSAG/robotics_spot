@@ -42,8 +42,8 @@ enum SpotJointID {HAA=0, HFE, KFE, SpotlegJointCount};
 class SpotlegInverseKinematics {
 public:
   using Vector3d = Eigen::Vector3d;
-  enum BodySide { Left, Right };
-  mutable double q_aile_1, q_epaule_1, q_coude_1, q_aile_2, q_epaule_2, q_coude_2, q_aile_3, q_epaule_3, q_coude_3, q_aile_4, q_epaule_4, q_coude_4;
+  enum BodyLR { Left, Right };
+  enum BodyFB { Front, Back };
 
   /**
    * @brief Default c'tor initializing leg lengths with standard values.
@@ -56,7 +56,7 @@ public:
    * @param ee_pos_H  Foot position xyz expressed in the frame attached
    * at the hip-aa (H).
    */
-  Vector3d GetJointAngles(const Vector3d& ee_pos_H, BodySide bend=Left) const;
+  Vector3d GetJointAngles(const Vector3d& ee_pos_H, BodyLR bend=Left, BodyFB fb=Front) const;
 
   /**
    * @brief Restricts the joint angles to lie inside the feasible range
@@ -70,8 +70,8 @@ private:
   double left_hip_y_y = 0.110945;
   double right_hip_y_y = 0.110945;
   Vector3d hfe_to_haa_z = Vector3d(0.0, 0.0, 0.0); //distance of HFE to HAA in z direction
-  Vector3d coord_knee = Vector3d(0.025, 0, -0.3205);
-  Vector3d coord_foot = Vector3d(0, 0, -0.37);
+  double length_thigh = 0.3205; // length of upper leg
+  double length_shank = 0.37; // length of lower leg
 };
 
 } /* namespace xpp */

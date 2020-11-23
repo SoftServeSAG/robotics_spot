@@ -52,7 +52,7 @@ public:
     nominal_stance_.at(LH) << -x_nominal_b,   y_nominal_b, z_nominal_b;
     nominal_stance_.at(RH) << -x_nominal_b,  -y_nominal_b, z_nominal_b;
 
-    max_dev_from_nominal_ << 0.25, 0.20, 0.10;
+    max_dev_from_nominal_ << 0.2, 0.15, 0.1;
   }
 };
 
@@ -62,7 +62,7 @@ public:
 class SpotDynamicModel : public SingleRigidBodyDynamics {
 public: // double mass, double Ixx, double Iyy, double Izz, double Ixy, double Ixz, double Iyz, int ee_count
   SpotDynamicModel() : SingleRigidBodyDynamics(30.0,
-                      0.1825, 1.921, 1.95525, 0.0, 0.0, 0.0,
+                      0.1825, 1.921, 1.95525, 0, 0, 0,
                       4) {}
 };
 

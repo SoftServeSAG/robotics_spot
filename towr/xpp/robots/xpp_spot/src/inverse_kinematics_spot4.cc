@@ -46,32 +46,37 @@ InverseKinematicsSpot4::GetAllJointAngles(const EndeffectorsPos& x_B) const
 
   for (int ee=0; ee<pos_B.size(); ++ee) {
 
-    SpotlegInverseKinematics::BodySide bend = SpotlegInverseKinematics::Left;
+    SpotlegInverseKinematics::BodyLR bend = SpotlegInverseKinematics::Left;
+    SpotlegInverseKinematics::BodyFB fb = SpotlegInverseKinematics::Front;
 
     using namespace quad;
     switch (ee) {
       case LF:
         ee_pos_H = pos_B.at(ee);
         bend = SpotlegInverseKinematics::Left;
+        fb = SpotlegInverseKinematics::Front;
         break;
       case RF:
         ee_pos_H = pos_B.at(ee).cwiseProduct(Eigen::Vector3d(1,-1,1));
         bend = SpotlegInverseKinematics::Right;
+        fb = SpotlegInverseKinematics::Front;
         break;
       case LH:
         ee_pos_H = pos_B.at(ee).cwiseProduct(Eigen::Vector3d(-1,1,1));
         bend = SpotlegInverseKinematics::Left;
+        fb = SpotlegInverseKinematics::Back;
         break;
       case RH:
         ee_pos_H = pos_B.at(ee).cwiseProduct(Eigen::Vector3d(-1,-1,1));
         bend = SpotlegInverseKinematics::Right;
+        fb = SpotlegInverseKinematics::Back;
         break;
       default: // joint angles for this foot do not exist
         break;
     }
 
     ee_pos_H -= base2hip_LF_;
-    q_vec.push_back(leg.GetJointAngles(ee_pos_H, bend));
+    q_vec.push_back(leg.GetJointAngles(ee_pos_H, bend, fb));
   }
 
   return Joints(q_vec);
