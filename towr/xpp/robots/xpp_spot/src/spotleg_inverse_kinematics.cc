@@ -100,10 +100,10 @@ SpotlegInverseKinematics::GetJointAngles (const Vector3d& ee_pos_B, BodyLR bend,
   lower_leg_joint = -acos((pow(xr[Z], 2) + pow(xr[X], 2) - pow(length_thigh ,2) - pow(length_shank ,2)) / (2 * length_thigh * length_shank));
   upper_leg_joint = (atan(xr[X] / xr[Z]) - atan( (length_shank * sin(lower_leg_joint)) / (length_thigh + (length_shank * cos(lower_leg_joint)))));
 
-  if(upper_leg_joint < 0)
-  {
-    upper_leg_joint = upper_leg_joint +  M_PI;
-  }
+//  if(upper_leg_joint < 0)
+//  {
+//    upper_leg_joint = upper_leg_joint +  M_PI;
+//  }
 
    EnforceLimits(hip_joint, HAA);
    EnforceLimits(upper_leg_joint, HFE);
