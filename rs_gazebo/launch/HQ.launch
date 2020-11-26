@@ -3,7 +3,7 @@
   <arg name="use_sim_time" default="true" />
   <arg name="gui" default="true" />
   <arg name="headless" default="false" />
-  <arg name="world_name" default="$(find rs_gazebo)/worlds/stairs_only.world" />
+  <arg name="world_name" default="$(find rs_gazebo)/worlds/ss_hq4.world" />
  <!-- <arg name="world_name" default="empty.world" /> -->
 
 

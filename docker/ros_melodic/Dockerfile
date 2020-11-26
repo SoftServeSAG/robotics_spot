@@ -36,6 +36,7 @@ RUN apt-get update && apt-get install -y \
     libncurses-dev \
     ros-melodic-rosparam-shortcuts \
     libeigen3-dev \
+    libqt4-dev \
     coinor-libipopt-dev \
     libncurses5-dev \
     libgflags-dev \
