@@ -19,9 +19,7 @@ import time
 
 from tf.transformations import euler_from_quaternion, quaternion_from_euler
 
-# spot_name = str(input("Tell me spot name: "))
-
-spot_name = "spot1"
+spot_name = str(input("Tell me spot name: "))
 
 class SpotMidlware:
     def __init__(self, spot_name, time_step):
@@ -34,10 +32,6 @@ class SpotMidlware:
         self.T_bf0 = self.spot.WorldToFoot
         self.T_bf = copy.deepcopy(self.T_bf0)
         self.bzg = BezierGait(dt=self.time_step)
-
-        self.stairs_gait = StairsGait(h_raise=0.168125, w_run=0.25, beta=0.8, delta_h=0.3, t_swing=0.85,
-                                      T_bf0=self.T_bf0, time_step=self.time_step)
-        self.init_stairs = False
 
         # ------------------ Inputs for Bezier Gait control ----------------
         self.xd = 0.0
@@ -250,47 +244,8 @@ class SpotMidlware:
                                            self.StepVelocity, self.T_bf0, self.T_bf,
                                            self.ClearanceHeight, self.PenetrationDepth,
                                            contacts)
-        # rospy.loginfo_throttle(1, "FOOT=" + str(T_bf))
         joint_angles = self.spot.IK(orn, pos, T_bf)
         self.talker(joint_angles)
-
-    def spot_stairs_control(self):
-        # if not self.init_stairs:
-        #     T_bf = copy.deepcopy(self.T_bf0)
-        #     T_bf["FR"][0, 3] += 0.1
-        #     joint_angles = self.spot.IK(orn, pos, T_bf)
-        #     self.talker(joint_angles)
-        #     time.sleep(0.5)
-        #     T_bf["BL"][0, 3] -= 0.1
-        #     joint_angles = self.spot.IK(orn, pos, T_bf)
-        #     self.talker(joint_angles)
-        #     time.sleep(0.5)
-        #     T_bf["BR"][0, 3] -= 0.05
-        #     joint_angles = self.spot.IK(orn, pos, T_bf)
-        #     self.talker(joint_angles)
-        #     time.sleep(0.5)
-        #     T_bf["FL"][0, 3] -= 0.0
-        #     joint_angles = self.spot.IK(orn, pos, T_bf)
-        #     self.talker(joint_angles)
-        #     time.sleep(0.5)
-        #     T_bf["BL"][0, 3] += 0.15
-        #     joint_angles = self.spot.IK(orn, pos, T_bf)
-        #     self.talker(joint_angles)
-        #     time.sleep(1.5)
-        #     self.init_stairs = True
-
-        rospy.loginfo_throttle(1, "self.front_left_lower_leg_contact =" + str(self.front_left_lower_leg_contact))
-        contacts = [self.front_left_lower_leg_contact, self.front_right_lower_leg_contact,
-                    self.rear_left_lower_leg_contact,
-                    self.rear_right_lower_leg_contact]
-        # Get Desired Foot Poses
-        T_bf = self.stairs_gait.GenerateTrajectory(contacts)
-        # rospy.loginfo_throttle(1, "FOOT=" + str(T_bf))
-        pos = np.array([self.xd, self.yd, self.zd])
-        orn = np.array([self.rolld, self.pitchd, self.yawd])
-        joint_angles = self.spot.IK(orn, pos, T_bf)
-        self.talker(joint_angles)
-
 
 # ------------------ Standard pose
 sit_down = [[0.20, 1.0, -2.49],  # Front left leg
@@ -330,21 +285,11 @@ def main():
 
     while t < (int(max_timesteps)):
         start_time = time.time()
-        x_start = spot_com.x_inst
-        y_start = spot_com.y_inst
 
-        # spot_com.spot_inverse_control()
-        spot_com.spot_stairs_control()
+        spot_com.spot_inverse_control()
 
         t += 1
         elapsed_time = time.time() - start_time
-        vx = (spot_com.x_inst - x_start) / elapsed_time
-        vy = (spot_com.y_inst - y_start) / elapsed_time
-        vel = np.sqrt(vx ** 2 + vy ** 2)
-        # rospy.loginfo_throttle(1, "vx=" + str(vx))
-        # rospy.loginfo_throttle(1, "vy=" + str(vy))
-        # rospy.loginfo_throttle(1, "vel=" + str(vel))
-        # rospy.loginfo_throttle(1, "elapsed_time=" + str(elapsed_time))
         if elapsed_time < spot_com.time_step:
             time.sleep(spot_com.time_step - elapsed_time)
 
