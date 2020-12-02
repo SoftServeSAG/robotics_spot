@@ -13,6 +13,7 @@ docker run -it --rm \
     --volume="$WS_DIR_PATH:/root/ws" \
     --env="DISPLAY=$DISPLAY" \
     --env QT_X11_NO_MITSHM=1 \
+    --runtime=nvidia \
     --net host \
 ros_melodic_ws
 
