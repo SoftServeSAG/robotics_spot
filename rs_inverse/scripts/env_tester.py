@@ -13,7 +13,6 @@ from LieAlgebra import RPY
 
 from Bezier import BezierGait
 
-from StairsGait import StairsGait
 
 import time
 
