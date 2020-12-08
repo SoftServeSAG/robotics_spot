@@ -32,7 +32,6 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <towr/models/examples/biped_model.h>
 #include <towr/models/examples/hyq_model.h>
 #include <towr/models/examples/anymal_model.h>
-#include <towr/models/examples/popi_model.h>
 #include <towr/models/examples/spot_model.h>
 
 namespace towr {
@@ -44,10 +43,6 @@ RobotModel::RobotModel(Robot robot)
     case Spot:
       dynamic_model_   = std::make_shared<SpotDynamicModel>();
       kinematic_model_ = std::make_shared<SpotKinematicModel>();
-      break;
-    case Popi:
-      dynamic_model_   = std::make_shared<PopiDynamicModel>();
-      kinematic_model_ = std::make_shared<PopiKinematicModel>();
       break;
     case Monoped:
       dynamic_model_   = std::make_shared<MonopedDynamicModel>();

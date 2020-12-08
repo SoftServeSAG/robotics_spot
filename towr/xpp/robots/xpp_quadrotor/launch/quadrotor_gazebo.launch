@@ -28,7 +28,7 @@
   respawn="false"
   output="screen"
   args="-urdf
-  -model popi
+  -model Spot
   -param robot_description"/>
 
 </launch>

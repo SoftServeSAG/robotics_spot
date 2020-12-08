@@ -16,7 +16,7 @@
 
 <node  name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" args="-urdf -model $(arg robot_name)  
         -param robot_description -robot_namespace $(arg robot_name) 
-        -x $(arg world_init_x) -y $(arg world_init_y) -z 0.6 -Y $(arg world_init_heading)" />
+        -x $(arg world_init_x) -y $(arg world_init_y) -z 0.72 -Y $(arg world_init_heading)" />
 
   <!-- Load joint controller configurations from YAML file to parameter server -->
   <rosparam file="$(find spot_config)/config/ros_control/ros_control.yaml" command="load"/>
