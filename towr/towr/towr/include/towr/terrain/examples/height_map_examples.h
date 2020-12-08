@@ -82,11 +82,11 @@ private:
   double height_second_step = 0.4;
   double height_third_step = 0.6;
   double height_fourth_step = 0.8;
-  double height_fifth_step = 1.0;
-  double height_sixth_step = 1.2;
-  double height_seventh_step = 1.4;
-  double height_eighth_step = 1.6;
-  double width_top = 1.0;
+//  double height_fifth_step = 1.0;
+//  double height_sixth_step = 1.2;
+//  double height_seventh_step = 1.4;
+//  double height_eighth_step = 1.6;
+  double width_top = 2.0;
 };
 
 /**

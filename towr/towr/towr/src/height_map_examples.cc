@@ -83,19 +83,21 @@ Stairs::GetHeight (double x, double y) const
   if (x>=first_step_start_+3*first_step_width_)
      h = height_fourth_step;
 
-  if (x>=first_step_start_+4*first_step_width_)
-     h = height_fifth_step;
-
-  if (x>=first_step_start_+5*first_step_width_)
-     h = height_sixth_step;
-
-  if (x>=first_step_start_+6*first_step_width_)
-     h = height_seventh_step;
-
-  if (x>=first_step_start_+7*first_step_width_)
-     h = height_eighth_step;
-
-  if (x>=first_step_start_+7*first_step_width_+width_top)
+//  if (x>=first_step_start_+4*first_step_width_)
+//     h = height_fifth_step;
+//
+//  if (x>=first_step_start_+5*first_step_width_)
+//     h = height_sixth_step;
+//
+//  if (x>=first_step_start_+6*first_step_width_)
+//     h = height_seventh_step;
+//
+//  if (x>=first_step_start_+7*first_step_width_)
+//     h = height_eighth_step;
+//
+//  if (x>=first_step_start_+7*first_step_width_+width_top)
+//     h = 0.0;
+  if (x>=first_step_start_+3*first_step_width_+width_top)
      h = 0.0;
 
   return h;
