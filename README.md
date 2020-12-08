@@ -1,5 +1,5 @@
 # robotics_spot
-Reinforced Spot Mini
+[Towr](https://github.com/ethz-adrl/towr) for Spot of Boston Dynamics
 
 
 ## Install
@@ -68,3 +68,23 @@ chmod a+x session.yml
 ```
 Now tmux session will start with all required tabs. All required commandsmay be added to the history, in order to simplify their usage.
 
+## Run towr 
+In order to launch a towr for Spot run:
+```bash
+roslaunch towr_ros towr_ros_spot.launch 
+```
+## Start Gazevo
+We have started the integration of towr with gazebo but for now we could not get appropriate results. To start simulation run the following commands.
+
+Run towr:
+```bash
+roslaunch towr_ros towr_ros_spot.launch 
+```
+Launch world:
+```bash
+roslaunch rs_gazebo HQ.launch world_name:="<world_file>"
+```
+Spawn robot:
+```bash
+roslaunch rs_gazebo towr_spawn_robot.launch 
+```
