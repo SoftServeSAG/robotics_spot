@@ -27,8 +27,11 @@ Init workspace
 ```bash
 mkdir -p spot_ws/src
 cd spot_ws/src
-git clone https://github.com/clearpathrobotics/spot_ros.git
-git clone https://github.com/tarasborov/robotics_spot.git
+git clone --recursive https://github.com/chvmp/champ
+git clone https://github.com/chvmp/champ_teleop
+git clone -b gazebo https://github.com/chvmp/spot_ros
+git clone https://github.com/chvmp/robots.git
+git clone https://github.com/SoftServeSAG/robotics_spot.git
 ```
 
 Build docker images

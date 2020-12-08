@@ -2,6 +2,12 @@ FROM lyubomyrd/ros_melodic:latest
 
 WORKDIR /root
 
+# nvidia-container-runtime
+ENV NVIDIA_VISIBLE_DEVICES \
+    ${NVIDIA_VISIBLE_DEVICES:-all}
+ENV NVIDIA_DRIVER_CAPABILITIES \
+    ${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics
+
 RUN apt-get update && apt-get install -y \    
     openssh-server \    
     gdb \
@@ -10,9 +16,39 @@ RUN apt-get update && apt-get install -y \
     ros-melodic-joint-state-publisher-gui \
     ros-melodic-interactive-marker-twist-server \ 
     ros-melodic-robot-state-publisher \
+    ros-melodic-move-base \
+    ros-melodic-map-server \
+    ros-melodic-global-planner \
+    ros-melodic-velodyne-gazebo-plugins \
+    ros-melodic-hector-gazebo-plugins \
+    ros-melodic-ecl-threads \
+    ros-melodic-octomap-server \
+    ros-melodic-octomap \
+    ros-melodic-hector-sensors-description \
+    ros-melodic-gmapping \
+    ros-melodic-rosserial-python \
+    ros-melodic-robot-localization \
+    ros-melodic-navfn \
+    ros-melodic-pointcloud-to-laserscan \
+    ros-melodic-amcl \
+    ros-melodic-base-local-planner \
+    ros-melodic-rosserial \
+    ros-melodic-hector-mapping \
+    ros-melodic-dwa-local-planner \
+    ros-melodic-yocs-velocity-smoother \
+    ros-melodic-grid-map-ros \
+    ros-melodic-grid-map-core \
+    ros-melodic-joy \
+    libncurses-dev \
+    ros-melodic-rosparam-shortcuts \
+    libeigen3-dev \
+    libqt4-dev \
+    coinor-libipopt-dev \
+    libncurses5-dev \
+    libgflags-dev \
+    libboost-all-dev \
     python-pip \
-    && pip install simple-pid \
-    && rm -rf /var/lib/apt/lists/* 
+    && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir /var/run/sshd
 RUN echo 'root:root' | chpasswd
