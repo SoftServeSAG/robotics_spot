@@ -8,6 +8,6 @@ catkin_package()
 catkin_install_python(
 	PROGRAMS
 	  scripts/env_tester.py
-          scripts/gui_spot.py
+      scripts/gui_spot.py
     DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
