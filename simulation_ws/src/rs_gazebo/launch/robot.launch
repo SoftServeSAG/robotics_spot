@@ -1,5 +1,7 @@
 <launch>
-    <arg name="robot_name"/>
+    <include file="$(find rs_description)/launch/description.launch" />
+
+    <arg name="robot_name" default="spot1"/>
     <arg name="init_pose" default="-x -1.7 -y 8.6 -z 0.72"/>
     <group ns="$(arg robot_name)">
         <param name="tf_prefix" value="$(arg robot_name)_tf"/>

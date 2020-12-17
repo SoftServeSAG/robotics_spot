@@ -1,11 +1,10 @@
 <launch>
-  
   <arg name="use_sim_time" default="true" />
-  <arg name="gui" default="true" />
+  <arg name="gui" default="false" />
   <arg name="headless" default="false" />
   <!-- <arg name="world_name" default="$(find rs_gazebo)/worlds/ss_hq4and5.world" /> -->
   <!-- <arg name="world_name" default="empty.world" /> -->
-    <arg name="world_name" default= "$(find rs_gazebo)/worlds/$(arg world)" />
+    <arg name="world_name" default= "$(find rs_gazebo)/worlds/ss_hq4.world" />
 
 
   <!-- Launch Gazebo with the specified world -->
@@ -18,7 +17,9 @@
     <arg name="paused" value="false"/>
   </include>
 
-<!--  Launch robot description xarco-->
-  <include file="$(find rs_description)/launch/description.launch" />
-
+  <!-- Spawn Robot
+       This must be the same robot type as the robot application
+  -->
+  <!--<include file="$(find simulation_app)/launch/spawn_turtlebot.launch">-->
+  <!--</include>-->
 </launch>
