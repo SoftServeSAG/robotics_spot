@@ -18,7 +18,8 @@ import time
 
 from tf.transformations import euler_from_quaternion, quaternion_from_euler
 
-spot_name = str(input("Tell me spot name: "))
+# spot_name = str(input("Tell me spot name: "))
+spot_name = "spot1"
 
 class SpotMidlware:
     def __init__(self, spot_name, time_step):
@@ -232,7 +233,8 @@ class SpotMidlware:
         orn = np.array([self.rolld, self.pitchd, self.yawd])
 
         # yaw control
-        YawRate_d = self.yaw_control()
+        # YawRate_d = self.yaw_control()
+        YawRate_d = self.YawRate
         # Update Swing Period
         self.bzg.Tswing = self.SwingPeriod
         contacts = [self.front_left_lower_leg_contact, self.front_right_lower_leg_contact,

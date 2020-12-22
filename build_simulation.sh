@@ -6,6 +6,7 @@ echo "##########################################################################
 BASE_DIR=`pwd`
 ROS_APP_DIR=$BASE_DIR/simulation_ws
 cd $ROS_APP_DIR
+ROS_VERSION=1 && rosws update
 ROS_VERSION=1 && rosdep update
 ROS_VERSION=1 && rosdep install --from-paths src --ignore-src -r -y
 ROS_VERSION=1 && colcon build

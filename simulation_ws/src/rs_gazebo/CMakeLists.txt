@@ -4,13 +4,19 @@ project(rs_gazebo)
 find_package(catkin REQUIRED)
 
 catkin_package(
-  CATKIN_DEPENDS gazebo_ros  gazebo_ros_control rs_description rs_control
+  CATKIN_DEPENDS gazebo_ros gazebo_ros_control rs_description
 )
 
-install(FILES
-  launch/HQ.launch
-  launch/robot.launch
-  worlds/ss_hq4.world
-  worlds/stairs_only.world
+install(DIRECTORY launch 
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}
-  )
+)
+  
+install(DIRECTORY meshes/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/meshes
+)
+install(DIRECTORY models/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/models
+)
+install(DIRECTORY worlds/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/worlds
+)

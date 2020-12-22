@@ -1,6 +1,6 @@
 <launch>
 
-  <arg name="spot_name" default="spot" />
+  <arg name="spot_name" default="spot1" />
 
   <!-- Load joint controller configurations from YAML file to parameter server -->
   <rosparam file="$(find rs_control)/config/spot_control.yaml" command="load"/>

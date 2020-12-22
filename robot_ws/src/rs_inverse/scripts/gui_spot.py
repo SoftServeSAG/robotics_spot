@@ -4,7 +4,8 @@ import rospy
 from rs_msgs.msg import GaitInput
 from Tkinter import Tk, Label, Button, Entry, END
 
-spot_name = str(input("Tell me spot name: "))
+# spot_name = str(input("Tell me spot name: "))
+spot_name = "spot1"
 
 rospy.init_node(spot_name + '_inverse_gui', anonymous=True)
 
