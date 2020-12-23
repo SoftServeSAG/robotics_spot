@@ -253,7 +253,7 @@ stand_up = [[0.20, 0.7, -1.39],  # Front left leg
 def main():
     """ The main() function. """
     rospy.loginfo_once("STARTING SPOT TEST ENV")
-    time_step = 0.03
+    time_step = 0.01
     max_timesteps = 4e6
     spot_control = SpotControl(time_step)
     # --- Prepare Spot for walking, posing ---
