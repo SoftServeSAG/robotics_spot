@@ -111,7 +111,10 @@ class SpotControl:
                                                    Float64, queue_size=1)
 
     def talker(self, motors_target_pos):
-        """ Send command to actuators of joints"""
+        """ Send command to actuators of joints
+
+        param motors_target_pos: A np.array(4,3) with the values of angels of joints
+        """
         # Hips in x-direction
         self.pub_front_left_hip_x.publish(motors_target_pos[0][0])
         self.pub_front_right_hip_x.publish(motors_target_pos[1][0])
