@@ -1,14 +1,20 @@
 #!/usr/bin/env python
-# license removed for brevity
+
+"""
+Forward kinematics is implemented in this scripts.
+It is node that publish commands on joints actuators to move Spot in predefined positions
+"""
+
 import rospy
-from std_msgs.msg import Float64
 import time
+from std_msgs.msg import Float64
 
 spot_name = str(input("Tell me spot name: "))
 rospy.init_node(spot_name + 'talker')
 rate = rospy.Rate(1000)  # 100hz
 
-# ----Front ----
+# ----- Publishers ---
+# ---- Front ----
 # left front hip_x
 pub_front_left_hip_x = rospy.Publisher('/' + spot_name + '/joint_front_left_hip_x_controller/command',
                                        Float64, queue_size=10)
@@ -20,7 +26,6 @@ pub_front_left_hip_y = rospy.Publisher('/' + spot_name + '/joint_front_left_hip_
 # left front knee
 pub_front_left_knee = rospy.Publisher('/' + spot_name + '/joint_front_left_knee_controller/command',
                                       Float64, queue_size=10)
-
 
 # right front hip_x
 pub_front_right_hip_x = rospy.Publisher('/' + spot_name + '/joint_front_right_hip_x_controller/command',
@@ -35,7 +40,6 @@ pub_front_right_knee = rospy.Publisher('/' + spot_name + '/joint_front_right_kne
                                        Float64, queue_size=10)
 
 # ---- Rear ----
-
 # left rear hip_x
 pub_rear_left_hip_x = rospy.Publisher('/' + spot_name + '/joint_rear_left_hip_x_controller/command',
                                       Float64, queue_size=10)
@@ -60,26 +64,29 @@ pub_rear_right_hip_y = rospy.Publisher('/' + spot_name + '/joint_rear_right_hip_
 pub_rear_right_knee = rospy.Publisher('/' + spot_name + '/joint_rear_right_knee_controller/command',
                                       Float64, queue_size=10)
 
+
 def talker():
-        # Hips in x-direction
-        pub_front_left_hip_x.publish(motors_target_pos[0][0])
-        pub_front_right_hip_x.publish(motors_target_pos[1][0])
-        pub_rear_left_hip_x.publish(motors_target_pos[2][0])
-        pub_rear_right_hip_x.publish(motors_target_pos[3][0])
+    """Publish the joints command via topics"""
+    # Hips in x-direction
+    pub_front_left_hip_x.publish(motors_target_pos[0][0])
+    pub_front_right_hip_x.publish(motors_target_pos[1][0])
+    pub_rear_left_hip_x.publish(motors_target_pos[2][0])
+    pub_rear_right_hip_x.publish(motors_target_pos[3][0])
 
-        # Hips in y-direction
-        pub_front_left_hip_y.publish(motors_target_pos[0][1])
-        pub_front_right_hip_y.publish(motors_target_pos[1][1])
-        pub_rear_left_hip_y.publish(motors_target_pos[2][1])
-        pub_rear_right_hip_y.publish(motors_target_pos[3][1])
+    # Hips in y-direction
+    pub_front_left_hip_y.publish(motors_target_pos[0][1])
+    pub_front_right_hip_y.publish(motors_target_pos[1][1])
+    pub_rear_left_hip_y.publish(motors_target_pos[2][1])
+    pub_rear_right_hip_y.publish(motors_target_pos[3][1])
 
-        # Knee
-        pub_front_left_knee.publish(motors_target_pos[0][2])
-        pub_front_right_knee.publish(motors_target_pos[1][2])
-        pub_rear_left_knee.publish(motors_target_pos[2][2])
-        pub_rear_right_knee.publish(motors_target_pos[3][2])
+    # Knee
+    pub_front_left_knee.publish(motors_target_pos[0][2])
+    pub_front_right_knee.publish(motors_target_pos[1][2])
+    pub_rear_left_knee.publish(motors_target_pos[2][2])
+    pub_rear_right_knee.publish(motors_target_pos[3][2])
 
 
+# -------Commands on joints actuators to move Spot in predefined positions
 sit_down = [[0.20, 1.0, -2.49],  # Front left leg
             [-0.20, 1.0, -2.49],  # Front right leg
             [0.20, 1.0, -2.49],  # Rear left leg
@@ -90,20 +97,20 @@ stand_up = [[0.20, 0.7, -1.39],  # Front left leg
             [0.20, 0.7, -1.39],  # Rear left leg
             [-0.20, 0.7, -1.39]]  # Rear right leg
 
-give_lap = [[-0.30, 1.0, -1.39],  # Front left leg
+give_paw = [[-0.30, 1.0, -1.39],  # Front left leg
             [-0.20, -0.6, -1.09],  # Front right leg
             [0.20, 1.0, -2.39],  # Rear left leg
             [-0.20, 1.0, -2.39]]  # Rear right leg
 
 lap_spread = [[1.20, 0.7, -1.39],  # Front left leg
-             [-1.20, 0.7, -1.39],  # Front right leg
-             [1.20, 0.7, -1.39],  # Rear left leg
-             [-1.20, 0.7, -1.39]]  # Rear right leg
+              [-1.20, 0.7, -1.39],  # Front right leg
+              [1.20, 0.7, -1.39],  # Rear left leg
+              [-1.20, 0.7, -1.39]]  # Rear right leg
 
 fl_lap = [[0.20, -0.2, -1.09],  # Front left leg
-            [-0.20, 0.7, -1.39],  # Front right leg
-            [0.20, 0.7, -1.39],  # Rear left leg
-            [-0.20, 0.7, -1.39]]  # Rear right leg
+          [-0.20, 0.7, -1.39],  # Front right leg
+          [0.20, 0.7, -1.39],  # Rear left leg
+          [-0.20, 0.7, -1.39]]  # Rear right leg
 
 fr_lap = [[0.20, 0.7, -1.09],  # Front left leg
           [-0.20, -0.2, -1.09],  # Front right leg
@@ -116,13 +123,14 @@ bow_forward = [[0.20, 1.0, -1.79],  # Front left leg
                [-0.20, 0.7, -1.29]]  # Rear right leg
 
 lap_spread_left = [[1.20, 0.7, -1.39],  # Front left leg
-             [0.20, 0.7, -1.39],  # Front right leg
-             [1.20, 0.7, -1.39],  # Rear left leg
-             [0.20, 0.7, -1.39]]  # Rear right leg
+                   [0.20, 0.7, -1.39],  # Front right leg
+                   [1.20, 0.7, -1.39],  # Rear left leg
+                   [0.20, 0.7, -1.39]]  # Rear right leg
 
 
 def myhook():
-  pass
+    # Execute on shutdown.
+    pass
 
 
 if __name__ == '__main__':
@@ -197,9 +205,9 @@ if __name__ == '__main__':
         motors_target_pos = sit_down
         talker()
         rate.sleep()
-        # give lap
+        # give a paw
         time.sleep(1.8)
-        motors_target_pos = give_lap
+        motors_target_pos = give_paw
         talker()
         rate.sleep()
         # sit down

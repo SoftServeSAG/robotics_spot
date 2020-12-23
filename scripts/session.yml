@@ -6,7 +6,7 @@ windows:
   - gazebo:
       layout: even-vertical
       panes:
-        - history -s 'roslaunch rs_gazebo HQ.launch world:="empty.world"'
+        - history -s 'roslaunch rs_gazebo HQ.launch world:="ss_hq4.world"'
   - spot1:
       layout: even-vertical
       panes:

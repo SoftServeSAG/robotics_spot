@@ -14,6 +14,7 @@ pub = rospy.Publisher('/' + spot_name + '/inverse_gait_input', GaitInput, queue_
 
 
 def command_spot():
+    """ Send command to Spot` controller"""
     global xd, yd, zd, rolld, pitchd, yawd, StepLength, LateralFraction, YawRate, StepVelocity, ClearanceHeight, \
         PenetrationDepth, SwingPeriod, YawControl
     msg = GaitInput()
@@ -52,8 +53,9 @@ def main():
     SwingPeriod = 0.00
     YawControl = 0.0
 
+    # Initial command
     command_spot()
-
+    # move body in z-axis
     time.sleep(2.1)
     zd = 0.4
     command_spot()
@@ -63,7 +65,7 @@ def main():
     time.sleep(2.1)
     zd = 0.2
     command_spot()
-
+    # move body in x-axis
     time.sleep(2.1)
     xd = 0.1
     command_spot()
@@ -76,7 +78,7 @@ def main():
     time.sleep(2.1)
     xd = 0.0
     command_spot()
-
+    # move body in y-axis
     time.sleep(2.1)
     yd = 0.1
     command_spot()
@@ -89,7 +91,7 @@ def main():
     time.sleep(2.1)
     yd = 0.0
     command_spot()
-
+    # move body roll
     time.sleep(2.1)
     rolld = 0.4
     command_spot()
@@ -102,7 +104,7 @@ def main():
     time.sleep(2.1)
     rolld = 0.0
     command_spot()
-
+    # move body pitch
     time.sleep(2.1)
     pitchd = 0.4
     command_spot()
@@ -115,7 +117,7 @@ def main():
     time.sleep(2.1)
     pitchd = 0.0
     command_spot()
-
+    # move body yaw
     time.sleep(1.1)
     yawd = 0.4
     command_spot()
@@ -128,8 +130,7 @@ def main():
     time.sleep(2.1)
     yawd = 0.0
     command_spot()
-
-
+    # move body in all directions
     time.sleep(1.1)
     yawd = 0.5
     pitchd = 0.3
@@ -149,6 +150,7 @@ def main():
 
 
 def myhook():
+    # Execute on shutdown
     print("Stand mode finished")
 
 if __name__ == '__main__':

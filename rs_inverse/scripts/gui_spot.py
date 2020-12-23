@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+""" GUI for Spot` controller"""
+
 import rospy
 from rs_msgs.msg import GaitInput
 from Tkinter import Tk, Label, Button, Entry, END
@@ -88,6 +90,7 @@ class RsGui:
         self.pub = pub
 
     def command_pub(self):
+        """ Publish commands on controller"""
         msg = GaitInput()
         msg.x = float(self.t1.get())
         msg.y = float(self.t2.get())
