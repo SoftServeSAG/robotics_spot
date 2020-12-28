@@ -3,6 +3,7 @@
        Use gui:=true on roslaunch command-line to run with a gui.
   -->
   <arg name="gui" default="false"/>
+  <arg name="robot_name" default="spot1"/>
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find rs_gazebo)/worlds/ss_hq4.world"/>
@@ -17,6 +18,6 @@
   <!-- Spawn Robot
        This must be the same robot type as the robot application
   -->
-  <include file="$(find rs_gazebo)/launch/robot.launch">
+  <include file="$(find rs_gazebo)/launch/robot.launch" robot_name="$(arg robot_name)">
   </include>
 </launch>

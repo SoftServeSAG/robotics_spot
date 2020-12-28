@@ -2,13 +2,12 @@
 <package>
   <name>rs_teleop</name>
   <version>1.0.0</version>
-  <description>Generic keyboard teleop for twist robots.</description>
+  <description>Keyboard teleop for Spot.</description>
 
-  <maintainer email="namniart@gmail.com">Austin Hendrix</maintainer>
+  <maintainer email="tboro@softserveinc.com">Taras  Borovetsx</maintainer>
 
   <license>BSD</license>
 
-  <url type="website">http://wiki.ros.org/teleop_twist_keyboard</url>
 
   <author>Graylin Trevor Jay</author>
 

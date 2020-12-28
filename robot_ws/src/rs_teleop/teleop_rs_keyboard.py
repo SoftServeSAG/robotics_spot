@@ -4,7 +4,6 @@ from __future__ import print_function
 
 import threading
 
-# import roslib; roslib.load_manifest('teleop_rs_keyboard')
 import rospy
 
 from rs_msgs.msg import GaitInput
@@ -15,47 +14,32 @@ msg = """
 Reading from the keyboard  and Publishing to Twist!
 ---------------------------
 Moving around:
-   u    i    o
+        i    
    j    k    l
-   m    ,    .
-
-For Holonomic mode (strafing), hold down the shift key:
----------------------------
-   U    I    O
-   J    K    L
-   M    <    >
-
-t : up (+z)
-b : down (-z)
+        ,    
 
 anything else : stop
 
-q/z : increase/decrease max speeds by 10%
-w/x : increase/decrease only linear speed by 10%
+q/z : increase/decrease angular speed and step lenght by 10%
+w/x : increase/decrease only step lenght by 10%
 e/c : increase/decrease only angular speed by 10%
+
+1/2 : x
+3/4 : y
+5/6 : z
+
+a/s : roll
+d/f : pitch
+g/h : yaw
 
 CTRL-C to quit
 """
 
 moveBindings = {
         'i':(1,0,0,0),
-        'o':(1,0,0,-1),
         'j':(1,0,0,1),
         'l':(1,0,0,-1),
-        'u':(1,0,0,1),
         ',':(-1,0,0,0),
-        '.':(-1,0,0,1),
-        'm':(-1,0,0,-1),
-        'O':(1,-1,0,0),
-        'I':(1,0,0,0),
-        'J':(0,1,0,0),
-        'L':(0,-1,0,0),
-        'U':(1,1,0,0),
-        '<':(-1,0,0,0),
-        '>':(-1,-1,0,0),
-        'M':(-1,1,0,0),
-        't':(0,0,1,0),
-        'b':(0,0,-1,0),
     }
 
 speedBindings={
@@ -66,11 +50,32 @@ speedBindings={
         'e':(1,1.1),
         'c':(1,.9),
     }
-
+    
+rollBindings={
+        'a':0.1,
+        's':-0.1,
+    }
+    
+pitchBindings={
+        'd':0.1,
+        'f':-0.1,
+    }
+yawBindings={
+        'g':0.1,
+        'h':-0.1,
+    }
+    
+xyzBindings = {
+        '1':(0.01,0,0),
+        '2':(-0.01,0,0),
+        '3':(0,0.01,0),
+        '4':(0,-0.01,0),
+        '5':(0,0,0.01),
+        '6':(0,0,-0.01),
+    }
+    
 class PublishThread(threading.Thread):
-    def __init__(self, rate):
-        # spot_name = str(input("Tell me spot name: "))
-        spot_name = "spot1"
+    def __init__(self, rate, spot_name):
         super(PublishThread, self).__init__()
         self.publisher = rospy.Publisher('/'+ spot_name + '/inverse_gait_input', GaitInput, queue_size=1)
         
@@ -104,12 +109,12 @@ class PublishThread(threading.Thread):
         self.start()
         
     def update(self, x, y, z, roll, pitch, yaw, StepLength, LateralFraction, YawRate, StepVelocity, ClearanceHeight, PenetrationDepth, SwingPeriod, YawControl, speed, turn):
-        self.x = self.x
-        self.y = self.y
-        self.z = self.z
-        self.roll = self.roll
-        self.pitch = self.pitch
-        self.yaw = self.yaw
+        self.x = x
+        self.y = y
+        self.z = z
+        self.roll = roll
+        self.pitch = pitch
+        self.yaw = yaw
         self.StepLength = StepLength * speed
         self.LateralFraction = self.LateralFraction
         self.YawRate = YawRate * turn
@@ -176,6 +181,11 @@ def getKey(key_timeout):
 
 def vels(speed, turn):
     return "currently:\tspeed %s\tturn %s " % (speed,turn)
+    
+def status_def(status):
+    if (status == 14):
+        print(msg)
+    return (status + 1) % 15
 
 if __name__=="__main__":
     settings = termios.tcgetattr(sys.stdin)
@@ -183,13 +193,15 @@ if __name__=="__main__":
     rospy.init_node('teleop_twist_keyboard')
 
     speed = rospy.get_param("~speed", 0.11)
-    turn = rospy.get_param("~turn", 1.0)
+    turn = rospy.get_param("~turn", 0.5)
     repeat = rospy.get_param("~repeat_rate", 0.0)
     key_timeout = rospy.get_param("~key_timeout", 0.0)
     if key_timeout == 0.0:
         key_timeout = None
-
-    pub_thread = PublishThread(repeat)
+        
+    
+    spot_name = str(input("Tell me spot name: "))
+    pub_thread = PublishThread(repeat, spot_name)
     x = 0.0
     y = 0.0
     z = 0.0
@@ -220,11 +232,26 @@ if __name__=="__main__":
             elif key in speedBindings.keys():
                 speed = speed * speedBindings[key][0]
                 turn = turn * speedBindings[key][1]
-
                 print(vels(speed,turn))
-                if (status == 14):
-                    print(msg)
-                status = (status + 1) % 15
+                status = status_def(status)
+            elif key in rollBindings.keys():
+                roll = roll + rollBindings[key]
+                print("currently:\troll %s" % (roll))
+                status = status_def(status)
+            elif key in pitchBindings.keys():
+                pitch = pitch + pitchBindings[key]
+                print("currently:\tpitch %s" % (pitch))
+                status = status_def(status)
+            elif key in yawBindings.keys():
+                yaw = yaw + yawBindings[key]
+                print("currently:\tyaw %s" % (yaw))
+                status = status_def(status)
+            elif key in xyzBindings.keys():
+                x = x + xyzBindings[key][0]
+                y = y + xyzBindings[key][1]
+                z = z + xyzBindings[key][2]
+                print("currently:\tx %s\ty %s\tz %s " % (x,y,z))
+                status = status_def(status)
             else:
                 # Skip updating cmd_vel if key timeout and robot already
                 # stopped.
