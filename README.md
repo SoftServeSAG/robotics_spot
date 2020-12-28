@@ -34,7 +34,7 @@ git clone https://github.com/tarasborov/robotics_spot.git
 Build docker images
 
 ```bash
-cd robotics_spot/docker/ros_melodic
+cd robotics_spot/docker/ros_spot
 chmod a+x build.bash
 sudo ./build.bash 
 ```
@@ -54,7 +54,7 @@ catkin config --init --extend /opt/ros/melodic
 catkin build
 ```
 
-## Use state machine 
+## Use tmux
 All following commands should be executed in specified containers:
 
 ```bash
@@ -65,7 +65,7 @@ chmod a+x session.yml
 ```
 Now tmux session will start with all required tabs. All required commandsmay be added to the history, in order to simplify their usage.
 
-## Start Gazevo
+## Start Gazebo
 Launch world:
 ```bash
 roslaunch rs_gazebo HQ.launch world_name:="<world_file>"

@@ -5,9 +5,11 @@ find_package(catkin REQUIRED COMPONENTS)
 
 catkin_package()
 
-install(DIRECTORY config
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
+catkin_install_python(
+	PROGRAMS
+	  scripts/talker.py
+    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
-install(DIRECTORY launch
+install(DIRECTORY launch config
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
-

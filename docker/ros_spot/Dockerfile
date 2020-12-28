@@ -16,9 +16,6 @@ RUN apt-get update && apt-get install -y \
     ros-melodic-joint-state-publisher-gui \
     ros-melodic-interactive-marker-twist-server \ 
     ros-melodic-robot-state-publisher \
-    python-pip \
-    && pip install simple-pid \
-    && pip install scipy \
     && rm -rf /var/lib/apt/lists/* 
 
 RUN mkdir /var/run/sshd
@@ -34,8 +31,6 @@ RUN mkdir -p deps_ws/src && \
         --cmake-args -DCMAKE_BUILD_TYPE=Release && \
     catkin profile set release
 
-RUN echo "PS1='\[\e[33m\][MrHandy]\[\e[m\] ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" >> ~/.bashrc
+RUN echo "PS1='\[\e[33m\][Spot]\[\e[m\] ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" >> ~/.bashrc
 
 RUN echo "source ~/ws/devel/setup.bash" >> ~/.bashrc
-
-RUN echo "export XV_NAME=hand_0" >> ~/.bashrc
