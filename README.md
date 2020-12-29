@@ -66,28 +66,56 @@ chmod a+x session.yml
 Now tmux session will start with all required tabs. All required commandsmay be added to the history, in order to simplify their usage.
 
 ## Start Gazebo
-Launch world:
+Launch world SoftServe office:
 ```bash
-roslaunch rs_gazebo HQ.launch world_name:="<world_file>"
+roslaunch rs_gazebo HQ.launch
+```
+Launch the specific world:
+```bash
+roslaunch rs_gazebo HQ.launch world_name:="<world_name>"
 ```
 Spawn robot:
+```bash
+roslaunch rs_gazebo robot.launch 
+```
+Spawn robot with the specific name and position:
 ```bash
 roslaunch rs_gazebo robot.launch robot_name:="<spot_name>"  init_pose:="-x 0.0 -y 0.0 -z 0.0"
 ```
 ## Control
 You can control Spot in the two ways: using forward or inverse kinematics. Forward kinematics means to send command on actuator directly. To run hardcoded actuators` command just run:
 ```bash
-roslaunch rs_control talker.py
+roslaunch rs_control talker.launch 
 ```
+Run for the specific robot:
+```bash
+roslaunch rs_control talker.launch robot_name:="<spot_name>"
+```
+
 Inverse kinematics means to predetermine joins angels by calculating kinematics relationships between joints. To calculate gait we use algorithm frrom [SpotMicro project](https://github.com/OpenQuadruped/spot_mini_mini).
 In order to control Spot using inverse kinematics and MIT control use the following commands: 
 
 Start a controller:
 ```bash
-roslaunch rs_inverse env_tester.py
+roslaunch rs_inverse inverse.launch
+```
+Run for the specific robot:
+```bash
+roslaunch rs_inverse inverse.launch robot_name:="<spot_name>"
 ```
 Launch GUI to send command:
 ```bash
-roslaunch rs_inverse gui_spot.py
+roslaunch rs_inverse gui_spot.launch
 ```
-During these command you will be asked to tell robot name that you gived launching robot. 
+Run GUI for the specific robot:
+```bash
+roslaunch rs_inverse gui_spot.launch robot_name:="<spot_name>"
+```
+Launch a teleop to control Spot:
+```bash
+roslaunch rs_teleop teleop_spot.launch
+```
+Run teleop for the specific robot:
+```bash
+roslaunch rs_teleop teleop_spot.launch robot_name:="<spot_name>"
+```
