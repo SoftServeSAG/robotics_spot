@@ -7,16 +7,17 @@ import rospy
 from rs_msgs.msg import GaitInput
 import time
 
-spot_name = str(input("Tell me spot name: "))
-rospy.init_node(spot_name + 'stand_mode_inverse', anonymous=True)
 
-pub = rospy.Publisher('/' + spot_name + '/inverse_gait_input', GaitInput, queue_size=10)
+def init_pub():
+    spot_name = rospy.get_param('~/spot_name')
+    rospy.init_node(spot_name + 'stand_mode_inverse', anonymous=True)
+    return rospy.Publisher('/' + spot_name + '/inverse_gait_input', GaitInput, queue_size=10)
 
 
-def command_spot():
+def command_spot(pub):
     """ Send command to Spot` controller"""
     global xd, yd, zd, rolld, pitchd, yawd, StepLength, LateralFraction, YawRate, StepVelocity, ClearanceHeight, \
-        PenetrationDepth, SwingPeriod, YawControl
+        PenetrationDepth, SwingPeriod, YawControl, YawControlOn
     msg = GaitInput()
     msg.x = float(xd)
     msg.y = float(yd)
@@ -32,12 +33,13 @@ def command_spot():
     msg.PenetrationDepth = float(PenetrationDepth)
     msg.SwingPeriod = float(SwingPeriod)
     msg.YawControl = float(YawControl)
+    msg.YawControlOn = float(YawControlOn)
     pub.publish(msg)
 
 
 def main():
     global xd, yd, zd, rolld, pitchd, yawd, StepLength, LateralFraction, YawRate, StepVelocity, ClearanceHeight, \
-        PenetrationDepth, SwingPeriod, YawControl
+        PenetrationDepth, SwingPeriod, YawControl, YawControlOn
     xd = 0.0
     yd = 0.0
     zd = 0.0
@@ -52,101 +54,104 @@ def main():
     PenetrationDepth = 0.0
     SwingPeriod = 0.00
     YawControl = 0.0
+    YawControlOn = 0.0
+
+    pub = init_pub()
 
     # Initial command
-    command_spot()
+    command_spot(pub)
     # move body in z-axis
     time.sleep(2.1)
     zd = 0.4
-    command_spot()
+    command_spot(pub)
     time.sleep(2.1)
     zd = 0.0
-    command_spot()
+    command_spot(pub)
     time.sleep(2.1)
     zd = 0.2
-    command_spot()
+    command_spot(pub)
     # move body in x-axis
     time.sleep(2.1)
     xd = 0.1
-    command_spot()
+    command_spot(pub)
     time.sleep(2.1)
     xd = 0.0
-    command_spot()
+    command_spot(pub)
     time.sleep(2.1)
     xd = -0.1
-    command_spot()
+    command_spot(pub)
     time.sleep(2.1)
     xd = 0.0
-    command_spot()
+    command_spot(pub)
     # move body in y-axis
     time.sleep(2.1)
     yd = 0.1
-    command_spot()
+    command_spot(pub)
     time.sleep(2.1)
     yd = 0.0
-    command_spot()
+    command_spot(pub)
     time.sleep(2.1)
     yd = -0.1
-    command_spot()
+    command_spot(pub)
     time.sleep(2.1)
     yd = 0.0
-    command_spot()
+    command_spot(pub)
     # move body roll
     time.sleep(2.1)
     rolld = 0.4
-    command_spot()
+    command_spot(pub)
     time.sleep(2.1)
     rolld = 0.0
-    command_spot()
+    command_spot(pub)
     time.sleep(2.1)
     rolld = -0.4
-    command_spot()
+    command_spot(pub)
     time.sleep(2.1)
     rolld = 0.0
-    command_spot()
+    command_spot(pub)
     # move body pitch
     time.sleep(2.1)
     pitchd = 0.4
-    command_spot()
+    command_spot(pub)
     time.sleep(2.1)
     pitchd = 0.0
-    command_spot()
+    command_spot(pub)
     time.sleep(0.5)
     pitchd = -0.4
-    command_spot()
+    command_spot(pub)
     time.sleep(2.1)
     pitchd = 0.0
-    command_spot()
+    command_spot(pub)
     # move body yaw
     time.sleep(1.1)
     yawd = 0.4
-    command_spot()
+    command_spot(pub)
     time.sleep(2.1)
     yawd = 0.0
-    command_spot()
+    command_spot(pub)
     time.sleep(0.5)
     yawd = -0.4
-    command_spot()
+    command_spot(pub)
     time.sleep(2.1)
     yawd = 0.0
-    command_spot()
+    command_spot(pub)
     # move body in all directions
     time.sleep(1.1)
     yawd = 0.5
     pitchd = 0.3
-    command_spot()
+    command_spot(pub)
     time.sleep(2.1)
     yawd = 0.0
     pitchd = 0.0
-    command_spot()
+    command_spot(pub)
     time.sleep(0.5)
     yawd = -0.5
     pitchd = -0.3
-    command_spot()
+    command_spot(pub)
     time.sleep(2.1)
     yawd = 0.0
     pitchd = 0.0
-    command_spot()
+    command_spot(pub)
 
 
 def myhook():

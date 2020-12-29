@@ -6,12 +6,6 @@ import rospy
 from rs_msgs.msg import GaitInput
 from Tkinter import Tk, Label, Button, Entry, END
 
-spot_name = str(input("Tell me spot name: "))
-
-rospy.init_node(spot_name + '_inverse_gui', anonymous=True)
-
-pub = rospy.Publisher('/'+ spot_name + '/inverse_gait_input', GaitInput, queue_size=10)
-
 
 class RsGui:
     def __init__(self, win, pub):
@@ -29,6 +23,7 @@ class RsGui:
         self.lbl12 = Label(win, text='PenetrationDepth')
         self.lbl13 = Label(win, text='SwingPeriod')
         self.lbl14 = Label(win, text='YawControl')
+        self.lbl15 = Label(win, text='YawControlOn')
         self.t1 = Entry()
         self.t2 = Entry()
         self.t3 = Entry()
@@ -43,6 +38,7 @@ class RsGui:
         self.t12 = Entry()
         self.t13 = Entry()
         self.t14 = Entry()
+        self.t15 = Entry()
         self.t1.insert(END, 0)
         self.t2.insert(END, 0)
         self.t3.insert(END, 0.1)
@@ -57,6 +53,7 @@ class RsGui:
         self.t12.insert(END, 0.00003)
         self.t13.insert(END, 0.3)
         self.t14.insert(END, 0.0)
+        self.t15.insert(END, 1.0)
         self.lbl1.place(x=100, y=50)
         self.t1.place(x=220, y=50)
         self.lbl2.place(x=100, y=100)
@@ -85,8 +82,10 @@ class RsGui:
         self.t13.place(x=220, y=650)
         self.lbl14.place(x=100, y=700)
         self.t14.place(x=220, y=700)
+        self.lbl15.place(x=100, y=750)
+        self.t15.place(x=220, y=750)
         self.b1 = Button(win, text='Send', command=self.command_pub)
-        self.b1.place(x=100, y=750)
+        self.b1.place(x=100, y=800)
         self.pub = pub
 
     def command_pub(self):
@@ -106,10 +105,15 @@ class RsGui:
         msg.PenetrationDepth = float(self.t12.get())
         msg.SwingPeriod = float(self.t13.get())
         msg.YawControl = float(self.t14.get())
+        msg.YawControlOn = float(self.t15.get())
         self.pub.publish(msg)
 
 
 def main():
+    spot_name = rospy.get_param('~/spot_name')
+    rospy.init_node(spot_name + '_inverse_gui', anonymous=True)
+    pub = rospy.Publisher('/' + spot_name + '/inverse_gait_input', GaitInput, queue_size=10)
+
     root = Tk()
     my_gui = RsGui(root, pub)
     root.title(spot_name + 'Control Input')

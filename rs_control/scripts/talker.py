@@ -7,8 +7,6 @@ It is node that publish commands on joints actuators to move Spot in predefined 
 
 import rospy
 import time
-import yaml
-import os.path
 from std_msgs.msg import Float64
 
 
@@ -96,7 +94,6 @@ if __name__ == '__main__':
     try:
         rospy.loginfo_once("Starting Forward Kinematics")
         spot_name = rospy.get_param('~/spot_name')
-        # spot_name = str(input("Tell me spot name: "))
         rospy.init_node(spot_name + 'talker')
         rate = rospy.Rate(100)  # 100hz
         spot = SpotForward(spot_name)

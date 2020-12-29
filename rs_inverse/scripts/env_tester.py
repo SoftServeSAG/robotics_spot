@@ -21,8 +21,7 @@ class SpotControl:
     Realise control of Spot initialising publishers, subscribing on GUI topic.
     """
     def __init__(self, time_step):
-        spot_name = str(input("Tell me spot name: "))
-        self.spot_name = spot_name
+        self.spot_name = rospy.get_param('~/spot_name')
         rospy.init_node(self.spot_name + '_inverse')
         self.rate = rospy.Rate(100)  # 100hz
         self.time_step = time_step
@@ -47,6 +46,7 @@ class SpotControl:
         self.PenetrationDepth = 0.0
         self.SwingPeriod = 0.00
         self.YawControl = 0.0
+        self.YawControlOn = True
 
         # ------------------ Spot states ----------------
         self.x_inst = 0.
@@ -148,6 +148,7 @@ class SpotControl:
         self.PenetrationDepth = data.PenetrationDepth
         self.SwingPeriod = data.SwingPeriod
         self.YawControl = data.YawControl
+        self.YawControlOn = data.YawControlOn
 
     def callback_model(self, data):
         """ Read the data of Spot` positions an orientations"""
@@ -226,7 +227,10 @@ class SpotControl:
         pos = np.array([self.xd, self.yd, self.zd])
         orn = np.array([self.rolld, self.pitchd, self.yawd])
         # yaw controller
-        YawRate_desired = self.yaw_control()
+        if self.YawControlOn == 1.0:
+            YawRate_desired = self.yaw_control()
+        else:
+            YawRate_desired = self.YawRate
         # Update Swing Period
         self.bzg.Tswing = self.SwingPeriod
         contacts = [self.front_left_lower_leg_contact, self.front_right_lower_leg_contact,
@@ -288,7 +292,7 @@ def main():
 
 def myhook():
     # Execute on shutdown
-    print("SPOT TEST ENV finished")
+    print("FINISHED SPOT TEST ENV")
 
 if __name__ == '__main__':
     try:
