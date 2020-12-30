@@ -63,7 +63,7 @@ chmod a+x start.sh
 chmod a+x session.yml
 ./start.sh
 ```
-Now tmux session will start with all required tabs. All required commandsmay be added to the history, in order to simplify their usage.
+Now tmux session will start with all required tabs. All required commands may be added to the history, in order to simplify their usage.
 
 ## Start Gazebo
 Launch world SoftServe office:

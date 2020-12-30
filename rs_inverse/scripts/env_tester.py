@@ -290,13 +290,8 @@ def main():
             time.sleep(spot_control.time_step - elapsed_time)
 
 
-def myhook():
-    # Execute on shutdown
-    print("FINISHED SPOT TEST ENV")
-
 if __name__ == '__main__':
     try:
         main()
-        rospy.on_shutdown(myhook)
     except rospy.ROSInterruptException:
         pass

@@ -87,7 +87,6 @@ class SpotForward:
 
 def myhook():
     rospy.loginfo_once("Finished Forward Kinematics")
-    pass
 
 
 if __name__ == '__main__':
@@ -125,9 +124,9 @@ if __name__ == '__main__':
 
         rospy.loginfo_once("Started Forward Kinematics")
 
-        for i in range(len(standard_position_seq)):
+        for position in standard_position_seq:
             time.sleep(2.1)
-            spot.talker(pose_dict[standard_position_seq[i]])
+            spot.talker(pose_dict[position])
 
         # sit down
         time.sleep(7.1)
