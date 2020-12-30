@@ -123,7 +123,7 @@ def main():
     root = Tk()
     my_gui = RsGui(root, pub)
     root.title(spot_name + 'Control Input')
-    root.geometry("400x800+10+10")
+    root.geometry("400x900+10+10")
     root.mainloop()
 
 
