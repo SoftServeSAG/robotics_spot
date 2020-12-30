@@ -1,0 +1,33 @@
+<launch>
+    <arg name="robot_name"             default="/" />
+    <arg name="base_frame"             default="base_link" />
+    <arg name="gazebo"                 default="false" />
+    <arg name="rviz"                   default="false" />
+    <arg name="rviz_ref_frame"         default="odom"/>
+    <arg name="close_loop_odom"        default="false" />
+
+    <group ns="$(arg robot_name)">
+        <param name="tf_prefix" value="$(arg robot_name)"/>
+        <param if="$(arg gazebo)" name="use_sim_time" value="true"/>
+
+        <!-- ==================== STATE ESTIMATION ==================== -->
+        <node pkg="champ_base" name="state_estimator" type="state_estimation_node" output="screen">
+            <param name="close_loop_odom" value="$(arg close_loop_odom)" />
+        </node>
+
+        <node pkg="robot_localization" type="ekf_localization_node" name="base_to_footprint_ekf"> 
+            <remap from="odometry/filtered" to="odom/local" />
+            <param name="base_link_frame" value="$(arg base_frame)" />
+            <rosparam command="load" file="$(find champ_base)/config/ekf/base_to_footprint.yaml" />
+        </node>
+
+        <node pkg="robot_localization" type="ekf_localization_node" name="footprint_to_odom_ekf"> 
+            <remap from="odometry/filtered" to="odom" />
+            <rosparam command="load" file="$(find champ_base)/config/ekf/footprint_to_odom.yaml" />
+        </node>
+        
+        <node if="$(arg rviz)" name="rviz" pkg="rviz" type="rviz"
+            args="-d $(find champ_description)/rviz/urdf_viewer.rviz -f $(arg rviz_ref_frame)"
+            output="screen"/>
+    </group>
+</launch>

@@ -13,5 +13,14 @@
   <exec_depend>roslaunch</exec_depend>
   <exec_depend>rviz</exec_depend>
 <!--  <exec_depend>champ_base</exec_depend>-->
+  <exec_depend>robot_localization</exec_depend>
+
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>pluginlib</build_export_depend>
+  <build_export_depend>nodelet</build_export_depend>
+  <build_export_depend>geometry_msgs</build_export_depend>
+  <build_export_depend>nav_msgs</build_export_depend>
+  <build_export_depend>ecl_threads</build_export_depend>
+  <build_export_depend>dynamic_reconfigure</build_export_depend>
   
 </package>

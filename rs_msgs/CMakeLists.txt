@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
   FILES
   GaitInput.msg
+  ContactsStamped.msg
 )
 
 generate_messages(
