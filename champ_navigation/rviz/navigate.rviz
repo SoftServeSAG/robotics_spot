@@ -213,9 +213,7 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: false
-        base_footprint:
-          Value: true
-        base_inertia:
+        body:
           Value: true
         base_link:
           Value: true
@@ -285,9 +283,8 @@ Visualization Manager:
       Tree:
         map:
           odom:
-            base_footprint:
               base_link:
-                base_inertia:
+                body:
                   {}
                 camera_link:
                   camera_depth_frame:

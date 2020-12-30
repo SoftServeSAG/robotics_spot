@@ -4,7 +4,7 @@
     <node pkg="amcl" type="amcl" name="amcl" output="screen">
         <param name="initial_pose_a" value="0.0"/>
         <param name="use_map_topic" value="true"/>
-        <param name="base_frame_id" value="$(arg frame_prefix)base_footprint"/>
+        <param name="base_frame_id" value="$(arg frame_prefix)base_link"/>
         <param name="odom_frame_id" value="$(arg frame_prefix)odom"/>
         <param name="global_frame_id" value="$(arg frame_prefix)map"/>
         <param name="transform_broadcast" value="true"/>
