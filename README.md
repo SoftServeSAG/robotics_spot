@@ -3,11 +3,11 @@ Spot in AWS Robomaker
 
 ## Setup 
 
-Create Source and Output Amazon S3 Buckets according to [guideline] (https://docs.aws.amazon.com/robomaker/latest/dg/application-create-simjob.html) 
+Create Source and Output Amazon S3 Buckets according to [guideline](https://docs.aws.amazon.com/robomaker/latest/dg/application-create-simjob.html) 
 
-Create a Simulation Job Role according to [guideline] (https://docs.aws.amazon.com/robomaker/latest/dg/application-create-simjob.html) 
+Create a Simulation Job Role according to [guideline](https://docs.aws.amazon.com/robomaker/latest/dg/application-create-simjob.html) 
 
-Create a development environment according to [guideline] (https://docs.aws.amazon.com/robomaker/latest/dg/gs-build.html)
+Create a development environment according to [guideline](https://docs.aws.amazon.com/robomaker/latest/dg/gs-build.html)
 
 In the terminal section of your development environment run:
 ```bash
