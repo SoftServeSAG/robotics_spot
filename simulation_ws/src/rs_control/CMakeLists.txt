@@ -6,9 +6,5 @@ find_package(catkin REQUIRED COMPONENTS)
 catkin_package()
 
 
-install(DIRECTORY config
+install(DIRECTORY config launch
   DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
-
-install(DIRECTORY launch
-  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION})
-

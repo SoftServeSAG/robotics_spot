@@ -4,12 +4,12 @@
   <version>1.0.0</version>
   <description>Keyboard teleop for Spot.</description>
 
-  <maintainer email="tboro@softserveinc.com">Taras  Borovetsx</maintainer>
+  <maintainer email="tboro@softserveinc.com">Taras  Borovets</maintainer>
 
   <license>BSD</license>
 
 
-  <author>Graylin Trevor Jay</author>
+  <author>Taras Borovets</author>
 
   <buildtool_depend>catkin</buildtool_depend>
   <run_depend>rs_msgs</run_depend>

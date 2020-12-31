@@ -1,67 +1,43 @@
 # robotics_spot
-Reinforced Spot Mini
+Spot in AWS Robomaker
 
+## Setup 
 
-## Install
-Install docker:
-Install Docker-CE using these [instructions](https://docs.docker.com/engine/install/ubuntu/)
+Create Source and Output Amazon S3 Buckets according to [guideline] (https://docs.aws.amazon.com/robomaker/latest/dg/application-create-simjob.html) 
 
-Install nvidia-docker 
+Create a Simulation Job Role according to [guideline] (https://docs.aws.amazon.com/robomaker/latest/dg/application-create-simjob.html) 
+
+Create a development environment according to [guideline] (https://docs.aws.amazon.com/robomaker/latest/dg/gs-build.html)
+
+In the terminal section of your development environment run:
 ```bash
-curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
-  sudo apt-key add -
-distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
-curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | \
-  sudo tee /etc/apt/sources.list.d/nvidia-docker.list
-sudo apt-get update
-sudo apt-get install nvidia-docker2
-sudo systemctl restart docker
+cd ~/environment
+git clone -b temp_robomaker https://github.com/SoftServeSAG/robotics_spot.git
+
+cd robotics_spot
+```
+In files robot_application.sh, simulation_application.sh, simulation_job.sh specify the names of buckets and job role that were created before.
+
+## Build and bundle
+```bash
+./build_robot.sh
+./build_simulation
 ```
 
-Now we should build Spot container:
-
-### Spot:
-
-Init workspace
-
+## Create robot and simulation application
 ```bash
-mkdir -p spot_ws/src
-cd spot_ws/src
-git clone https://github.com/clearpathrobotics/spot_ros.git
-git clone https://github.com/tarasborov/robotics_spot.git
+./robot_application.sh
+./simulation_application.sh
 ```
 
-Build docker images
-
+## Run simulatiom  job
 ```bash
-cd robotics_spot/docker/ros_melodic
-chmod a+x build.bash
-sudo ./build.bash 
-```
-Run docker container
-
-```bash
-chmod a+x run.bash
-sudo ./run.bash
+./simulation_job.sh
 ```
 
-Inside docker container
+## Run teleop to control
+In robot application terminal run:
 
 ```bash
-cd /root/ws
-rosdep check --from-paths . --ignore-src --rosdistro melodic
-catkin config --init --extend /opt/ros/melodic   
-catkin build
+roslaunch rs_teleop teleop_spot.launch
 ```
-
-## Use state machine 
-All following commands should be executed in specified containers:
-
-```bash
-cd ~/ws/src/robotics_spot/scripts
-chmod a+x start.sh
-chmod a+x session.yml
-./start.sh
-```
-Now tmux session will start with all required tabs. All required commandsmay be added to the history, in order to simplify their usage.
-

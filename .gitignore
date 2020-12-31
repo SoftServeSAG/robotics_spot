@@ -5,6 +5,7 @@ bin/
 lib/
 msg_gen/
 srv_gen/
+deps/
 msg/*Action.msg
 msg/*ActionFeedback.msg
 msg/*ActionGoal.msg

@@ -1,16 +1,5 @@
 <launch>
-  <!-- 
-       Using simulation time means nodes initialized after this
-       will not use the system clock for its ROS clock and 
-       instead wait for simulation ticks. 
-
-       See http://wiki.ros.org/Clock
-
-       Note: set to false for deploying to a real robot.
-  -->
-  <arg name="use_sim_time" default="true"/>
-  <param name="use_sim_time" value="$(arg use_sim_time)"/>
-
-  <!-- Rotate the robot on launch -->
-  <node pkg="rs_inverse" type="env_tester.py" name="env_tester" output="screen"/>
+    <arg name="robot_name" default="spot1" />
+        <param name="spot_name" type="str" value="$(arg robot_name)" />
+        <node name="inverse_spot" pkg="rs_inverse" type="env_tester.py" output="screen" ns="/$(arg robot_name)"/>
 </launch>

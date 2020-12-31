@@ -6,4 +6,3 @@ find_package(catkin REQUIRED)
 catkin_package(
   CATKIN_DEPENDS gazebo_ros gazebo_ros_control rs_description
 )
-
