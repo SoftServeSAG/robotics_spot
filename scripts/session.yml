@@ -27,3 +27,7 @@ windows:
       layout: even-vertical
       panes:
         - history -s 'roslaunch teleop_legged_robots teleop.launch robot_name:="spot1"'
+  - localization_cv:
+      layout: even-vertical
+      panes:
+        - history -s 'python ~/ws/src/spot_simulation/rs_cv/cv_node.py'
