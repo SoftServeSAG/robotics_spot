@@ -35,7 +35,7 @@ def perform_awesome_detection(img):
         (x, y, w, h) = (d['left'][i], d['top'][i], d['width'][i], d['height'][i])
         cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 2)
         if temp_num in d['text'][i]:
-            img = cv2.putText(img, 'T: ' + temp_num, (x, y - 5), font, 0.6, (0, 255, 0), 1, cv2.LINE_AA)
+            img = cv2.putText(img, 'T: ' + temp_num, (x - 20, y + 35), font, 0.6, (0, 255, 0), 1, cv2.LINE_AA)
     cv2.imshow('img', img)
     cv2.waitKey(200)
 
