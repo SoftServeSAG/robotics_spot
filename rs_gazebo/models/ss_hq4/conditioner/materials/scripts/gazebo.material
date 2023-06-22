@@ -1,0 +1,13 @@
+material conditioner
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture conditioner.png
+      }
+    }
+  }
+}

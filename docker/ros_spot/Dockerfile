@@ -38,3 +38,16 @@ RUN mkdir -p deps_ws/src && \
 RUN echo "PS1='\[\e[33m\][Spot]\[\e[m\] ${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '" >> ~/.bashrc
 
 RUN echo "source ~/ws/devel/setup.bash" >> ~/.bashrc
+
+RUN apt update
+
+RUN wget https://bootstrap.pypa.io/pip/2.7/get-pip.py
+RUN python get-pip.py
+RUN pip install git+https://github.com/h/pytesseract.git
+RUN apt install tesseract-ocr -y
+
+RUN apt-get install python3-pip python-catkin-tools python3-dev python3-numpy -y
+RUN pip install rospkg
+
+
+WORKDIR /root

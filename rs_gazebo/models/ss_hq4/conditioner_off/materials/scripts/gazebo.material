@@ -1,0 +1,13 @@
+material conditioner_off
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture conditioner_off.png
+      }
+    }
+  }
+}

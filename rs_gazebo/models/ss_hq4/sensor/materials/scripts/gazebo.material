@@ -1,0 +1,13 @@
+material sensor
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture sensor.jpg
+      }
+    }
+  }
+}

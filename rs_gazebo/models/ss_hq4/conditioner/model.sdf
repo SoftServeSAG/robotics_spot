@@ -1,0 +1,44 @@
+<?xml version='1.0'?>
+<sdf version='1.6'>
+  <model name='conditioner'>
+    <static>1</static>
+
+    <link name='conditioner_link'>
+      <visual name="page_visual">
+        <cast_shadows>false</cast_shadows>
+        <pose>0 0 -0.026    0 0 0</pose>
+        <geometry>
+            <box>
+              <size>0.210 0.297 0.05</size>
+            </box>
+        </geometry>
+            <material>
+                <script>
+                    <uri>file://media/materials/scripts/gazebo.material</uri>
+                    <name>Gazebo/White</name>
+                </script>
+            </material>
+      </visual>   
+      
+      <visual name="picture_visual">
+        <cast_shadows>false</cast_shadows>
+        <pose>0 0 0.002    0 0 0</pose>
+        <geometry>
+          <plane>
+            <normal>1 0 0</normal>
+            <size>0.2 0.25</size>
+          </plane>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://rs_gazebo/models/ss_hq4/conditioner/materials/scripts</uri>
+            <uri>model://rs_gazebo/models/ss_hq4/conditioner/materials/textures</uri>
+            <name>conditioner</name>
+          </script>
+        </material>
+      </visual>      
+
+    </link>
+    <allow_auto_disable>1</allow_auto_disable>
+  </model>
+</sdf>

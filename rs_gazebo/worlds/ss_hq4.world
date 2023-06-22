@@ -3670,6 +3670,9 @@
         <self_collide>0</self_collide>
         <kinematic>0</kinematic>
       </link>
+
+      
+
       <link name='Wall_93'>
         <collision name='Wall_93_Collision'>
           <geometry>
@@ -4539,6 +4542,38 @@
 	  <pose>0.730049 -5.30932 0.415681 -2e-06 -1e-06 1.57841</pose>
 	</include>
 
+  <include>
+	  <uri>model://rs_gazebo/models/ss_hq4/conditioner</uri>
+	  <name>'conditioner'</name>
+	  <pose>-2.38 8.0 0.4  1.57 0 1.57841</pose>
+	</include>
+
+  <include>
+	  <uri>model://rs_gazebo/models/ss_hq4/conditioner_off</uri>
+	  <name>'conditioner_off'</name>
+	  <pose>-2.38 8.5 0.4  1.57 0 1.57841</pose>
+	</include>
+
+
+
+  <include>
+	  <uri>model://rs_gazebo/models/ss_hq4/sensor</uri>
+	  <name>'sensor'</name>
+	  <pose>0.35 5.16 0.4  -1.57 3.14 0.0</pose>
+	</include>
+
+  <include>
+	  <uri>model://rs_gazebo/models/ss_hq4/sensor</uri>
+	  <name>'sensor1'</name>
+	  <pose>0.0 5.16 0.4  -1.57 3.14 0.0</pose>
+	</include>
+
+  <include>
+	  <uri>model://rs_gazebo/models/ss_hq4/sensor</uri>
+	  <name>'sensor2'</name>
+	  <pose>-0.35 5.16 0.4  -1.54 3.14 0.0</pose>
+	</include>
+
 	<include>
 	  <uri>model://rs_gazebo/models/ss_hq4/413_simple_table</uri>
 	  <name>'413_simple_table_clone'</name>
@@ -4557,10 +4592,7 @@
 	  <pose>0.738097 -9.0547 0.415678 -9e-06 1e-06 1.58439</pose>
 	</include>
 
-
-
-
-        <include>
+  <include>
 	  <uri>model://rs_gazebo/models/ss_hq4/413_table</uri>
 	  <name>'413_table_1'</name>
 	  <pose>1.35826 -6.55524 0.415677 -1e-06 -6e-06 1.57798</pose>
