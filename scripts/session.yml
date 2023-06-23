@@ -31,7 +31,3 @@ windows:
       layout: even-vertical
       panes:
         - history -s 'python ~/ws/src/spot_simulation/rs_cv/cv_ocr.py'
-  - localization_cv:
-      layout: even-vertical
-      panes:
-        - history -s 'python ~/ws/src/spot_simulation/rs_cv/cv_node.py'

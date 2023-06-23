@@ -130,3 +130,9 @@ To teleoperate Spot with the user-defined name run the following command:
 ```bash
 roslaunch teleop_legged_robots teleop.launch robot_name:="<spot_name>"
 ```
+
+In order to run OCR demo you must rebuild docker contrainer and run it again. The in tmux session in last tab there will be command:
+```bash
+python ~/ws/src/spot_simulation/rs_cv/cv_ocr.py
+```
+
