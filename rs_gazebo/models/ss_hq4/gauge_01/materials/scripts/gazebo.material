@@ -1,0 +1,13 @@
+material gauge_01
+{
+  technique
+  {
+    pass
+    {
+      texture_unit
+      {
+        texture gauge_01.jpg
+      }
+    }
+  }
+}

@@ -4549,6 +4549,19 @@
 	</include>
 
   <include>
+    <uri>model://rs_gazebo/models/ss_hq4/gauge_01</uri>
+    <name>gauge_01</name>
+    <pose>-2.317 -4.55 0.5 1.56 0 1.56</pose>
+  </include>
+
+  <include>
+    <uri>model://rs_gazebo/models/ss_hq4/gauge_02</uri>
+    <name>gauge_02</name>
+    <pose>-2.415 -6.0 0.5 1.56 0 1.56</pose>
+  </include>
+
+
+  <include>
 	  <uri>model://rs_gazebo/models/ss_hq4/conditioner_off</uri>
 	  <name>'conditioner_off'</name>
 	  <pose>-0.35 5.19 0.4  -1.54 3.14 0.0</pose>

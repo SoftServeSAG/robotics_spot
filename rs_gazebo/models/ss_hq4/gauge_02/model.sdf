@@ -1,0 +1,45 @@
+<?xml version='1.0'?>
+<sdf version='1.6'>
+  <model name='gauge_02'>
+    <static>1</static>
+
+    <link name='gauge_02_link'>
+      <visual name="page_visual">
+        <cast_shadows>false</cast_shadows>
+        <pose>0 0 0.0    0 0 0</pose>
+        <geometry>
+          <plane>
+            <normal>1 0 0</normal>
+            <size>0.24 0.24</size>
+          </plane>
+        </geometry>
+            <material>
+                <script>
+                    <uri>file://media/materials/scripts/gazebo.material</uri>
+                    <name>Gazebo/White</name>
+                </script>
+            </material>
+      </visual>   
+      
+      <visual name="picture_visual">
+        <cast_shadows>false</cast_shadows>
+        <pose>0 0 0.002    0 0 0</pose>
+        <geometry>
+          <plane>
+            <normal>1 0 0</normal>
+            <size>0.24 0.24</size>
+          </plane>
+        </geometry>
+        <material>
+          <script>
+            <uri>model://rs_gazebo/models/ss_hq4/gauge_02/materials/scripts</uri>
+            <uri>model://rs_gazebo/models/ss_hq4/gauge_02/materials/textures</uri>
+            <name>gauge_02</name>
+          </script>
+        </material>
+      </visual>      
+
+    </link>
+    <allow_auto_disable>1</allow_auto_disable>
+  </model>
+</sdf>
