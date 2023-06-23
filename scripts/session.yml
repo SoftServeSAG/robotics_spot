@@ -10,15 +10,27 @@ windows:
   - spot1:
       layout: even-vertical
       panes:
-        - history -s 'roslaunch rs_gazebo robot.launch robot_name:="spot1" init_pose:="-x -1.7 -y 8.6 -z 0.72 -R 0.0 -P 0.0 -Y 0.0"'
+        - history -s 'roslaunch rs_config spawn_robot.launch'
+  - navigation:
+      layout: even-vertical
+      panes:
+        - history -s 'roslaunch rs_navigation navigate.launch rviz:=True'
+  - send_gaol:
+      layout: even-vertical
+      panes:
+        - history -s 'rostopic pub /move_base_simple/goal geometry_msgs/PoseStamped '
+  - ocr_cv:
+      layout: even-vertical
+      panes:
+        - history -s 'python ~/ws/src/spot_simulation/rs_cv/cv_ocr.py'
+  - gauge_cv:
+      layout: even-vertical
+      panes:
+        - history -s 'python ~/ws/src/spot_simulation/rs_cv/cv_node_gauge.py'
   - inverse1:
       layout: even-vertical
       panes:
         - history -s 'roslaunch rs_inverse inverse.launch robot_name:="spot1"'
-  - gui1:
-      layout: even-vertical
-      panes:
-        - history -s 'roslaunch rs_inverse gui_inverse.launch robot_name:="spot1"'
   - quadruped_controller:
       layout: even-vertical
       panes:
@@ -27,7 +39,3 @@ windows:
       layout: even-vertical
       panes:
         - history -s 'roslaunch teleop_legged_robots teleop.launch robot_name:="spot1"'
-  -  ocr_cv:
-      layout: even-vertical
-      panes:
-        - history -s 'python ~/ws/src/spot_simulation/rs_cv/cv_ocr.py'

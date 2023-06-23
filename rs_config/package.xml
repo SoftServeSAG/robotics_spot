@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>rs_config</name>
+  <version>0.1.0</version>
+  <description>Spot  Config Package</description>
+
+  <maintainer email="tboro@ssoftserveinc.com">Taras Borovets</maintainer>
+  <author>Taras Borovets</author>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>roslaunch</exec_depend>
+  <exec_depend>rviz</exec_depend>
+  <exec_depend>champ_gazebo</exec_depend>
+  <exec_depend>champ_navigation</exec_depend>
+  <exec_depend>spot_config</exec_depend>
+  
+</package>

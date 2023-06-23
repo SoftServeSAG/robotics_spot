@@ -34,7 +34,7 @@ def image_callback(img_msg):
 
 
 def create_sub():
-    return rospy.Subscriber("/spot1/spot/camera1/image_raw", Image, image_callback)
+    return rospy.Subscriber("/camera/rgb/image_raw", Image, image_callback)
 
 
 def shotdown_hook():

@@ -1,0 +1,71 @@
+<launch>
+    <arg name="map" default=""/>
+
+    <arg name="target_x_vel" default="0.5"/>
+    <arg name="target_yaw_vel" default="0.5"/>
+    <arg name="inflation_radius" default="0.5"/>
+    <arg name="tool_radius" default="0.3"/>
+    <arg name="rviz" default="false"/>
+    <arg name="simulation" default="true"/>
+
+    <!-- Launch amcl -->
+    <include file="$(find rs_navigation)/launch/amcl.launch" />
+
+    <!--Move base flex, using the full_coverage_path_planner-->
+    <node pkg="mbf_costmap_nav" type="mbf_costmap_nav" respawn="false" name="move_base_flex" output="screen" required="true">
+        <param name="tf_timeout" value="1.5"/>
+        <rosparam file="$(find rs_navigation)/params/sim/full_coverage/planners.yaml" command="load" />
+        <rosparam file="$(find rs_navigation)/params/sim/full_coverage/local_costmap_params.yaml" command="load" />
+
+        <param name="SpiralSTC/robot_radius" value="$(arg inflation_radius)"/>
+        <param name="SpiralSTC/tool_radius" value="$(arg tool_radius)"/>
+        <param name="global_costmap/robot_radius" value="$(arg inflation_radius)"/>
+        <remap from="odom" to="/odom"/>
+        <remap from="scan" to="/front/scan"/>
+
+        <remap from="/move_base_flex/SpiralSTC/plan" to="/move_base/SpiralSTC/plan"/>
+        <remap from="/move_base_flex/tracking_pid/interpolator" to="/move_base/TrackingPidLocalPlanner/interpolator"/>
+    </node>
+
+    <!-- Move Base backwards compatibility -->
+    <node pkg="mbf_costmap_nav" type="move_base_legacy_relay.py" name="move_base">
+        <param name="base_global_planner" value="SpiralSTC" />
+    </node>
+
+    <!--We need a map to fully cover-->
+    <node name="grid_server" pkg="map_server" type="map_server" args="$(arg map)">
+        <param name="frame_id" value="map"/>
+    </node>
+
+
+    <!--Tracking_pid cannot just accept a nav_msgs/Path, it can only go to a PoseStamped,
+    so the path_interpolator drags a PoseStamped over a Path at a given speed-->
+    <node name="interpolator" pkg="tracking_pid" type="path_interpolator">
+        <param name="target_x_vel" value="$(arg target_x_vel)"/>
+        <param name="target_yaw_vel" value="$(arg target_yaw_vel)"/>
+        <remap from="path" to="/move_base/SpiralSTC/plan"/>
+    </node>
+
+   <!--Tracking_pid tries to get the robot as close to it's goal point as possible-->
+    <node name="controller" pkg="tracking_pid" type="controller" output="screen">
+        <remap from="move_base/cmd_vel" to="/cmd_vel"/>
+        <remap from="local_trajectory" to="trajectory"/>
+        <param name="controller_debug_enabled" value="True"/>
+        <param name="track_base_link" value="true"/>
+        <param name="l" value="0.5"/>
+        <param name="Ki_long" value="0.0"/>
+        <param name="Kp_long" value="1.0"/>
+        <param name="Kd_long" value="0.0"/>
+        <param name="Ki_lat" value="0.0"/>
+        <param name="Kp_lat" value="1.0"/>
+        <param name="Kd_lat" value="0.0"/>
+    </node>
+
+    <!-- Trigger planner by publishing a move_base goal -->
+    <node name="publish_simple_goal" pkg="rostopic" type="rostopic"  launch-prefix="bash -c 'sleep 5.0; $0 $@' "
+        args="pub --latch /move_base/goal move_base_msgs/MoveBaseActionGoal --file=$(find rs_navigation)/params/sim/full_coverage/simple_goal.yaml"/>
+
+
+    <!-- rviz -->
+    <node if="$(eval rviz)" name="rviz" pkg="rviz" type="rviz" args="-d $(find rs_navigation)/rviz/fcpp.rviz" />
+</launch>
