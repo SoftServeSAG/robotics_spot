@@ -4549,6 +4549,19 @@
 	</include>
 
   <include>
+	  <uri>model://rs_gazebo/models/ss_hq4/conditioner</uri>
+	  <name>'conditioner1'</name>
+	  <pose>1.65 -2.3 0.4  -1.57 3.14 1.57</pose>
+	</include>
+
+  <include>
+	  <uri>model://rs_gazebo/models/ss_hq4/conditioner</uri>
+	  <name>'conditioner2'</name>
+	  <pose>2.2 -3.74 0.4  1.57 0 0</pose>
+	</include>
+
+
+  <include>
     <uri>model://rs_gazebo/models/ss_hq4/gauge_01</uri>
     <name>gauge_01</name>
     <pose>-2.317 -4.55 0.5 1.56 0 1.56</pose>
@@ -4560,11 +4573,22 @@
     <pose>-2.415 -6.0 0.5 1.56 0 1.56</pose>
   </include>
 
+  <include>
+	  <uri>model://rs_gazebo/models/ss_hq4/conditioner_off</uri>
+	  <name>'conditioner_off1'</name>
+	  <pose>-5.7 3 0.4  -1.57 3.14 1.57</pose>
+	</include>
 
   <include>
 	  <uri>model://rs_gazebo/models/ss_hq4/conditioner_off</uri>
-	  <name>'conditioner_off'</name>
-	  <pose>-0.35 5.19 0.4  -1.54 3.14 0.0</pose>
+	  <name>'conditioner_off2'</name>
+	  <pose>-2.5 0.5 0.4  -1.57 3.14 1.57</pose>
+	</include>
+
+  <include>
+	  <uri>model://rs_gazebo/models/ss_hq4/conditioner_off</uri>
+	  <name>'conditioner_off3'</name>
+	  <pose>-2.8 -8.4 0.4  -1.57 3.14 1.57</pose>
 	</include>
 
 	<include>

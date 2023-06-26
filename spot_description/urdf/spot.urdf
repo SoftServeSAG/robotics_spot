@@ -102,38 +102,31 @@
   <gazebo reference="hokuyo_frame">
     <material>Gazebo/FlatBlack</material>
   </gazebo>
-  <joint name="camera_joint" type="fixed">
-    <origin rpy="0 0 0" xyz="0.38 0.0 -0.095"/>
-    <parent link="base_link"/>
-    <child link="camera_link"/>
-  </joint>
-  <link name="camera_link">
-    <inertial>
-      <mass value="0.200"/>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <inertia ixx="5.8083e-4" ixy="0" ixz="0" iyy="3.0833e-5" iyz="0" izz="5.9083e-4"/>
-    </inertial>
-    <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://hector_sensors_description/meshes/asus_camera/asus_camera_simple.dae"/>
-      </geometry>
-    </visual>
-    <!--        
-       <collision>
-          <origin xyz="0 0 0" rpy="0 0 0" />
-          <geometry>
-            <box size="0.035 0.185 0.025"/>
-          </geometry>
+      <link name="camera_link">
+        <visual>
+            <geometry>
+                <box size=".02 .02 .03"/>
+            </geometry>
+        </visual>
+        <material name="black_metal">
+            <color rgba="0.0 0.0 0.0 1.0"/>
+        </material>
+        <collision name="camera_sensor">
+            <geometry>
+                <box size=".02 .02 .03"/>
+            </geometry>
         </collision>
-        -->
-    <collision>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <geometry>
-        <mesh filename="package://hector_sensors_description/meshes/asus_camera/asus_camera_simple.dae"/>
-      </geometry>
-    </collision>
-  </link>
+        <inertial>
+            <mass value="1.0" />
+            <inertia  ixx="0.0" ixy="0.0"  ixz="0.0"  iyy="0.045"  iyz="0.0"  izz="0.0" />
+        </inertial>
+    </link>
+
+   <joint name="camera_joint" type="fixed">
+        <origin xyz="0.4 0.000 0.0" rpy="0 0 0" />
+        <parent link="base_link" />
+        <child link="camera_link" />
+   </joint>
   <joint name="camera_depth_joint" type="fixed">
     <origin rpy="0 0 0" xyz="0.0 0.049 0.0"/>
     <parent link="camera_link"/>
@@ -170,7 +163,7 @@
           <height>480</height>
         </image>
         <clip>
-          <near>0.5</near>
+          <near>0.02</near>
           <far>9</far>
         </clip>
       </camera>
