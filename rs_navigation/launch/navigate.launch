@@ -1,6 +1,6 @@
 <launch>
     <arg name="robot_name" default="/"/>
-    <arg name="rviz"       default="false"/>
+    <arg name="rviz"       default="true"/>
 
     <arg name="map_file" default="$(find rs_navigation)/maps/ss_hq4.yaml"/>
 

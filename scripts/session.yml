@@ -11,10 +11,6 @@ windows:
       layout: even-vertical
       panes:
         - history -s 'roslaunch rs_config spawn_robot.launch'
-  - navigation:
-      layout: even-vertical
-      panes:
-        - history -s 'roslaunch rs_navigation navigate.launch rviz:=True'
   - send_gaol:
       layout: even-vertical
       panes:
@@ -27,14 +23,6 @@ windows:
       layout: even-vertical
       panes:
         - history -s 'python ~/ws/src/spot_simulation/rs_cv/cv_node_gauge.py'
-  - inverse1:
-      layout: even-vertical
-      panes:
-        - history -s 'roslaunch rs_inverse inverse.launch robot_name:="spot1"'
-  - quadruped_controller:
-      layout: even-vertical
-      panes:
-        - history -s 'roslaunch rs_base quadruped_controller.launch '
   - teleop1:
       layout: even-vertical
       panes:

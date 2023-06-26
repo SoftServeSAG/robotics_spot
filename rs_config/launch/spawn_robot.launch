@@ -5,6 +5,10 @@
     <arg name="ros_control_file"   default="$(find spot_config)/config/ros_control/ros_control.yaml" /> <!-- Path to ROS Control configurations. Do not touch. -->
     <param name="use_sim_time" value="true" />
 
+    <arg name="x_pose" default="-0.5" />
+    <arg name="y_pose" default="8.361299" /> 
+    <arg name="theta" default="0" /> 
+
     <include file="$(find spot_config)/launch/bringup.launch">
         <arg name="robot_name"             value="$(arg robot_name)"/>
         <arg name="gazebo"                 value="true"/>
@@ -21,9 +25,17 @@
         <arg name="robot_name"         value="$(arg robot_name)"/>
         <arg name="lite"               value="$(arg lite)"/>
         <arg name="ros_control_file"   value="$(arg ros_control_file)"/>
-        <arg name="world_init_x"       value="1.361299" />
-        <arg name="world_init_y"       value="0" />
+        <arg name="world_init_x"       value="$(arg x_pose)" />
+        <arg name="world_init_y"       value="$(arg y_pose)" />
         <arg name="world_init_z"       value="0.72" />
-        <arg name="world_init_heading" value="0" />
+        <arg name="world_init_heading" value="$(arg theta)" />
+    </include>
+
+    <include file="$(find rs_navigation)/launch/navigate.launch">
+        <arg name="robot_name"         value="$(arg robot_name)"/>
+        <arg name="initial_pose_x"     value="$(arg x_pose)" />
+        <arg name="initial_pose_y"     value="$(arg y_pose)" />
+        <arg name="initial_pose_a"     value="$(arg theta)" />
+
     </include>
 </launch>

@@ -1,0 +1,28 @@
+- git:
+     local-name: src/deps/champ_teleop
+     uri: "https://github.com/chvmp/champ_teleop.git"
+     version: "master"
+- git:
+     local-name: src/deps/yocs_velocity_smoother
+     uri: "https://github.com/chvmp/yocs_velocity_smoother"
+     version: "master"
+- git:
+     local-name: src/deps/champ
+     uri: "https://github.com/chvmp/champ"
+     version: "db5f936e5171a097e68339adffa92366bb52fa3e"
+- git:
+    uri: https://github.com/nobleo/full_coverage_path_planner.git
+    local-name: src/deps/full_coverage_path_planner
+    version: master
+- git:
+    uri: https://github.com/nobleo/tracking_pid.git
+    local-name: src/deps/tracking_pid
+    version: master
+- git: 
+    local-name: src/deps/aws-robomaker-small-house-world 
+    uri: "https://github.com/aws-robotics/aws-robomaker-small-house-world.git"
+    version: "ros1"
+- git: 
+    local-name: src/deps/aws-robomaker-small-house-world 
+    uri: "https://github.com/aws-robotics/aws-robomaker-small-house-world.git"
+    version: "ros1"
