@@ -49,7 +49,7 @@ RUN apt install tesseract-ocr -y
 RUN apt-get install python3-pip python-catkin-tools python3-dev python3-numpy -y
 RUN pip install rospkg
 RUN apt-get install python-rosinstall -y
-WORKDIR ~/ws
+WORKDIR /ws
 COPY .rosinstall .rosinstall
 RUN rosws update
 
